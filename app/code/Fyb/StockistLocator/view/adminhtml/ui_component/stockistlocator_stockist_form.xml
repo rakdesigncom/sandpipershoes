@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">stockistlocator_stockist_form.stockistlocator_stockist_form_data_source</item>
+            <item name="deps" xsi:type="string">stockistlocator_stockist_form.stockistlocator_stockist_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Stockist Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">stockistlocator_stockist_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="save" class="Fyb\StockistLocator\Block\Adminhtml\Edit\Button\Save"/>
+            <button name="delete" class="Fyb\StockistLocator\Block\Adminhtml\Edit\Button\Delete"/>
+            <button name="back" class="Fyb\StockistLocator\Block\Adminhtml\Edit\Button\Back"/>
+        </buttons>
+        <deps>
+            <dep>stockistlocator_stockist_form.stockistlocator_stockist_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="stockistlocator_stockist_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Fyb\StockistLocator\Ui\DataProvider\Form\StockistDataProvider" name="stockistlocator_stockist_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="stockist">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Stockist Address</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">stockist</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+
+        <field name="store" sortOrder="50" formElement="select">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Select Store</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">Store</item>
+                                <item name="label" xsi:type="string">Store</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">Chiropodist</item>
+                                <item name="label" xsi:type="string">Chiropodist</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store Email</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">email</item>
+                </item>
+            </argument>
+        </field>
+        <field name="address_1">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Address 1</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">address_1</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="address_2">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Address 2</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">address_2</item>
+                </item>
+            </argument>
+        </field>
+        <field name="county">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Region</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">county</item>
+
+                </item>
+            </argument>
+        </field>
+        <field name="country">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Country</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">country</item>
+
+                </item>
+            </argument>
+        </field>
+        <field name="city">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">City</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">city</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="postcode">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Postcode</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">postcode</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="telephone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Phone Number</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">telephone</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="website">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store Website</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">website</item>
+                </item>
+            </argument>
+        </field>
+        <field name="latitude">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store Latitude</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">latitude</item>
+                    <item name="notice" xsi:type="string" translate="true">The first coordinate in google coordinates, eg. (53.6537043, -2.63285) - Latitude is 53.6537043</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-number" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="longitude">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store Longitude</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">stockist</item>
+                    <item name="dataScope" xsi:type="string">longitude</item>
+                    <item name="notice" xsi:type="string" translate="true">The second coordinate in google coordinates, eg. (53.6537043, -2.63285) - Longitude is -2.63285</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-number" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+
+<!--        <fieldset name="stockist_attributes">-->
+<!--            <settings>-->
+<!--                <label translate="true">Stockist Page</label>-->
+<!--                <collapsible>true</collapsible>-->
+<!--            </settings>-->
+
+<!--            <field name="url_key">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="dataType" xsi:type="string">text</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">URL Key</item>-->
+<!--                        <item name="formElement" xsi:type="string">input</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="dataScope" xsi:type="string">url_key</item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+<!--            <field name="page_title">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="dataType" xsi:type="string">text</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Title</item>-->
+<!--                        <item name="formElement" xsi:type="string">input</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="dataScope" xsi:type="string">page_title</item>-->
+<!--                        <item name="validation" xsi:type="array">-->
+<!--                            <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+<!--            <field name="gallery_title">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="dataType" xsi:type="string">text</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Gallery Title</item>-->
+<!--                        <item name="formElement" xsi:type="string">input</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="dataScope" xsi:type="string">gallery_title</item>-->
+<!--                        <item name="validation" xsi:type="array">-->
+<!--                            <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+<!--            <field name="gallery_sub_title">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="dataType" xsi:type="string">text</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Gallery Sub Title</item>-->
+<!--                        <item name="formElement" xsi:type="string">input</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="dataScope" xsi:type="string">gallery_sub_title</item>-->
+<!--                        <item name="validation" xsi:type="array">-->
+<!--                            <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+<!--            <field name="stockist_images">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="dataType" xsi:type="string">string</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Gallery</item>-->
+<!--                        <item name="visible" xsi:type="boolean">true</item>-->
+<!--                        <item name="formElement" xsi:type="string">imageUploader</item>-->
+<!--                        <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>-->
+<!--                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>-->
+<!--                        <item name="isMultipleFiles" xsi:type="boolean">true</item>-->
+<!--                        <item name="dataScope" xsi:type="string">stockist_images</item>-->
+<!--                        <item name="uploaderConfig" xsi:type="array">-->
+<!--                            <item name="url" xsi:type="url" path="stockistlocator/image/upload"/>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+<!--            <field name="intro_text">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="wysiwygConfigData" xsi:type="array">-->
+<!--                            <item name="add_variables" xsi:type="boolean">false</item>-->
+<!--                            <item name="add_widgets" xsi:type="boolean">false</item>-->
+<!--                            <item name="add_images" xsi:type="boolean">false</item>-->
+<!--                            <item name="add_directives" xsi:type="boolean">true</item>-->
+<!--                            <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>-->
+<!--                        </item>-->
+
+<!--                        <item name="dataType" xsi:type="string">text</item>-->
+<!--                        <item name="formElement" xsi:type="string">wysiwyg</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="label" xsi:type="string">Intro Text</item>-->
+<!--                        <item name="template" xsi:type="string">ui/form/field</item>-->
+<!--                        <item name="wysiwyg" xsi:type="boolean">true</item>-->
+<!--                        <item name="dataScope" xsi:type="string">intro_text</item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+
+<!--            <field name="opening_times" formElement="wysiwyg">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="wysiwygConfigData" xsi:type="array">-->
+<!--                            <item name="add_variables" xsi:type="boolean">false</item>-->
+<!--                            <item name="add_widgets" xsi:type="boolean">false</item>-->
+<!--                            <item name="add_images" xsi:type="boolean">false</item>-->
+<!--                            <item name="add_directives" xsi:type="boolean">true</item>-->
+<!--                            <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--                <settings>-->
+<!--                    <label>Opening Times</label>-->
+<!--                    <dataScope>opening_times</dataScope>-->
+<!--                </settings>-->
+<!--                <formElements>-->
+<!--                    <wysiwyg>-->
+<!--                        <settings>-->
+<!--                            <rows>5</rows>-->
+<!--                            <wysiwyg>true</wysiwyg>-->
+<!--                        </settings>-->
+<!--                    </wysiwyg>-->
+<!--                </formElements>-->
+<!--            </field>-->
+
+<!--            <field name="page_text">-->
+<!--                <argument name="data" xsi:type="array">-->
+<!--                    <item name="config" xsi:type="array">-->
+<!--                        <item name="dataType" xsi:type="string">text</item>-->
+<!--                        <item name="formElement" xsi:type="string">wysiwyg</item>-->
+<!--                        <item name="source" xsi:type="string">stockist</item>-->
+<!--                        <item name="label" xsi:type="string">Seo Text</item>-->
+<!--                        <item name="template" xsi:type="string">ui/form/field</item>-->
+<!--                        <item name="wysiwyg" xsi:type="boolean">true</item>-->
+<!--                        <item name="dataScope" xsi:type="string">page_text</item>-->
+<!--                        <item name="validation" xsi:type="array">-->
+<!--                            <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+<!--                </argument>-->
+<!--            </field>-->
+<!--        </fieldset>-->
+    </fieldset>
+</form>

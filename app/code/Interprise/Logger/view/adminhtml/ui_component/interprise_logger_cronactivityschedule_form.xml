@@ -1,0 +1,256 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">interprise_logger_cronactivityschedule_form.cronactivityschedule_form_data_source</item>
+			<item name="deps" xsi:type="string">interprise_logger_cronactivityschedule_form.cronactivityschedule_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">interprise_logger_cronactivityschedule_form</item>
+		</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+		<item name="buttons" xsi:type="array">
+			<item name="back" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronActivitySchedule\Edit\BackButton</item>
+			<item name="delete" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronActivitySchedule\Edit\DeleteButton</item>
+			<item name="save" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronActivitySchedule\Edit\SaveButton</item>
+			<item name="save_and_continue" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronActivitySchedule\Edit\SaveAndContinueButton</item>
+		</item>
+	</argument>
+	<dataSource name="cronactivityschedule_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Interprise\Logger\Model\CronActivitySchedule\DataProvider</argument>
+			<argument name="name" xsi:type="string">cronactivityschedule_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">cronactivityschedule_id</argument>
+			<argument name="requestFieldName" xsi:type="string">cronactivityschedule_id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="submit_url" path="*/*/save" xsi:type="url"/>
+				</item>
+			</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+	</dataSource>
+	<fieldset name="General">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string"/>
+			</item>
+		</argument>
+		<field name="CronLogId">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">CronLogId</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">160</item>
+					<item name="dataScope" xsi:type="string">CronLogId</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="CronMasterId">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">CronMasterId</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">170</item>
+					<item name="dataScope" xsi:type="string">CronMasterId</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="ActionType">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ActionType</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">180</item>
+					<item name="dataScope" xsi:type="string">ActionType</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="DataId">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">DataId</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">190</item>
+					<item name="dataScope" xsi:type="string">DataId</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="JsonData">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">JsonData</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">200</item>
+					<item name="dataScope" xsi:type="string">JsonData</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Status">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Status</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">210</item>
+					<item name="dataScope" xsi:type="string">Status</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="ActivityTime">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ActivityTime</item>
+					<item name="formElement" xsi:type="string">date</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">220</item>
+					<item name="dataScope" xsi:type="string">ActivityTime</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Remarks">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Remarks</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">230</item>
+					<item name="dataScope" xsi:type="string">Remarks</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Request">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Request</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">240</item>
+					<item name="dataScope" xsi:type="string">Request</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Response">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Response</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">250</item>
+					<item name="dataScope" xsi:type="string">Response</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="UpdateDate">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">UpdateDate</item>
+					<item name="formElement" xsi:type="string">date</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">260</item>
+					<item name="dataScope" xsi:type="string">UpdateDate</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="IsActive">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">IsActive</item>
+					<item name="formElement" xsi:type="string">checkbox</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">270</item>
+					<item name="dataScope" xsi:type="string">IsActive</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="ItemStatus">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ItemStatus</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">280</item>
+					<item name="dataScope" xsi:type="string">ItemStatus</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="site_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">site_id</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronActivitySchedule</item>
+					<item name="sortOrder" xsi:type="number">290</item>
+					<item name="dataScope" xsi:type="string">site_id</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

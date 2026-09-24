@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <sps>
+                <active>1</active>
+                <sallowspecific>1</sallowspecific>
+                <specificcountry>GB</specificcountry>
+                <model>Fyb\Shipping\Model\Carrier\Carrier</model>
+                <title />
+                <type>O</type>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                <handling_type>F</handling_type>
+                <drop_ship_price>3.29</drop_ship_price>
+
+                <class1st>
+                    <active>1</active>
+                    <name>UK Royal Mail 1st Class</name>
+                    <enable_dropship>1</enable_dropship>
+                    <price>4.96</price>
+                    <min_weight>0</min_weight>
+                    <max_weight>3.999999</max_weight>
+                </class1st>
+                <class2nd>
+                    <active>1</active>
+                    <name>UK Royal Mail 2nd Class</name>
+                    <enable_dropship>1</enable_dropship>
+                    <price>3.29</price>
+                    <min_weight>0</min_weight>
+                    <max_weight>1.999999</max_weight>
+                </class2nd>
+                <wday>
+                    <active>1</active>
+                    <name>UK DX Courier next working day service (Mon-Fri)</name>
+                    <enable_dropship>1</enable_dropship>
+                    <price>7.46</price>
+                    <min_weight>0</min_weight>
+                    <max_weight />
+                </wday>
+                <nextpreday>
+                    <active>1</active>
+                    <name>UK Next day DX Courier Pre 1pm delivery</name>
+                    <enable_dropship>1</enable_dropship>
+                    <price>10.79</price>
+                    <min_weight>0</min_weight>
+                    <max_weight />
+                </nextpreday>
+<!--                <dropship>-->
+<!--                    <active>0</active>-->
+<!--                    <name>Drop Ship Delivery</name>-->
+<!--                    <price>3.29</price>-->
+<!--                    <enable_dropship>1</enable_dropship>-->
+<!--                </dropship>-->
+<!--                <free>-->
+<!--                    <active>0</active>-->
+<!--                    <name>Free Shipping</name>-->
+<!--                    <enable_dropship>0</enable_dropship>-->
+<!--                </free>-->
+            </sps>
+        </carriers>
+    </default>
+</config>

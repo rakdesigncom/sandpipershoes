@@ -1,0 +1,82 @@
+<?php
+/** @var \Fyb\StockistLocator\Block\View\Stockist $block */
+$stockist = $block->getStockist();
+$storeHelper = $this->helper('Fyb\Theme\Helper\StoreData');
+$apiKey = $storeHelper->getConfig('stockistlocator/general/access_token');
+?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?= $apiKey ?>&sensor=true&libraries=marker"></script>
+
+<div class="stockist-bystore-gallerry-and-map">
+    <div class="stockist-bystore-gallerry-content">
+        <div class="stockist-name">
+            <span class="stockist-gallery-title"><?= $stockist->getName() ?></span>
+            <span class="stockist-gallery-sub-title"><?= $stockist->getTown() ?></span>
+        </div>
+        <?php $images = json_decode((string)$stockist->getData('stockist_images'), true) ?: [];?>
+        <div class="stockist-images swiper swiper-container" id="gallery-images">
+            <div class="swiper-wrapper">
+                <?php foreach ($images as $image): ?>
+                    <div class="swiper-slide">
+                        <img src="<?= $image['url'] ?>" alt="<?= $image['name'] ?>" loading="lazy" />
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div thumbsSlider="" class="stockist-thumbs swiper swiper-container" id="thumbs-images">
+            <div class="swiper-wrapper">
+                <?php foreach ($images as $image): ?>
+                    <div class="swiper-slide">
+                        <img src="<?= $image['url'] ?>" alt="<?= $image['name'] ?>" loading="lazy" />
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <div class="stockist-bystore-map-content">
+        <div class="stockist-map-title">
+            <h4 class="stockist-gallery-title">How to find us</h4>
+        </div>
+        <div id="map-canvas" class="stockist__right-side">
+            <?= $stockist->getData('google_map_embed') ?>
+        </div>
+    </div>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'fybSwiper',
+        'domReady!',
+    ], function ($) {
+        'use strict';
+
+        $('#thumbs-images').swiper({
+            swiper: {
+                spaceBetween: 20,
+                slidesPerView: 4,
+                lazy: true,
+                navigation: true,
+                watchSlidesProgress: true,
+                breakpoints: false,
+            }
+        });
+
+        $('#gallery-images').swiper({
+            swiper: {
+                spaceBetween: 0,
+                navigation: false,
+                watchSlidesProgress: false,
+                lazy: true,
+                thumbs: {
+                    swiper: window["thumbs-images_swiper"],
+                },
+                clickable: false,
+                draggable: false,
+                grabCursor: false,
+                breakpoints: false,
+            }
+        });
+    });
+</script>

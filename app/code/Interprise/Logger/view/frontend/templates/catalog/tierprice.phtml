@@ -1,0 +1,15 @@
+<?php
+$array_result_tierprise = $block->getTierprices();
+if (count($array_result_tierprise)>0) { ?>
+<ul class="prices-tier items">
+    <?php foreach ($array_result_tierprise as $k => $tierdata) { ?>
+    <li class="item">Buy <?=  /* @noEscape */$tierdata['qty'] ?> for
+        <span class="price-container price-tier_price tax">
+            <span id="price-excluding-tax-220-0" data-label="Excl. Tax" data-price-amount="18" data-price-type="basePrice" class="price-wrapper price-excluding-tax">
+             <span class="price">£<?=  /* @noEscape */$tierdata['price'] ?></span>
+            </span>
+        </span>
+    </li>
+    <?php } ?>
+</ul>
+<?php } ?>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" ifconfig="sparsh_banner/general/enable" name="main.banner" template="Magento_Cms::home/banner.phtml" before="-" />
+            <block class="Magento\Cms\Block\Block" name="main.general_store_information"  after="main.banner" >
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_general_store_information</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="main.promotional.info" template="Magento_Cms::home/promotional.phtml" after="main.banner" />
+            <block class="Magento\Framework\View\Element\Template" name="main.products" template="Magento_Cms::home/products.phtml" />
+            <block class="Fyb\Theme\Block\Home\Categories" name="main.categories" template="Magento_Cms::home/categories.phtml" />
+
+            <block class="Magento\Cms\Block\Block" name="main.sandals_slippers">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_sandals_slippers</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="main.homepage_about_sandpiper">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_about_sandpiper</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="main.homepage_our_quality">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_our_quality</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Cms\Block\Block" name="main.homepage_help_advice">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_help_advice</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Newsletter\Block\Subscribe" name="main.newsletter" template="Magento_Cms::newsletter.phtml"/>
+
+            <container name="main.homepage_latest_posts_container"  htmlTag="div" htmlClass="homepage_blog_posts" >
+            <block class="Magento\Cms\Block\Block" name="main.homepage_latest_posts">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_latest_posts</argument>
+                </arguments>
+            </block>
+            </container>
+            <block class="Magento\Framework\View\Element\Template" name="main.homepage_testimonials.container" template="Magento_Cms::home/testimonials.phtml">
+                <block class="Magento\Cms\Block\Block" name="main.homepage_testimonials">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">homepage_testimonials</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Cms\Block\Block" name="main.homepage_help_with_condition">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_help_with_condition</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true" />
+        <referenceBlock name="block.newsletter" remove="true" />
+    </body>
+</page>

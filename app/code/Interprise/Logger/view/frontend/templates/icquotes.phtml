@@ -1,0 +1,111 @@
+<?php  $_gridrecords = $block->getCollectionquote(); // get collection which we set in block class
+// echo "<pre>";
+// print_r($_gridrecords);
+// die;
+$query_string = '';
+$p = $block->getRequest()->getParam('p');
+$limit = $block->getRequest()->getParam('limit');
+if ($p) {
+    $query_string = '&p='.$p;
+}
+if ($limit) {
+    $query_string .= '&limit='.$limit;
+}
+$filter = $block->getRequest()->getParam('filter');
+?>
+<!----------------- Show Filter ------------------------------>
+<div class="toolbar">
+    <div class="sorter">
+        <div class="sort-by">
+            <label>Filter By</label>
+            <select onchange="setLocation(this.value)" title="Filter By">
+                <option value="<?= /* @noEscape */ $block->getUrl('icustomer/cquote/index/'); ?>?filter=complete<?= /* @noEscape */$query_string;?>"
+                    <?php if (isset($filter) && $filter=='complete') {echo 'selected';}?>>Completed</option>
+                <option value="<?= /* @noEscape */ $block->getUrl('icustomer/cquote/index/'); ?>?filter=open<?=/* @noEscape */ $query_string;?>"
+                    <?php if ($filter=='open' || !$block->getRequest()->getParams()) {echo 'selected';}?>>Outstanding</option>
+            </select>
+        </div>
+    </div>
+    <?= /* @noEscape */ $block->getPagerHtml(); ?>
+</div>
+<!----------------- End Filter ------------------------------>
+
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @noEscape */__('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col title"><?= /* @noEscape */__('SO Number') ?></th>
+                    <th scope="col" class="col title"><?= /* @noEscape */__('Customer PO') ?></th>
+                    <th scope="col" class="col date"><?= /* @noEscape */__('Document Date') ?></th>
+                    <th scope="col" class="col shipto"><?= /* @noEscape */__('Ship To') ?></th>
+                    <!-- <th scope="col" class="col paymenttype"><?= /* @noEscape */__('Payment Type') ?></th> -->
+                    <th scope="col" class="col" style="text-align:right"><?= /* @noEscape */__('Total') ?></th>
+                    <th scope="col" class="col" style="text-align:right"><?= /* @noEscape */__('Status') ?></th>
+                    <th scope="col" class="col " style="text-align:right">Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+    <?php
+    if(empty($_gridrecords['alldata'])){
+      ?>
+      <div class="danger" style="background:#fdf0d5;color:#6f4400"><span>Records Not Found.</span></div>
+      <?php
+    }else{
+      $alldata=$_gridrecords['alldata'];
+      ////
+      $tmp = Array();
+foreach($alldata as &$ma)
+    $tmp[] = &$ma['attributes']['invoiceDate'];
+array_multisort($tmp, SORT_DESC,$alldata,SORT_DESC);
+///
+
+      for($i=0;$i<count($alldata);$i++){
+        // if($alldata[$i]['attributes']['currencyCode']=='GBP'){
+        //   $currencycode='£';
+        // }else if($alldata[$i]['attributes']['currencyCode']=='USD'){
+        //   $currencycode='$';
+        // }else if($alldata[$i]['attributes']['currencyCode']=='EURO'){
+        //   $currencycode='€';
+        // }else{
+        //   $currencycode='';
+        // }
+        $currencycode='£';
+        ?>
+        <tr>
+          <th scope="row"><?php echo $alldata[$i]['id']?></th>
+          <td><?php
+          if(array_key_exists("customerPO",$alldata[$i]['attributes'])){
+  					echo $alldata[$i]['attributes']['customerPO'];
+  				}else{
+  					echo '';
+  				}
+          //echo $alldata[$i]['attributes']['salesRepOrderCode'];
+          ?></td>
+          <td><?php echo date('d-m-Y', strtotime($alldata[$i]['attributes']['date']));?></td>
+          <td><?php echo $alldata[$i]['attributes']['shipToName']?></td>
+          <!-- <td><?php //echo $alldata[$i]['attributes']['sourceCode']?></td> -->
+          <td style="text-align:right"><?php echo $currencycode.number_format((float)$alldata[$i]['attributes']['value'], 2, '.', ',');?></td>
+          <td style="text-align:right"><?php echo $alldata[$i]['attributes']['status']?></td>
+          <td style="text-align:right"><a href="<?= /* @noEscape */ $block->getUrl("icustomer/corder/detail/id/".urlencode(base64_encode($alldata[$i]['id']))."/type/quote"); ?>">Detail</a></td>
+        </tr>
+        <?php
+      }
+
+    }
+     ?>
+  </tbody>
+        </table>
+    </div>
+
+<style>
+    .total{
+        text-align: right;
+    }
+</style>
+<script>
+    function setLocation(url){
+        window.location.href = encodeURI(url);
+    }
+
+</script>

@@ -1,0 +1,184 @@
+& when (@media-common = true) {
+    .post-item-wraper {
+        .post-image {
+            .img-responsive {
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .mp-post-meta-info a.mp-read-more {
+        text-decoration: none !important;
+    }
+
+    .post-list-content {
+        .post-info-wraper h2.mp-post-title a,
+        .about-admin h4.admin-title a,
+        .mp-post-info a.mp-info,
+        .mp-post-info a.mp-tag-info,
+        ul.menu-categories a.list-categories:hover,
+        .products-same-post a.product-item-link:hover,
+        a.mp-relate-link,
+        .mpblog-product-name {
+            color: @color-black-0 !important;
+        }
+
+        .mp-post-meta-info a.mp-read-more {
+            color: @color-purple !important;
+            font-size: @font-size__normal_body;
+            line-height: @line-height__31;
+            font-family: @font-family-jost_regular;
+            font-weight: 400;
+        }
+
+        .post-short-description p {
+            color: @color-grey-4;
+            font-size: @font-size__16;
+        }
+
+
+    }
+
+    h2.mp-post-title {
+        font-size: @font-size__20;
+        line-height: @line-height__normal_body;
+        margin-bottom: 10px;
+    }
+
+    .post-list-content .products-grid .product-item {
+
+        .post-item-wraper {
+            border: none;
+
+            &:hover {
+                box-shadow: none;
+            }
+
+            .post-image {
+                overflow: hidden;
+                border-radius: 12px;
+
+                img.img-responsive {
+                    max-height: unset;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .mpblog-post-view {
+        .post-info-wraper h2.mp-post-title a, .about-admin h4.admin-title a, .mp-post-meta-info a.mp-read-more,
+        .mp-post-info a.mp-info,
+        .mp-post-info a.mp-tag-info,
+        ul.menu-categories a.list-categories:hover, .products-same-post a.product-item-link:hover, a.mp-relate-link, .mpblog-product-name {
+            color: @color-purple !important;
+        }
+
+        a.label.label-default.tags-list:hover, a.label.label-default.tags-list:focus {
+            background: @color-purple !important;
+        }
+    }
+
+    .mp-post-info a.mp-tag-info {
+        background: none;
+    }
+
+    .pages .item {
+        width: 40px;
+        height: 39px;
+        font-size: 16px;
+        line-height: 23px;
+        font-family: @font-family-jost_regular;
+        color: #2C302E;
+        font-style: normal;
+        font-weight: 400;
+        border: 1px solid #fff;
+    }
+
+    .pages .item.current {
+        border: 1px solid @color-grey;
+    }
+
+    .pages strong.page {
+        font-size: 16px;
+        line-height: 23px;
+        font-family: @font-family-jost_regular;
+        color: #2C302E;
+        font-style: normal;
+        font-weight: 400;
+        padding: 10px 16px;
+
+        background: transparent;
+    }
+
+    .pages a.page:hover {
+        color: #2C302E;
+    }
+
+    .pages a.page {
+        padding: 10px 16px;
+        color: #2C302E;
+    }
+
+    .pages .item:hover {
+        border: 1px solid @color-grey;
+    }
+
+    .pages .item.pages-item-previous,
+    .pages .item.pages-item-next,
+    .pages .item.pages-item-next:hover,
+    .pages .item.pages-item-previous:hover {
+        border: 1px solid #fff;
+    }
+
+    .pages .action,
+    .pages .action:hover {
+        color: @color-purple;
+        background: transparent;
+        box-shadow: none;
+        border: 0;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .mpblog-post-view {
+        .page-main-full-width {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1440px;
+            padding-left: @layout-margin_space;
+            padding-right: @layout-margin_space;
+            width: 100%;
+        }
+    }
+    .post-list-content {
+        .toolbar-amount {
+            text-align: center;
+            float: none;
+            color:@color-grey-2;
+            font-family: @font-family-jost_regular;
+            font-weight: 400;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .post-list-content .products-grid .product-item {
+        width: 30%;
+
+        .post-item-wraper {
+            border: none;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .mpblog-post-view {
+        .page-main-full-width {
+
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

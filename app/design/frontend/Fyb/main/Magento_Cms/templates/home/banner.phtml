@@ -1,0 +1,127 @@
+<div class="homepage-banner" style="position:relative;">
+    <div class="homepage-banner-content">
+        <div class="homepage-banner-content-inner">
+            <div class="homepage-banner-inside">
+                <div class="swiper swiper-container" id="home-page-slider">
+                    <div class="swiper-wrapper">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'fybSwiper',
+        'domReady!',
+    ], function ($) {
+        'use strict';
+
+        $.ajax({
+            type: 'GET',
+            url: '/rest/V1/banner/current-banner',
+            dataType: 'json',
+            success: function (data) {
+                if (!data) {
+                    return;
+                }
+
+                var bannerContainer = $('#home-page-slider .swiper-wrapper');
+
+
+                $.each(data, function(i, banner) {
+
+                    var colorNo = i%3;
+                    var divContainer = '<div class="swiper-slide banner-color_'+colorNo+'"></div>';
+                    var divContainerInside = '<div class="swiper-slide-inside-info"></div>';
+
+                    var container = $(divContainer);
+                    var containerInside = $(divContainerInside);
+
+                    var bannerTitle = banner.banner_title ? banner.banner_title: 'Home Page Banner ' + i;
+
+
+                    if (banner.banner_description || banner.call_to_action) {
+                        var additionalContent = $('<div class="homepage-banner-info"></div>')
+                        if (banner.banner_description) {
+                            additionalContent.append($(
+                                '<div>' + banner.banner_description + '</div>'
+                            ));
+                        }
+                        if (banner.call_to_action) {
+                            additionalContent.append($(
+                                '<a class="button" href="' + banner.call_to_action + '">' + banner.label_button_text + '</a>'
+                            ));
+                        }
+                        containerInside.append(additionalContent);
+                        containerInside.append(
+                            $('<img data-position="' + i  + '" data-id="' + banner.banner_id + '" src="' + banner.banner_image + '" alt="' + bannerTitle + '" title="' + bannerTitle + '"  loading="lazy"/>' +
+                                '<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>'
+                            )
+                        );
+                    }
+
+                     //containerInside.append(container);
+                    container.append(containerInside);
+
+                    bannerContainer.append(container);
+                });
+
+                $('#home-page-slider').swiper({
+                    swiper: {
+                        spaceBetween: 0,
+                        navigation: false,
+                        pagination: true,
+                        scrollbar: false,
+                        clickable: false,
+                        autoplay: {
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        },
+                        breakpoints: false,
+                    }
+                });
+
+                videoTextPlacement();
+            }
+        });
+
+
+        function videoTextPlacement() {
+            var height = window.innerHeight;
+            var width = window.innerWidth;
+            var autoBottom = 20;
+
+            if (width >= 1024) {
+                autoBottom = 100;
+            }
+
+            if (height && $(".homepage-banner-info").length) {
+                var infoTextHeight = $(".homepage-banner-info").height() * 1;
+                var videoHeight = $(".homepage-banner-content").height() * 1;
+                var newTop = height - infoTextHeight - 40;
+
+                if (newTop < 130) {
+                    newTop = 130;
+                }
+
+                if (newTop + infoTextHeight + autoBottom > videoHeight  ) {
+                    $(".homepage-banner-info").css("top", "auto");
+                    $(".homepage-banner-info").css("bottom", autoBottom+"px");
+
+                } else {
+                    $(".homepage-banner-info").css("top", newTop + "px");
+                    $(".homepage-banner-info").css("bottom", "auto");
+                }
+
+            }
+        }
+
+
+        $(window).resize(function () {
+            videoTextPlacement();
+        });
+    });
+</script>

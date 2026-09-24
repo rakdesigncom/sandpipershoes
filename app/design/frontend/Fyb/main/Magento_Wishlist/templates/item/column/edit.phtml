@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Edit $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+?>
+
+<a href="<?= $escaper->escapeUrl($block->getProductUrl($product)) ?>" class="action toproductview" title="<?= $block->escapeHtmlAttr(__('View Product')) ?>">
+    <span><?= $escaper->escapeHtml(__('View Product')) ?></span>
+</a>

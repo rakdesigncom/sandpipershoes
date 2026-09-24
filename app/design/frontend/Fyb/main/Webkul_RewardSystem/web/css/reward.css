@@ -1,0 +1,357 @@
+/**
+ * Webkul Software. changes for SPS
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author     Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+span.form-list.wk_rs_reward_applied > span {
+  font-size: 1.7rem;
+  line-height: 3rem;
+}
+.wk_rs_advertise_review_style {
+    border-color: #C4C6C8 #C4C6C8 #FF7171;
+    border-style: solid;
+    border-width: 1px 1px 3px;
+    color: #8D6B8E;
+    padding: 10px !important;
+    font-size: 34px;
+}
+.wk_rs_greet {
+    background: url("../images/sprite.png") repeat scroll 36px 373px transparent;
+    padding-left: 30px;
+}
+.wk_rs_green {
+    color: #4ABC48;
+    font-size: 35px;
+}
+.wk_rs_sub_head1{
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+}
+.wk_rs_sub_head2 h2, .wk_rs_sub_head2 h3{
+    margin: 0px;
+}
+.wk_rs_price{
+    color: green;
+}
+.wk_rs_main *{
+    box-sizing:border-box;
+    position: relative;
+}
+.wk_rs_main h2, .wk_rs_main h3{
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 6rem;
+}
+#wk_rs_no_reward_img{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.wk_rs_noreward_head {
+    text-align: center;
+}
+.wk_rs_points_details.wk_rs_total_points{
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px 14px;
+  width: 43%;
+  margin-right:20px;
+  float: left;
+  margin-bottom:16px;
+}
+.wk_rs_points_details p,
+.wk_rs_points_details p{
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+.wk_rs_reward_value{
+  font-size:45px;
+  font-weight:600;
+  margin-right:10px;
+    line-height: 55px;
+}
+.wk_rs_reward_text{
+  font-weight:600;
+  font-size:16px;
+}
+.wk_rs_reward_applied{
+  background: url("../images/icon.png") no-repeat transparent;
+  font-size: 19px;
+}
+.wk_rs_applied_reward_text {
+  margin-left: 28px;
+}
+.wk_rs_applied_amount{
+  font-weight:600;
+}
+.wk_rs_amount_currency{
+  font-size: 40px;
+  font-weight: 600;
+}
+.wk_rewards_on_products {
+   border-bottom: 1px solid #c1c1c1;
+}
+.wk_rs_advertise_product_page_style {
+    border-width: 1px 1px 1px;
+    color: #8D6B8E;
+
+    font-size: 22px;
+}
+.wk_rs_product_page_greet {
+    background: url(../images/badgeproduct.png) no-repeat transparent;
+    padding-left: 30px;
+    background-size: 80% 100%;
+}
+.wk_rs_category_page_greet {
+  background: url(../images/badgecategory.png) no-repeat transparent;
+  padding-left: 30px;
+  background-size: 80% 100%;
+}
+.wk_rs_minicart_page_greet {
+  background: url(../images/badgeminicart.png) no-repeat transparent;
+  padding-left: 30px;
+  background-size: 80% 100%;
+}
+.wk_rs_checkout_page_greet {
+  background: url(../images/badgecheckout.png) no-repeat transparent;
+  padding-left: 30px;
+  background-size: 80% 100%;
+}
+.wk_rs_cart_green {
+    color: #4ABC48;
+}
+.wk_rs_advertise_product_style {
+    border-color: ghostwhite;
+    border-width: 1px 1px 1px;
+    color: #8D6B8E;
+    border-style: ridge;
+
+    padding: 10px !important;
+    font-size: 23px;
+    box-shadow: inset 0px 0px 4px 1px whitesmoke;
+}
+.wk_rs_product_greet {
+    background: url(../images/Sprite.png) repeat scroll 40px 370px transparent;
+    padding-left: 30px;
+}
+.wk_reward_required {
+    color: #8D6B8E;
+}
+.wk_rs_sub_style_left {
+  float: left;
+  width: 35px;
+  height: 60px;
+}
+.wk_rs_expiry_container, .wk_rs_points_container {
+  clear: left;
+}
+.wk_rs_expiry_container {
+  margin-top: 45px;
+}
+.wk_rs_points_container {
+  margin-top: 25px;
+  height: 90px;
+}
+.wk_rs_bold_text {
+  font-weight: bold;
+}
+.wk_rs_points_section {
+  box-sizing: border-box;
+  float: left;
+  width: 28%;
+  height: 90px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
+.wk_rs_points_earned {
+  background-color: #01A800;
+}
+.wk_rs_points_spent {
+  background-color: #8064A1;
+  margin-left: 8%;
+}
+.wk_rs_points_expired {
+  background-color: #4F81BC;
+  margin-left: 8%;
+}
+.wk_rs_points_text {
+  padding-top: 10%;
+}
+.wk_rs_container_1_left {
+  width: 55%;
+  float: left;
+}
+.wk_rs_container_1_right {
+  width: 39%;
+  border: 1px solid;
+  border-color: lightgray;
+  margin-left: 5%;
+  display: inline-block;
+}
+.wk_rs_container_1 {
+  min-height: 250px;
+}
+.wk_rs_rewardinfo_heading {
+  font-size: 25px;
+  padding: 18px;
+}
+.block-minicart .wk_rs_minicart_container {
+  margin: 0 10px 10px;
+}
+.wk_rs_checkout_summary_msg {
+  font-size: 18px;
+}
+.wk_rs_checkout_summary_msg .wk_rs_summary_right {
+  float: right;
+}
+.wk_rs_cms_link {
+  padding: 0 18px 18px;
+}
+img.wk_rs_top_nav_logo {
+  height: 15px;
+  width: 15px;
+  margin-right: 4px;
+}
+.wk_rs_referral_container_1 {
+  margin-bottom: 50px;
+}
+.wk_rs_referral_container_1_left {
+  width: 50%;
+  float: left;
+}
+.wk_rs_referral_container_1_right {
+  width: 50%;
+  display: inline-block;
+}
+.wk_rs_referral_points_container {
+  max-width: 500px;
+}
+.wk_rs_invite_container, .wk_rs_referral_link_container {
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+.wk_rs_invite_container .field.sendinvites {
+  display: inline-block;
+  width: 70%;
+}
+.wk_rs_invite_container .actions {
+  float: right;
+  width: 30%;
+}
+.wk_rs_referral_link_container .field.referral_link {
+  display: inline-block;
+  width: 80%;
+}
+.wk_rs_referral_link_container .actions {
+  float: right;
+  width: 20%;
+}
+.wk_rs_referral_points_section {
+  width: 50%;
+}
+.wk_rs_referral_points_section.wk_rs_total_referral_points {
+  float: left;
+}
+.wk_rs_referral_points_section.wk_rs_referral_points_earned {
+  display: inline-block;
+}
+.wk_rs_referral_points_section_inner.wk_rs_tot_left {
+  background: #8DC33A;
+  border-radius: 4px;
+}
+.wk_rs_referral_points_section_inner.wk_rs_tot_right {
+  background: #FF7A1C;
+  border-radius: 4px;
+}
+.wk_rs_referral_points_section_inner {
+  width: 186px;
+  height: 57px;
+  text-align: center;
+  color: #FFFFFF;
+  padding-top: 18px;
+}
+.wk_rs_referral_report_container {
+  margin-bottom: 10px;
+}
+.wk_rs_referral_points_text {
+  margin-bottom: 5px;
+}
+.wk_rs_referral_bold_text {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+.wk_rs_invite_heading, .wk_rs_referral_link_heading, .wk_rs_referral_social_heading {
+  margin-bottom: 10px;
+}
+span.wk_rs_social {
+  margin-right: 12px;
+}
+.wk_rs_referral_container_3 {
+  margin-top: 75px;
+}
+.wk_rs_referral_container_3_content {
+  margin-top: 10px;
+}
+.wk_rs_referral_container_3_left {
+  width: 50%;
+  float: left;
+  padding-right: 30px;
+}
+.wk_rs_referral_container_3_right {
+  width: 50%;
+  display: inline-block;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 161%;
+  letter-spacing: 0.04em;
+  color: #333333;
+}
+.wk_rs_referral_container_3_right .wk_rs_referral_step_right {
+  font-weight: bold;
+}
+.table-order-items.creditmemo .col.rewardamount{
+text-align: center;
+}
+@media only screen and (max-width: 1100px) {
+  .wk_rs_referral_container_1_left, .wk_rs_referral_container_1_right {
+    width: 100%;
+    display: block;
+    float: none;
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .wk_rs_container_1_left, .wk_rs_container_1_right {
+    width: 100%;
+    display: block;
+    float: none;
+  }
+  .wk_rs_container_1_left {
+    margin-bottom: 40px;
+  }
+  .wk_rs_container_1_right {
+    margin-left: 0;
+    margin-bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+    .payment-option .payment-option-inner #reward_points{
+        height: 45px;
+    }
+}
+@media only screen and (min-width: 769px) {
+  .wk_rs_container_1_right {
+    position: relative;
+    top: -70px;
+  }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer.wishlist.button.update" remove="true"/>
+        <referenceBlock name="customer.wishlist.button.share" remove="true"/>
+        <referenceBlock name="customer.wishlist.button.toCart" remove="true"/>
+        <referenceContainer name="customer.wishlist.buttons" remove="true"/>
+        <referenceContainer name="customer.wishlist.item.comment" remove="true"/>
+        <referenceContainer name="customer.wishlist.item.cart" remove="true"/>
+        <referenceContainer name="customer.wishlist.item.review" remove="true"/>
+    </body>
+</page>

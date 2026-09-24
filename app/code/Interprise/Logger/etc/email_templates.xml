@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+	<template id="reattempt_success" label="Re-attempt Success" file="reattempt_success.html" type="html" module="Interprise_Logger" area="frontend"/>
+	<template id="reattempt_failure" label="Re-attempt Failure" file="reattempt_failure.html" type="html" module="Interprise_Logger" area="frontend"/>
+	<template id="sync_failed" label="Sync Failed" file="sync_failed.html" type="html" module="Interprise_Logger" area="frontend"/>
+	<template id="sync_succeed" label="Sync Succeed" file="sync_succeed.html" type="html" module="Interprise_Logger" area="frontend"/>
+	<template id="invalid_emaiaddress" label="Customer Invalid Emailaddress" file="invalid_emaiaddress.html" type="html" module="Interprise_Logger" area="frontend"/>
+</config>

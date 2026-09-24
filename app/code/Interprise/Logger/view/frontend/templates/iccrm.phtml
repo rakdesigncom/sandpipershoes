@@ -1,0 +1,60 @@
+<?php  $_gridrecords = $block->getCollectioncrm();
+// echo "<pre>";
+// print_r($_gridrecords);
+// die;
+// get collection which we set in block class ?>
+<a href="<?= /* @noEscape */$block->getUrl('icustomer/ccrm/addnew'); ?>" class="action save primary">Add New Case</a>
+<?php if (!empty($_gridrecords['alldata'])) {?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @noEscape */__('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <!-- <th scope="col" class="col id"><?= /* @noEscape */ __('ID #') ?></th> -->
+                    <th scope="col" class="col title"><?= /* @noEscape */__('Document Code') ?></th>
+                    <th scope="col" class="col date"><?= /* @noEscape */__('Date') ?></th>
+                    <th scope="col" class="col date"><?= /* @noEscape */__('Subject') ?></th>
+                    <th scope="col" class="col date"><?= /* @noEscape */__('Priority') ?></th>
+                   
+                    <!-- <th scope="col" class="col ">Detail</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <?php  // read collection as magento1.x and display in list
+
+                if(empty($_gridrecords['alldata'])){
+
+                }else{
+
+                  $alldata=$_gridrecords['alldata'];
+
+                  ////
+                  $tmp = Array();
+            foreach($alldata as &$ma)
+                $tmp[] = &$ma['attributes']['invoiceDate'];
+            array_multisort($tmp, SORT_DESC,$alldata,SORT_DESC);
+                  ////
+                    
+                  for($i=0;$i<count($alldata);$i++){
+                    $problemDesc = '';
+                    if(isset($alldata[$i]['attributes']['problemDescription']))
+                        $problemDesc = $alldata[$i]['attributes']['problemDescription'];
+                      ?>
+                      <tr>
+
+                          <td class="col shipping"><?= /* @noEscape */ $alldata[$i]['attributes']['caseCode'] ?></td>
+                          <td class="col date"><?= /* @noEscape */ date('d/m/Y', strtotime($alldata[$i]['attributes']['date'])) ?></td>
+                          <td class="col date"><?= /* @noEscape */$alldata[$i]['attributes']['subject'] ?></td>
+                          <td class="col date"><?= /* @noEscape */$alldata[$i]['attributes']['priority'] ?></td>
+                          
+                      </tr>
+                  <?php }
+                }
+              ?>
+            </tbody>
+        </table>
+    </div>
+
+<?php }else { ?>
+    <div class="message info empty"><span><?= /* @noEscape */__('grid records not available.'); ?></span></div>
+<?php } ?>

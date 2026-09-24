@@ -1,0 +1,268 @@
+<?php
+$detailsArr = $block->getOrderdetail();
+$mhelper = $block->getHelperMagento();
+// echo "<pre>";
+// print_r($detailsArr);
+// die;
+//echo count($detailsArr);
+
+//if (!empty($detailsArr)) {
+if (!empty($detailsArr['allDetail']))
+{
+  $alldata=$detailsArr['allDetail'];
+  $currencycode='£';
+  $date= substr($alldata['attributes']['date'],0,10);
+  $formtaed= explode("-",$date);
+    ?>
+
+       <div class="">
+         <div class="page-title-wrapper">
+           <div class="order-date">
+               <span class="label"></span> <date><?php echo $formtaed[2]."/".$formtaed[1]."/".$formtaed[0]; ?>,  <?php echo $alldata['attributes']['status']; ?>, <?php echo $alldata['attributes']['type'] ?> <?php
+               if(array_key_exists("orderCode",$alldata['attributes'])){
+                 echo ":". $alldata['attributes']['orderCode'];
+               }elseif(array_key_exists("quoteCode",$alldata['attributes'])){
+                 echo ":". $alldata['attributes']['quoteCode'];
+               }elseif(array_key_exists("rmaCode",$alldata['attributes'])){
+                 echo ":". $alldata['attributes']['rmaCode'];
+               }else{
+                 echo '';
+               }
+                ?></date>
+                <!-- <a href="" class="action save primary" style="float:right;text-decoration:none;    background: #8d6b8e;
+             border: 1px solid #8d6b8e;
+             font-size: 12px;
+             font-weight: 400;
+             border-radius: 3px;
+             color: #fff;
+             text-decoration: none;
+             padding: 3px 15px;
+             margin-bottom: 20px;">ReOrder</a> -->
+        <!-- <span class="page-title"> -->
+
+          <!-- </span> -->
+        </div>
+            <?php
+      // if(!empty($restInformation)){
+      //   if($restInformation['attributes']['currencyCode']=='GBP'){
+      //     $currencycode='£';
+      //   }else if($restInformation['attributes']['currencyCode']=='USD'){
+      //     $currencycode='$';
+      //   }else if($restInformation['attributes']['currencyCode']=='EURO'){
+      //     $currencycode='€';
+      //   }else{
+      //     $currencycode='';
+      //   }
+
+        // print_r($formtaed);
+        // die;
+        //echo $formtaed[2]."/".$formtaed[1]."/".$formtaed[0];
+        ?>
+
+
+        <!-- <p><?php //echo $formtaed[2]."/".$formtaed[1]."/".$formtaed[0]; ?></p> -->
+          <!-- <span class="order-status"><?php //echo $alldata['attributes']['status']; ?></span><br> -->
+          <!-- <span class="order-status">
+          Customer PO:
+             <?php
+          // if(array_key_exists("poCode",$restInformation['attributes'])){
+          //   echo $restInformation['attributes']['poCode'];
+          // }else{
+          //   echo '';
+          // }
+          ?></span> -->
+
+
+        <?php
+      //}
+      // die;
+       ?>
+        </div>
+
+    <ul class="items order-links"><li class="nav item current"><strong>Items</strong></li></ul><div class="order-details-items ordered">
+
+        <div class="order-title">
+            <strong>Items Ordered</strong>
+        </div>
+
+        <div class="table-wrapper order-items">
+            <table class="data table table-order-items" id="my-orders-table" summary="Items Ordered">
+                <caption class="table-caption">Items Ordered</caption>
+                <thead>
+                    <tr>
+                        <th class="col ">Product Name</th>
+                        <th class="col ">SKU</th>
+                        <th scope="col">Sale Price</th>
+                        <th scope="col">Net Price</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col" style="text-align:right">Line Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // if (is_array($result_detail_1) && count($result_detail_1)>0) {
+                         $subtotal=0;
+                         $details=$alldata['attributes']['details'];
+                         for($i=0;$i<count($details);$i++){
+                            ?>
+                    <tr id="order-item-row-1">
+                        <td class="col " data-th="Product Name">
+                            <strong class="product name product-item-name"><?php echo $details[$i]['description'];?></strong>
+                        </td>
+                        <td class="col " data-th="SKU"><?php echo $details[$i]['itemName'];?></td>
+                        <td class="col " data-th="Price">
+                          <?php echo $currencycode.number_format((float)$details[$i]['sellPrice'], 2, '.', ',');?>
+                        </td>
+                        <td class="col " data-th="Price">
+                          <?php echo $currencycode.number_format((float)$details[$i]['netSellPrice'], 2, '.', ',');?>
+                        </td>
+
+                        <td class="col " data-th="Qty">
+                            <ul class="items-qty">
+                                <li class="item">
+                                    <!-- <span class="title">Ordered</span> -->
+                                    <span class="content"><?php echo $details[$i]['qty'];?> <?php echo $details[$i]['um'];?></span>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="col price" data-th="Price">
+                          <?php echo $currencycode.number_format((float)$details[$i]['lineTotal'], 2, '.', ',');?>
+                        </td>
+                    </tr>
+                        <?php } ?>
+                </tbody>
+
+                <tfoot>
+                    <tr class="subtotal">
+                        <th colspan="5" class="mark" scope="row">
+                            Subtotal                    </th>
+                        <td class="amount" data-th="Subtotal">
+                            <span class="price"><?php echo $currencycode.number_format((float)$alldata['attributes']['subTotal'], 2, '.', ','); ?></span>                    </td>
+                    </tr>
+                    <tr class="shipping">
+                        <th colspan="5" class="mark" scope="row">
+                            Shipping &amp; Handling                    </th>
+                        <td class="amount" data-th="Shipping &amp; Handling">
+                            <span class="price"><?php echo $currencycode.number_format((float)$alldata['attributes']['freight'], 2, '.', ','); ?></span>                    </td>
+                    </tr>
+                    <tr class="shipping">
+                        <th colspan="5" class="mark" scope="row">
+                           VAT                   </th>
+                        <td class="amount" data-th="Tax">
+                            <span class="price"><?php echo $currencycode.number_format((float)$alldata['attributes']['tax'], 2, '.', ','); ?></span></td>
+                    </tr>
+                    <tr class="grand_total">
+                        <th colspan="5" class="mark" scope="row">
+                            <strong>Grand Total</strong>
+                        </th>
+                        <td class="amount" data-th="Grand Total">
+                            <strong><span class="price"><?php echo $currencycode?><?php echo number_format((float)$alldata['attributes']['total'], 2, '.', ',');?></span></strong>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="block block-order-details-view">
+            <div class="block-title">
+                <strong>Order Information</strong>
+            </div>
+            <div class="block-content">
+                <div class="box box-order-shipping-address">
+                    <strong class="box-title"><span>Shipping Address</span></strong>
+                    <div class="box-content">
+                      <?php
+                      $addressShi=str_replace("\n","<br>",$alldata['attributes']['shipToNameAndAddress']);
+                       ?>
+                        <address><?php //echo $alldata['attributes']['shipToName']?>
+
+                            <?php echo $addressShi?><br>
+
+
+                        </address>
+                    </div>
+                </div>
+
+                <div class="box box-order-shipping-method">
+                    <strong class="box-title">
+                        <span>Shipping Method</span>
+                    </strong>
+                    <div class="box-content">
+                        <?php echo $alldata['attributes']['shippingMethod']?>                      </div>
+                </div>
+
+                <div class="box box-order-billing-address">
+                    <strong class="box-title">
+                        <span>Billing Address</span>
+                    </strong>
+                    <div class="box-content">
+                      <?php
+                      $address=str_replace("\n","<br>",$alldata['attributes']['billToNameAndAddres']);
+                       ?>
+                        <address><?php //echo $alldata['attributes']['billToName']?>
+
+                            <?php echo $address?><br>
+
+
+
+
+
+
+                        </address>
+                    </div>
+                </div>
+                <div class="box box-order-billing-method">
+                    <strong class="box-title">
+                        <span>Payment Method</span>
+                    </strong>
+                    <div class="box-content">
+                        <dl class="payment-method">
+                            <dt class="title"><?php echo $alldata['attributes']['paymentMethodCode']?></dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-toolbar">
+            <div class="secondary">
+                <a class="action back" href="http://127.0.0.1/magento224/index.php/sales/order/history/">
+                    <span>Back to My Orders</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <input name="form_key" type="hidden" value="NFKcfAdFfAWHxLAr"><div id="authenticationPopup" data-bind="scope:'authenticationPopup'">
+        <script>
+            window.authenticationPopup = {"autocomplete": "off", "customerRegisterUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/customer\/account\/create\/", "customerForgotPasswordUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/customer\/account\/forgotpassword\/", "baseUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/", "customerCheckoutUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/checkout\/#shipping"};
+        </script>
+        <!-- ko template: getTemplate() -->
+
+
+        <!-- /ko -->
+
+    </div>
+
+
+
+
+</div>
+<?php
+} else{
+?>
+    <div class=""><div class="page-title-wrapper">
+        <h1 class="page-title">
+            <span class="base" data-ui-id="page-title-wrapper">Sorry something wrong order not found!!</span>    </h1>
+        </div>
+        <input name="form_key" type="hidden" value="NFKcfAdFfAWHxLAr"><div id="authenticationPopup" data-bind="scope:'authenticationPopup'">
+        <script>
+            window.authenticationPopup = {"autocomplete": "off", "customerRegisterUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/customer\/account\/create\/", "customerForgotPasswordUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/customer\/account\/forgotpassword\/", "baseUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/", "customerCheckoutUrl": "http:\/\/127.0.0.1\/magento224\/index.php\/checkout\/#shipping"};
+        </script>
+        <!-- ko template: getTemplate() -->
+
+
+        <!-- /ko -->
+
+    </div>
+    </div>
+<?php } ?>

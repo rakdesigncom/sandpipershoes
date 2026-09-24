@@ -1,0 +1,97 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author     Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+$rewardPriorityStatus = $helper->getrewardPriority();
+$enableRewardSystem = $helper->enableRewardSystem();
+$cartQty = $helper->getCartData();
+$cartRewardDetails = $helper->getCartReward();
+$grandTotal = $block->getQuote()->getBaseGrandTotal();
+$rewardValue = $helper->getRewardValue();
+$pointsRequired = $grandTotal/$rewardValue;
+$eligiblePoints = $helper->eligiblePointsForRedeemReward($block->getQuote());
+$totalRewardPoints = 0;
+$quantityWise = $helper->getrewardQuantityWise();
+$earnHelper = $this->helper('Fyb\RewardSystem\Helper\EarnHelper');
+
+if ($cartQty) {
+    if (!$earnHelper->isDynamicCartRewardEnabled()) {
+        $cartAllData = $helper->getCartAllData();
+        foreach ($cartAllData as $singleItem) {
+            if ($earnHelper->isDynamicRewardEnabled()) {
+                $productRewardPoints = $earnHelper->calculateQuoteItem($singleItem);
+            } else {
+                $productId = $singleItem->getProductId();
+                [$productRewardPoints, $status, $message] = $helper->getProductRewardToShow($productId);
+            }
+
+            $pdtQty = $singleItem->getQty();
+            if ($singleItem['parent_item_id'] != null) {
+                $singleItem->getParentItem();
+                $pdtQty = $singleItem->getParentItem()->getQty();
+            }
+
+            if ($quantityWise) {
+                $totalRewardPoints += ($pdtQty * $productRewardPoints);
+            } else {
+                $totalRewardPoints += $productRewardPoints;
+            }
+        }
+    }
+}
+
+$cartRewardPoints = isset($cartRewardDetails['reward']) ? $cartRewardDetails['reward'] : 0;
+$amountFrom = $helper->getformattedPrice($cartRewardDetails['amount_from']);
+$amountTo = $helper->getformattedPrice($cartRewardDetails['amount_to']);
+$customerId = $helper->getCustomerId();
+$url  = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$loginUrl = $escaper->escapeHtml($block->getUrl('customer/account/login', ['referer' => base64_encode($url)]));
+
+if ($enableRewardSystem && $totalRewardPoints && $rewardPriorityStatus == 0):?>
+    <br>
+    <span class="wk_reward_required">
+        <?= /* @noEscape */ __('You will earn %1 Feather Points after purchasing these item(s)', $totalRewardPoints)?>
+    </span>
+<?php endif;
+
+if ($rewardPriorityStatus == 1 && $cartQty && $enableRewardSystem == 1 && $cartRewardPoints) { ?>
+    <?php if ($cartRewardDetails['amount_rule'] == 1): ?>
+        <div>
+            <h3 class="wk_rs_product_style wk_rs_advertise_product_style">
+                <span class="wk_rs_product_greet"></span>
+                <?= $escaper->escapeHtml(__('Buy for %1 and above ', $amountFrom))?>
+                <span class="wk_rs_cart_green">
+                    <?= $escaper->escapeHtml(__('Earn %1 Reward Points', $cartRewardPoints)); ?>
+                    <?php if (!$customerId) {?>
+                        <a href="<?= $escaper->escapeUrl($loginUrl); ?>">
+                        <?= $escaper->escapeHtml(__(" click here")); ?>
+                    </a>
+                        <?= $escaper->escapeHtml(__(" to login"));} ?>
+                </span>
+            </h3>
+        </div>
+    <?php else: ?>
+        <div>
+            <h4 class="">
+                 <span class="wk_reward_required">
+                    <?= /* @noEscape */ __('You will earn %1 Feather Points after purchasing these item(s)', $cartRewardPoints)?>
+                     <?php if (!$customerId) {?>
+                         <a href="<?= $escaper->escapeUrl($loginUrl); ?>">
+                        <?= $escaper->escapeHtml(__(" click here")); ?>
+                    </a>
+                         <?= $escaper->escapeHtml(__(" to login"));} ?>
+                </span>
+            </h4>
+        </div>
+    <?php endif; ?>
+<?php } ?>

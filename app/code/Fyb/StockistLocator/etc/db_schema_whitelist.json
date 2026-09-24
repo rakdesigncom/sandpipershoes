@@ -1,0 +1,54 @@
+{
+    "fyb_stockist_page": {
+        "column": {
+            "entity_id": true,
+            "identifier": true,
+            "name": true,
+            "town": true,
+            "url_key": true,
+            "intro_title": true,
+            "intro_text": true,
+            "google_map_embed": true,
+            "telephone": true,
+            "website": true,
+            "email": true,
+            "address": true,
+            "opening_times": true,
+            "seo_title": true,
+            "description": true,
+            "seo_text": true,
+            "stockist_images": true,
+            "active": true
+        },
+        "index": {
+            "FYB_STOCKIST_PAGE_URL_KEY": true,
+            "FYB_STOCKIST_PAGE_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "fyb_stockist_locator": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "store": true,
+            "address_1": true,
+            "address_2": true,
+            "country": true,
+            "county": true,
+            "city": true,
+            "website": true,
+            "postcode": true,
+            "telephone": true,
+            "longitude": true,
+            "latitude": true
+        },
+        "index": {
+            "FYB_STOCKIST_LOCATOR_STORE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

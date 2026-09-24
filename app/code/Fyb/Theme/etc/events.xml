@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_item_set_product">
+        <observer name="Fyb_Theme::SetConfigurableSimpleProductName" instance="Fyb\Theme\Observer\SetConfigurableName"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="Fyb_Theme::AssignGuestOrderToCustomer" instance="Fyb\Theme\Observer\CheckoutSubmitAfter" />
+    </event>
+    <event name="catalog_product_is_salable_after">
+        <observer name="product_backorder_store" instance="Fyb\Theme\Observer\ProductBackorderStore"/>
+    </event>
+</config>

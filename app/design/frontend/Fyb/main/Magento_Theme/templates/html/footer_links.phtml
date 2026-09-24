@@ -1,0 +1,152 @@
+<?php
+/** @var $block \Fyb\Theme\Block\Footer */
+
+$footerLinks = [
+    'Products' => [
+        'New Arrivals' => '/new.html',
+        'Ladies Footwear' => '/ladies.html',
+        'Gentlemen\'s Footwear' => '/gentlemen.html',
+        'Current Season' => '/new.html',
+    ],
+    'About' => [
+        'Home' => '/',
+        'About Us' => '/about-us',
+        'Blog' => '/blog',
+        'Testimonials' => '/testimonials',
+        'Request our Catalogue' => '/request-catalogue',
+        'Delivery and Returns' => '/delivery-and-returns',
+        'Terms of Sale / Privacy Policy' => '/terms-conditions',
+    ],
+    'Help' => [
+        'FAQ' => '/faq',
+        'How to Order' => '/how-to-order',
+        'VAT Relief' => '/how-to-claim-vat-relief',
+        'Feather Points' => '/feather-points-loyalty-scheme',
+        'Find a Stockist' => '/stockist',
+        'Find a Podiatrist/Chiropodist' => '/footcarelocator',
+        'Contact Us' => '/contact',
+    ],
+    'Advice' => [
+        'Foot Measurement Guide' => '/foot-measurement-guide',
+        'Shoe Size Table (UK-EUR)' => '/shoe-size-comparison-chart',
+        'Shoes for diabetics' => '/shoes-for-diabetics',
+        'Shoes for bunions' => '/shoes-for-bunions',
+        'Shoes for swollen feet' => '/sandals-swollen-feet',
+        'Caring for feet' => '/caring-for-feet',
+    ]
+];
+
+$stockistHelper = $this->helper(\Fyb\StockistLocator\Helper\Data::class);
+if (!$stockistHelper->isEnabled()) {
+    unset($footerLinks['Help']['Find a Stockist'], $footerLinks['Help']['Find a Podiatrist/Chiropodist']);
+}
+
+$requestCatalogueHelper = $this->helper(\Fyb\RequestCatalogue\Helper\Data::class);
+if (!$requestCatalogueHelper->isEnabled()) {
+    unset($footerLinks['About']['Request our Catalogue']);
+}
+
+$rewardsHelper = $this->helper(\Webkul\RewardSystem\Helper\Data::class);
+if (!$rewardsHelper->enableRewardSystem()) {
+    unset($footerLinks['Help']['Feather Points']);
+}
+
+$vatExemptHelper = $this->helper(\Meetanshi\VatExempt\Helper\Data::class);
+if (!$vatExemptHelper->isEnabled()) {
+    unset($footerLinks['Help']['VAT Relief']);
+}
+
+$blogHelper = $this->helper(\Mageplaza\Blog\Helper\Data::class);
+if (!$blogHelper->isEnabled()) {
+    unset($footerLinks['About']['Blog']);
+}
+
+$tradeHelper = $this->helper(\Fyb\Trade\Helper\Data::class);
+?>
+
+<div id="footer-links-collapse">
+    <div class="footer_logo">
+        <img src="<?= $block->getViewFileUrl('Magento_Theme::images/sandpiper_logo.png') ?>" alt="Sandpiper Shoes">
+    </div>
+    <div class="footer-links-sections">
+    <?php foreach($footerLinks as $section => $links): ?>
+        <div class="footer_item_content" data-role="collapsible">
+            <div class="footer-title" data-role="title"><?=$section?></div>
+            <div class="footer-links" data-role="content">
+                <ul class="links-list">
+                    <?php foreach ($links as $name => $link): ?>
+                        <li><a href="<?= trim($block->getUrl(trim($link, '/')), '/') ?>"><?= __($name) ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    </div>
+</div>
+<div class="footer-extra-links-border"></div>
+<div  class="footer-extra-links">
+
+        <div style="background-image: url('<?= $block->getViewFileUrl('Magento_Theme::images/oackley_2.png') ?>')" class="footer-logo"></div>
+        <p>Sandpiper Shoes is a trading name of <?= $block->getStoreShortAddress() ?>.</p>
+
+
+        <div class="footer-info-right">
+            <?php if (!$tradeHelper->isTradeStore()): ?>
+                <a rel="nofollow" class="button secondary" href="<?= $tradeHelper->getTradeStoreUrl() ?>">TRADE LOGIN</a>
+            <?php endif; ?>
+
+            <div class="footer-info-right-image">
+                <span>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/master-card.svg') ?>" alt="mastercard">
+                </span>
+                <span>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/visa.svg') ?>" alt="visa">
+                </span>
+                <span>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/google-pay.svg') ?>" alt="google-pay">
+                </span>
+                <span>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/apple-pay.svg') ?>" alt="apple-pay">
+                </span>
+            </div>
+
+        </div>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'collapsible',
+        'matchMedia',
+        'domReady!',
+    ], function ($) {
+        'use strict';
+
+        var elems = [];
+        $.each($(".footer_item_content"), function(_, item){
+            elems.push(item);
+            $(item).collapsible({
+                animate: 200,
+                easing: "easeOutCubic",
+            });
+        });
+
+        mediaCheck({
+            media: '(min-width: 768px)',
+            // Switch to Desktop Version
+            entry: function () {
+                $.each(elems, function(_, item){
+                    $(item).collapsible("forceActivate");
+                    $(item).collapsible('option', 'disabled', true);
+                });
+            },
+            // Switch to Mobile Version
+            exit: function () {
+                $.each(elems, function(_, item){
+                    $(item).collapsible("forceDeactivate");
+                    $(item).collapsible('option', 'disabled', false);
+                });
+            }
+        });
+    });
+</script>

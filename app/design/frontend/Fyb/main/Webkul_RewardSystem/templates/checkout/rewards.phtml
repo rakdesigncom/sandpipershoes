@@ -1,0 +1,127 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author     Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php if ($block->checkModuleStatus() && $block->getCustomerRewardData()) { ?>
+    <?php
+    $appliedRewards = $block->getAppliedRewardPoint();
+    $helper = $block->getHelper();
+    ?>
+    <div class="cart-discount">
+        <div class="payment-option" id="block-discount" >
+            <div class="payment-option-title field choice" data-role="title">
+            <span class="action action-toggle title" id="block-discount-heading" role="heading" aria-level="2">
+                <strong><?= /* @noEscape */ __('Apply Reward Point(s)') ?></strong>
+            </span>
+            </div>
+            <div class="payment-option-content content" data-role="content" aria-labelledby="block-discount-heading">
+                <div class="wk_rs_points_details wk_rs_total_points">
+                    <div class="wk_rs_cartsign">
+                        <div style="display:inline-block">
+                            <p><span class="wk_rs_reward_text"><?= /* @noEscape */ __('You have'); ?></span></p>
+                        </div>
+                        <span class="wk_rs_reward_value" >
+                        <?= $escaper->escapeHtml(round($block->getCustomerRewardData())); ?>
+                    </span>
+                        <div style="display:inline-block">
+                            <span class="wk_rs_reward_text"><span><?= /* @noEscape */ __('Reward Points'); ?></span></span>
+                            <!-- <p><span><?= /* @noEscape */ __('You have'); ?></span></p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="wk_rs_points_details wk_rs_total_points">
+                    <div class="wk_rs_cartsign">
+                    <span class="wk_rs_amount_currency">
+                      <?= $escaper->escapeHtml($block->getCheckoutCurrencySymbol()); ?>
+                    </span>
+                        <span class="wk_rs_reward_value" ><?= $escaper->escapeHtml($block->rewardValue() * $block->getCustomerRewardData()); ?></span>
+                        <div style="display:inline-block">
+                        <span class="wk_rs_reward_text">
+                          <span><?= /* @noEscape */ __('Available Feather Points Discount'); ?></span>
+                        </span>
+
+                        </div>
+                    </div>
+                </div>
+                <?php if (!$appliedRewards) { ?>
+                    <form class="form form-discount" id="reward-form" method="post"
+                          action="<?= $escaper->escapeUrl($block->getUrl('rewardsystem/checkout/applyrewards')) ?>"
+                          data-mage-init='{"validation": {}}'
+                    >
+                        <input class="input-text" type="hidden" name="number_of_rewards" id="number_of_rewards"
+                               value="<?= $escaper->escapeHtml($block->getCustomerRewardData()); ?>">
+                        <div class="payment-option-inner">
+                            <div class="field">
+                                <div class="control">
+                                <span class="wk_rs_reward_text">
+                                    <span><?= /* @noEscape */ __('Enter Your Reward Points:'); ?></span>
+                                </span>
+                                    <input class="input-text" type="text" id="reward_points" name="used_reward_points"
+                                           style="width:auto; padding:0px 0px;"
+                                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                           placeholder="<?= $escaper->escapeHtml(__('Enter Reward points')); ?>"
+                                           data-validate="{required:true, 'validate-not-negative-number':true, 'validate-digits': true}"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action action-apply" type="submit" id="apply_rewards"
+                                value="<?= /* @noEscape */ __('Apply Reward Point(s)'); ?>">
+                            <span><span><?= /* @noEscape */ __('Apply Reward Point(s)'); ?></span></span>
+                        </button>
+                    </form>
+                <?php } ?>
+                <div class="actions-toolbar"></div>
+                <?php if ($appliedRewards) { ?>
+                    <div class="payment-option-inner">
+                        <div class="field">
+                            <form id="cancel-Reward-form"
+                                  action="<?= $escaper->escapeUrl($block->getUrl('rewardsystem/checkout/cancelrewards')) ?>"
+                                  method="post">
+                                <dl class="wk_applied_rewards">
+                                    <dt><span><?= /* @noEscape */ __('Applied Rewards'); ?></span></dt>
+                                    <dd class="wk_rs_applied_reward">
+                                    <span class="form-list wk_rs_reward_applied">
+                                        <span class="wk_rs_applied_reward_text">
+                                            <span><span><?= /* @noEscape */ __('Using'); ?></span></span>
+                                            <span class="wk_rs_applied_amount">
+                                              <?= $escaper->escapeHtml(
+                                                  $helper->getformattedPrice($appliedRewards['amount'])
+                                              ); ?>
+                                            </span>
+                                            <span>(</span><span>
+                                              <?= $escaper->escapeHtml($appliedRewards['used_reward_points']); ?>
+                                            </span><span><span>
+                                              <?= /* @noEscape */ __('Rewards'); ?>
+                                            </span></span><span>)  <span><?= /* @noEscape */ __('of'); ?></span></span>
+                                            <span class="wk_rs_applied_amount" >
+                                              <?= $escaper->escapeHtml(
+                                                  $helper->getformattedPrice($appliedRewards['avail_amount'])
+                                              ); ?></span>
+                                            <span>(</span><span>
+                                              <?= $escaper->escapeHtml($block->getCustomerRewardData()); ?>
+                                            </span><span><span> <?= /* @noEscape */ __('Rewards'); ?> )</span></span>
+                                        </span>
+                                    </span>
+                                    </dd>
+                                </dl>
+                                <button class="action action-cancel" type="submit"
+                                        value="<?= /* @noEscape */ __('Cancel'); ?>">
+                                    <span><span><?= /* @noEscape */ __('Cancel'); ?></span></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+        <hr/>
+    </div>
+<?php } ?>

@@ -1,0 +1,122 @@
+{
+    "name": "magento/project-community-edition",
+    "description": "eCommerce Platform for Growth (Community Edition)",
+    "type": "project",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "laminas/laminas-dependency-plugin": true,
+            "magento/*": true,
+            "php-http/discovery": true,
+            "magento/magento-composer-installer": true,
+            "magento/inventory-composer-installer": true,
+            "cweagans/composer-patches": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "version": "2.4.7-p8",
+    "require": {
+        "amasty/label": "^2.5.0",
+        "ampersand/magento2-disable-stock-reservation": "^1.3",
+        "creativestyle/magesuite-guest-wishlist": "^1.2",
+        "cweagans/composer-patches": "^1.7",
+        "magento/composer-dependency-version-audit-plugin": "~0.1",
+        "magento/composer-root-update-plugin": "^2.0.4",
+        "magento/module-elasticsearch-8": "^100.4",
+        "magento/product-community-edition": "2.4.7-p8",
+        "mageplaza/magento-2-blog-pro": "~4.2.8",
+        "mageplaza/module-smtp": "^4.7",
+        "mailchimp/mc-magento2": "^103.4",
+        "meetanshi/magento2-vat-exemption": "^1.0",
+        "plumrocket/layered-navigation-lite-metapackage": "^1.3",
+        "rootways/megamenu": "^4.0",
+        "stripe/stripe-payments": "^4.1",
+        "webkul/reward_system": "^4.1"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
+        ],
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "psr-0": {
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
+        },
+        "psr-4": {
+            "Magento\\Setup\\": "setup/src/Magento/Setup/"
+        }
+    },
+    "require-dev": {
+        "allure-framework/allure-phpunit": "^2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || ^1.0",
+        "dg/bypass-finals": "^1.4",
+        "friendsofphp/php-cs-fixer": "^3.22",
+        "lusitanian/oauth": "^0.8",
+        "magento/magento-coding-standard": "*",
+        "magento/magento2-functional-testing-framework": "^4.7",
+        "pdepend/pdepend": "^2.10",
+        "phpmd/phpmd": "^2.12",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^9.5",
+        "sebastian/phpcpd": "^6.0",
+        "symfony/finder": "^6.4"
+    },
+    "conflict": {
+        "gene/bluefoot": "*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\PhpStan\\": "dev/tests/static/framework/Magento/PhpStan/",
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/community/"
+        },
+        "mageplaza": {
+            "type": "composer",
+            "url": "https://repo.mageplaza.com"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "cp patches/Fixes/Magento/Customer/Model/SetCustomerStore.php vendor/magento/module-customer/Model/SetCustomerStore.php"
+        ]
+    },
+    "extra": {
+        "magento-force": "override",
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "paypal/module-braintree-core": {
+                "Fix Store Configuration Tab Issue": "patches/Fix_Store_Config_Issue.patch"
+            },
+            "magento/module-customer": {
+                "Fix Customer Multistore Issue": "patches/Fix_Customer_Save.patch"
+            }
+        }
+    }
+}

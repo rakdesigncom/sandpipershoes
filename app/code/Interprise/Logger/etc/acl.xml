@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Interprise_Logger::CronMaster" sortOrder="10" title="CronMaster">
+					<resource id="Interprise_Logger::CronMaster_save" sortOrder="10" title="Save CronMaster"/>
+					<resource id="Interprise_Logger::CronMaster_delete" sortOrder="20" title="Delete CronMaster"/>
+					<resource id="Interprise_Logger::CronMaster_update" sortOrder="30" title="Update CronMaster"/>
+					<resource id="Interprise_Logger::CronMaster_view" sortOrder="40" title="View CronMaster"/>
+				</resource>
+				<resource id="Interprise_Logger::CronLog" sortOrder="10" title="CronLog">
+					<resource id="Interprise_Logger::CronLog_save" sortOrder="10" title="Save CronLog"/>
+					<resource id="Interprise_Logger::CronLog_delete" sortOrder="20" title="Delete CronLog"/>
+					<resource id="Interprise_Logger::CronLog_update" sortOrder="30" title="Update CronLog"/>
+					<resource id="Interprise_Logger::CronLog_view" sortOrder="40" title="View CronLog"/>
+				</resource>
+				<resource id="Interprise_Logger::CronActivitySchedule" sortOrder="10" title="CronActivitySchedule">
+					<resource id="Interprise_Logger::CronActivitySchedule_save" sortOrder="10" title="Save CronActivitySchedule"/>
+					<resource id="Interprise_Logger::CronActivitySchedule_delete" sortOrder="20" title="Delete CronActivitySchedule"/>
+					<resource id="Interprise_Logger::CronActivitySchedule_update" sortOrder="30" title="Update CronActivitySchedule"/>
+					<resource id="Interprise_Logger::CronActivitySchedule_view" sortOrder="40" title="View CronActivitySchedule"/>
+				</resource>
+				<resource id="Interprise_Logger::Changelog" sortOrder="10" title="Changelog">
+					<resource id="Interprise_Logger::Changelog_save" sortOrder="10" title="Save Changelog"/>
+					<resource id="Interprise_Logger::Changelog_delete" sortOrder="20" title="Delete Changelog"/>
+					<resource id="Interprise_Logger::Changelog_update" sortOrder="30" title="Update Changelog"/>
+					<resource id="Interprise_Logger::Changelog_view" sortOrder="40" title="View Changelog"/>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Interprise_Logger::config_interprise_logger" title="setup"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

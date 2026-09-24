@@ -1,0 +1,38 @@
+<div class="container">
+    <form data-mage-init='{"validation": {}}'  id="custom-form" method="post" autocomplete="off" class="form
+    form-horizontal" method="post" enctype="multipart/form-data" action="<?=  /* @noEscape */  $block->getUrl('icustomer/ccrm/addnew'); ?>">
+        
+<fieldset class="fieldset">
+       <legend class="legend"><span><?=  /* @noEscape */ __('Cases Detail') ?></span></legend><br>
+        <div class="field required">
+            <label for="subject" class="label"><span><?=  /* @noEscape */  __('Subject') ?></span></label>
+            <div class="control">
+                <input type="text" name="subject" id="subject" value="" title="<?=  /* @noEscape */ __('Subject') ?>" class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+       <div class="field required">
+            <label for="priority" class="label"><span><?=  /* @noEscape */  __('Priority') ?></span></label>
+            <div class="control" data-validate="{required:true}">
+                <select name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+            </select>
+            </div>
+        </div>
+       <div class="field required">
+            <label for="problem" class="label"><span><?=  /* @noEscape */ __('Problem') ?></span></label>
+            <div class="control">
+                <textarea class="input-text" data-validate="{required:true}" rows="3" placeholder="" name="problem"></textarea> 
+            </div>
+        </div>
+   </fieldset>
+ <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?= /* @noEscape */ __('Submit') ?>">
+                <span><?=  /* @noEscape */ __('Submit') ?></span></button>
+        </div>
+    </div>
+    </form>
+</div>

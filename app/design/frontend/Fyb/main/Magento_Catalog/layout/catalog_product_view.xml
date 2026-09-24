@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!--  Make product page full width -->
+        <referenceContainer name="page.wrapper">
+            <container name="product.info.details.wrapper" after="main.content" htmlTag="div" htmlClass="product-full-width-section" />
+            <container name="product.info.details.after.wrapper" after="product.info.details.wrapper" htmlTag="div" htmlClass="page-main page-main-details-after">
+                <container name="product.info.details.after.wrapper.columns" htmlTag="div" htmlClass="columns">
+                    <container name="product.info.details.after.wrapper.main" label="Product Details Main Content Container" htmlTag="div" htmlClass="column main">
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <move element="product.info.details" destination="product.info.details.wrapper" />
+        <move element="content.aside" destination="product.info.details.after.wrapper.main" />
+        <!--  Make product page full width -->
+        <block class="Fyb\Theme\Block\Product\Breadcrumbs"/>
+
+        <referenceBlock name="product.info.options.wrapper.bottom">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.sizes" template="Magento_Catalog::product/view/size_guide.phtml" before="product.info.addtocart" >
+                <block class="Magento\Cms\Block\Block" name="product.info.sizes.chart">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">size_chart</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Framework\View\Element\Template" name="delivery_returns.tab" as="delivery_returns" template="Magento_Catalog::product/view/delivery_returns.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Delivery &amp; returns</argument>
+                    <argument name="sort_order" xsi:type="string">15</argument>
+                </arguments>
+                <block class="Magento\Cms\Block\Block" name="delivery_returns.tab.info">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">delivery_and_returns</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="product.info.price">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.vat" template="Magento_Catalog::product/view/vat_exempt.phtml">
+                <block class="Magento\Cms\Block\Block" name="product.info.vat.tooltip">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">vat_relief_info</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+        <move element="product.info.overview" destination="product.info.main" before="product.info.review"/>
+        <move element="product.info.addto" destination="product.info.options.wrapper.bottom" after="product.info.addtocart"/>
+
+        <referenceBlock name="product.info.stock.sku" remove="true" />
+        <referenceBlock name="product.attributes" remove="true" />
+    </body>
+</page>

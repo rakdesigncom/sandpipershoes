@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mageplaza\Blog\Model\Config\Source\SideBarLR">
+        <plugin name="Fyb_Theme::SidebarOptionsAfter"
+                type="Fyb\Theme\Plugin\Blog\SidebarOptionsAfter"/>
+    </type>
+    <preference for="Magento\Catalog\Block\Category\View" type="Fyb\Theme\Block\Category\View"/>
+    <preference for="MageSuite\GuestWishlist\Controller\WishlistProvider" type="Fyb\Theme\Controller\WishlistProvider"/>
+    <preference for="MageSuite\GuestWishlist\Plugin\Wishlist\Controller\Index\Index\AddLayoutHandlerForGuestWishlist"
+                type="Fyb\Theme\Plugin\Wishlist\Controller\Index\Index\AddLayoutHandlerForGuestWishlist"/>
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="Fyb_Theme::FieldsSortOrder"
+                type="Fyb\Theme\Plugin\CheckoutSortOrder"
+                sortOrder="999"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Cart\Item\Renderer\Configurable">
+        <plugin name="Fyb_Theme::configurableProductName"
+                type="Fyb\Theme\Plugin\ConfigurableProductName"/>
+    </type>
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="Fyb_Theme::CartConfigurableProductName"
+                type="Fyb\Theme\Plugin\CartConfigurableProductName"/>
+    </type>
+    <type name="Rootways\Megamenu\Model\Attribute\Numberofcol">
+        <plugin name="Fyb_Theme::AddColumnsToRootMenu"
+                type="Fyb\Theme\Plugin\AddColumnsToRootMenu"/>
+    </type>
+    <type name="Magento\InventoryCatalog\Model\ResourceModel\SetDataToLegacyStockStatus">
+        <plugin name="Fyb_Theme::HotFixStockStatus"
+                type="Fyb\Theme\Plugin\HotFixStockStatus"/>
+    </type>
+    <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="Fyb_Theme::FinalPriceCache"
+                type="Fyb\Theme\Plugin\FinalPriceCache"/>
+    </type>
+</config>

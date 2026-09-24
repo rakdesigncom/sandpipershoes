@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="sps" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SPS Carriers</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="handling_type" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Calculate Handling Fee</label>
+                    <source_model>Magento\Shipping\Model\Source\HandlingType</source_model>
+                </field>
+                <field id="handling_fee" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" >
+                    <label>Handling Fee</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
+                    <label>Sort Order</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Type</label>
+                    <source_model>Magento\OfflineShipping\Model\Config\Source\Flatrate</source_model>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="91" showInDefault="1" showInWebsite="1">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="showmethod" translate="label" type="select" sortOrder="92" showInDefault="1" showInWebsite="1">
+                    <label>Show Method if Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>shipping-skip-hide</frontend_class>
+                </field>
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Error Message</label>
+                </field>
+                <field id="drop_ship_price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Drop Ship Price</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <group id="class2nd" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK Royal Mail 2nd Class (48 H)</label>
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="enable_dropship" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled For Dropship</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Method Name</label>
+                    </field>
+                    <field id="price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Price</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="min_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Min Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="max_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Max Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="can_be_free" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Is Free for defined weight</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="class1st" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK Royal Mail 1st Class (24 H)</label>
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="enable_dropship" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled For Dropship</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Method Name</label>
+                    </field>
+                    <field id="price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Price</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="min_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Min Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="max_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Max Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="can_be_free" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Is Free for defined weight</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="wday" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK DX Courier Working Day</label>
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="enable_dropship" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled For Dropship</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Method Name</label>
+                    </field>
+                    <field id="price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Price</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="min_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Min Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="max_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Max Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="can_be_free" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Is Free for defined weight</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="nextpreday" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK DX Courier Next Pre Day</label>
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="enable_dropship" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Enabled For Dropship</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Method Name</label>
+                    </field>
+                    <field id="price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Price</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="min_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Min Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="max_weight" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Max Weight</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                    </field>
+                    <field id="can_be_free" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">
+                        <label>Is Free for defined weight</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+<!--                <group id="dropship" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--                    <label>DropShip order delivery</label>-->
+<!--                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">-->
+<!--                        <label>Enabled</label>-->
+<!--                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                        <label>Method Name</label>-->
+<!--                    </field>-->
+<!--                    <field id="price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" canRestore="1">-->
+<!--                        <label>Price</label>-->
+<!--                        <validate>validate-number validate-zero-or-greater</validate>-->
+<!--                    </field>-->
+<!--                </group>-->
+<!--                <group id="free" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--                    <label>Free Non-DropShip delivery</label>-->
+<!--                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" canRestore="1">-->
+<!--                        <label>Enabled</label>-->
+<!--                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">-->
+<!--                        <label>Method Name</label>-->
+<!--                    </field>-->
+<!--                </group>-->
+            </group>
+        </section>
+    </system>
+</config>

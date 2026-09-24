@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <referenceContainer name="content">
+        <block class="Magento\Backend\Block\Template"
+               name="interprise.sync.confirmation.popup"
+               template="Interprise_Logger::confirmation-popup.phtml">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="interprise-sync-confirmation-popup" xsi:type="array">
+                            <item name="component" xsi:type="string">Interprise_Logger/js/confirmation-popup</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+</layout>

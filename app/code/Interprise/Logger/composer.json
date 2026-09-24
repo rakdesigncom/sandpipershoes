@@ -1,0 +1,34 @@
+    {
+    "name": "interprise/module-logger",
+    "description": "To sync products,customers,Orders from Interprise ERP",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "rshadab25@gmail.com",
+            "name": "Shadab Reza"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "magento/framework": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.2.0",
+        "magento/magento-coding-standard": "^v3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Interprise\\Logger\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ]
+}

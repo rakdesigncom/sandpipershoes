@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rewardsystem">
+            <group id="general_settings">
+                <field id="product_dynamic_reward" translate="label comment" sortOrder="11" type="select" showInDefault="1">
+                    <label>Rewards Applied automatically on Product Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="priority">0</field>
+                    </depends>
+                    <comment>This setting will ignore all product reward rules.</comment>
+                </field>
+                <field id="cart_dynamic_reward" translate="label comment" sortOrder="11" type="select" showInDefault="1">
+                    <label>Rewards Applied automatically on Cart Subtotal</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="priority">1</field>
+                    </depends>
+                    <comment>This setting will ignore all cart reward rules.</comment>
+                </field>
+                <field id="product_dynamic_reward_qty" translate="label comment" sortOrder="12" type="text" showInDefault="1" showInStore="1" canRestore="1">
+                    <label>Reward Points Per 10 Spent</label>
+                    <depends>
+                        <field id="product_dynamic_reward">1</field>
+                    </depends>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 10</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

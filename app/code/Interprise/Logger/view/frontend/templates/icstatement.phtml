@@ -1,0 +1,131 @@
+<?php $_gridrecords = $block->getCollectionstatement(); // get collection which we set in block class
+// echo "<pre>";
+// print_r($_gridrecords['alldata']);
+// die;
+$currencycode='£';
+?>
+    <table class="data table table-order-items history" id="my-transactions-table">
+        <thead>
+            <tr>
+                <th class="number"><?= /* @noEscape */('Document Code') ?></th>
+                <th class="type"><?= /* @noEscape */('Type') ?></th>
+                <th class="date"><?= /* @noEscape */('Document Date') ?></th>
+                <th class="date"><?= /* @noEscape */('Due Date') ?></th>
+                <th class="reference"><?= /* @noEscape */('Reference') ?></th>
+                <th class="total"><?= /* @noEscape */('Gross Value') ?></th>
+                <th class="a-right last"><?= /* @noEscape */('Outstanding Value') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+
+            $totalOutStandingAmount = 0;
+            $total_amt = 0;
+            if(!empty($_gridrecords['alldata'])){
+              $alldata=$_gridrecords['alldata'];
+              $tmp = Array();
+              foreach($alldata as &$ma)
+              $tmp[] = &$ma['attributes']['invoiceDate'];
+              array_multisort($tmp, SORT_DESC,$alldata,SORT_DESC);
+                // foreach ($_transactions as $_transaction) :
+
+                for($i=0;$i<count($alldata);$i++){?>
+                  <?php
+                  $totalOutStandingAmount += $alldata[$i]['attributes']['grossValue'];
+
+                  $total_amt += $alldata[$i]['attributes']['outstandingValue'];
+                   ?>
+                <tr>
+                    <td class="number"><?= /* @noEscape */$alldata[$i]['attributes']['documentCode']; ?></td>
+                    <td class="reference"><?= /* @noEscape */$alldata[$i]['attributes']['documentType'] ?></td>
+                    <td class="date"><span class="nobr"><?= /* @noEscape */date('d-m-Y', strtotime($alldata[$i]['attributes']['documentDate'])) ?></span></td>
+                    <td class="date" width="100px"><span class="nobr"><?= /* @noEscape */date('d-m-Y', strtotime($alldata[$i]['attributes']['dueDate'])) ?></span></td>
+                    <td class="reference"><?php
+                    if(array_key_exists("reference",$alldata[$i]['attributes'])){
+                      echo $alldata[$i]['attributes']['reference'];
+                    }else{
+                      echo '';
+                    } ?></td>
+                    <td class="a-right"><?= /* @noEscape */$block->formatPrice($alldata[$i]['attributes']['grossValue']); ?></td>
+                    <td class="a-right"><?= /* @noEscape */$block->formatPrice($alldata[$i]['attributes']['outstandingValue']); ?></td>
+                </tr>
+            <?php }?>
+                <?php } else { ?>
+                    <tr><td colspan="7"><div class="message info empty"><span><?= /* @noEscape */__('Records Not Found.'); ?></span></div></td></tr>
+        <?php } ?>
+        </tbody>
+        <tfoot>
+            <tr class="subtotal first">
+                <td colspan="4"></td>
+                <td   class="a-right" style="background:lightgray;">Total</td>
+                <td   class="a-right" ><?php echo $block->formatPrice($total_amt);?></td>
+                <td class="last a-right"><span><?php echo $block->formatPrice($totalOutStandingAmount);?></span></td>
+            </tr>
+        </tfoot>
+    </table>
+<br />
+<?php
+  if(!empty($_gridrecords['restdata'])){
+    $restdata=$_gridrecords['restdata'][0]['attributes'];
+ ?>
+<table class="data table table-order-items history" id="my-transactions-table">
+  <thead>
+    <tr>
+      <th colspan="6" style="background:lightgray;font-weight:bolder;">Summary</th>
+    </tr>
+    <tr>
+      <th colspan="6">Document Date</th>
+    </tr>
+    <tr>
+      <th class="a-right"><?= /* @noEscape */('Future') ?></th>
+      <th class="a-right"><?= /* @noEscape */('Current') ?></th>
+      <th class="a-right"><?= /* @noEscape */('1-2 Month') ?></th>
+      <th class="a-right"><?= /* @noEscape */('2-3 Month') ?></th>
+      <th class="a-right"><?= /* @noEscape */('3-4 Month') ?></th>
+      <th class="last a-right"><?= /* @noEscape */('4+ Month') ?></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['documentDate']['future']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['documentDate']['current']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['documentDate']['oneMonth']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['documentDate']['twoMonth']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['documentDate']['threeMonth']) ?></td>
+      <td class="last a-right"><?=  /* @noEscape */$block->formatPrice($restdata['documentDate']['fourMonth']) ?></td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <th colspan="6">Due Date</th>
+    </tr>
+    <tr>
+      <th class="a-right"><?= /* @noEscape */('Not Due') ?></th>
+      <th class="a-right"><?= /* @noEscape */('1-30 Days') ?></th>
+      <th class="a-right"><?= /* @noEscape */('31-60 Days') ?></th>
+      <th class="a-right"><?= /* @noEscape */('61-90 Days') ?></th>
+      <th class="a-right"><?= /* @noEscape */('91-120 Days') ?></th>
+      <th class="last a-right"><?= /* @noEscape */('120+ Days') ?></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['dueDate']['notDue'])?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['dueDate']['days1_30']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['dueDate']['days31_60']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['dueDate']['days61_90']) ?></td>
+      <td class="a-right"><?=  /* @noEscape */$block->formatPrice($restdata['dueDate']['days91_120']) ?></td>
+      <td class="last a-right"><?=  /* @noEscape */$block->formatPrice($restdata['dueDate']['days121Onwards']) ?></td>
+    </tr>
+  </tbody>
+</table>
+<?php
+}
+ ?>
+
+<style>
+    .a-right{
+        text-align: right;
+    }
+    </style>

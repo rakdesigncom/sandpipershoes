@@ -1,0 +1,138 @@
+<?php  $_gridrecords = $block->getCollectionorder(); // get collection which we set in block class
+// echo "<pre>";
+// print_r($_gridrecords);
+// die;
+
+$query_string = '';
+$p = $block->getRequest()->getParam('p');
+$limit = $block->getRequest()->getParam('limit');
+if ($p) {
+    $query_string = '&p='.$p;
+}
+if ($limit) {
+    $query_string .= '&limit='.$limit;
+}
+$filter = $block->getRequest()->getParam('filter');
+?>
+<!----------------- Show Filter ------------------------------>
+<div class="toolbar">
+    <div class="sorter">
+        <div class="sort-by">
+            <!-- <label>Filter By</label> -->
+            <!-- <select onchange="setLocation(this.value)" title="Filter By">
+                <option value="<?= /* @noEscape */$block->getUrl('icustomer/corder/index/'); ?>?filter=complete<?= /* @noEscape */$query_string;?>" <?php if (isset($filter) && $filter=='complete') {echo 'selected';}?>>Closed</option>
+                <option value="<?= /* @noEscape */$block->getUrl('icustomer/corder/index/'); ?>?filter=open<?=/** @noEscape */$query_string;?>"
+                    <?php if ($filter=='open' || !$block->getRequest()->getParams()) {echo 'selected';}?>>Outstanding</option>
+            </select> -->
+        </div>
+    </div>
+    <?= /* @noEscape */ $block->getPagerHtml(); ?>
+</div>
+<!----------------- End Filter ------------------------------>
+
+    <div class="table-wrapper orders-history">
+      <a href="" class="action save primary" style="float:left;text-decoration:none;background: #8d6b8e;
+   border: 1px solid #8d6b8e;
+   font-size: 12px;
+   font-weight: 400;
+   border-radius: 3px;
+   color: #fff;
+   text-decoration: none;
+   padding: 3px 15px;
+   margin-bottom: 20px;">Add to Cart</a>
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @noEscape */__('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <!--<th scope="col" class="col id"><?php //echo __('ID #') ?></th>-->
+                    <th scope="col" class="col title"><?= /* @noEscape */__('Product Name') ?></th>
+                    <th scope="col" class="col title"><?= /* @noEscape */ __('SKU') ?></th>
+                    <th scope="col" class="col shipto"><?= /* @noEscape */ __('Last Order Date') ?></th>
+                    <th scope="col" class="col " style="text-align:right"><?= /* @noEscape */__('Sales Price') ?></th>
+
+                    <!-- <th scope="col" class="col paymenttype"><?= /* @noEscape */__('Payment Type') ?></th> -->
+                    <th scope="col" class="col " ><?= /* @noEscape */ __('UMO') ?></th>
+                    <th scope="col" class="col status" ><?= /* @noEscape */ __('Order Qty') ?></th>
+
+                </tr>
+            </thead>
+            <tbody>
+              <?php
+  if(empty($_gridrecords['alldata'])){
+    ?>
+    <div class="danger" style="background:#fdf0d5;color:#6f4400"><span>Records Not Found.</span></div>
+    <?php
+  }else{
+    ///
+//     $tmp = Array();
+// foreach($alldata as &$ma)
+//   $tmp[] = &$ma['attributes']['invoiceDate'];
+// array_multisort($tmp, SORT_DESC,$alldata,SORT_DESC);
+    ///
+    $alldata=$_gridrecords['alldata'];
+    for($i=0;$i<count($alldata);$i++){
+
+      ///
+      $tmp = Array();
+      foreach($alldata as &$ma)
+      $tmp[] = &$ma['attributes']['invoiceDate'];
+      array_multisort($tmp, SORT_DESC,$alldata,SORT_DESC);
+      /////
+      // if($alldata[$i]['attributes']['currencyCode']=='GBP'){
+      //   $currencycode='£';
+      // }else if($alldata[$i]['attributes']['currencyCode']=='USD'){
+      //   $currencycode='$';
+      // }else if($alldata[$i]['attributes']['currencyCode']=='EURO'){
+      //   $currencycode='€';
+      // }else{
+      //   $currencycode='';
+      // }
+      $currencycode='£';
+      ?>
+      <tr>
+        <th scope="row"><?php echo $alldata[$i]['attributes']['itemDescription']?></th>
+        <td><?php
+        if(array_key_exists("itemName",$alldata[$i]['attributes'])){
+          echo $alldata[$i]['attributes']['itemName'];
+        }else{
+          echo '';
+        }
+        ?></td>
+        <td><?php echo date('d/m/Y', strtotime($alldata[$i]['attributes']['lastOrderDate']));?></td>
+
+        <!-- <td><?php //echo $alldata[$i]['attributes']['sourceCode']?></td> -->
+        <td style="text-align:right"><?php echo $currencycode.number_format((float)$alldata[$i]['attributes']['lastSellPriceRate'], 2, '.', ',');?></td>
+        <td><?php echo $alldata[$i]['attributes']['lastUOM']?></td>
+        <td ><input type="number"/></td>
+
+      </tr>
+      <?php
+    }
+
+  }
+   ?>
+            </tbody>
+        </table>
+        <a href="" class="action save primary" style="float:left;text-decoration:none;background: #8d6b8e;
+     border: 1px solid #8d6b8e;
+     font-size: 12px;
+     font-weight: 400;
+     border-radius: 3px;
+     color: #fff;
+     text-decoration: none;
+     padding: 3px 15px;
+     margin-bottom: 20px;">Add to Cart</a>
+    </div>
+
+<style>
+    .total{
+        text-align: right;
+    }
+</style>
+
+<script>
+    function setLocation(url){
+        window.location.href = encodeURI(url);
+    }
+
+</script>

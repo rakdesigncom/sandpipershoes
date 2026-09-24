@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="standard">
+		<route frontName="iscron" id="iscron">
+			<module name="Interprise_Logger"/>
+		</route>
+		<route frontName="runscheduler" id="runscheduler">
+			<module name="Interprise_Logger"/>
+		</route>
+		<route frontName="icustomer" id="icustomer">
+			<module name="Interprise_Logger"/>
+		</route>
+	</router>
+</config>

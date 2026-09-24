@@ -1,0 +1,94 @@
+<div class="payment-option _collapsible opc-payment-additional discount-code"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <!-- ko if: rewardStatus() -->
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+        <!-- ko i18n: 'Apply Reward Point'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-contentdd" data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="wk_rs_points_details wk_rs_total_points">
+            <div class="wk_rs_cartsign">
+                <span class="wk_rs_reward_value" data-bind="text: Math.round(rewardPoints())"></span>
+                <div style="display:inline-block">
+                    <span class="wk_rs_reward_text"><!-- ko i18n: 'Reward Points'--><!-- /ko --></span>
+                    <p><!-- ko i18n: 'You have'--><!-- /ko --></p>
+                </div>
+            </div>
+        </div>
+        <div class="wk_rs_points_details wk_rs_total_points">
+            <div class="wk_rs_cartsign">
+                <span class="wk_rs_amount_currency" data-bind="text: amountCurrency"></span>
+                <span class="wk_rs_reward_value" data-bind="text: rewardPointAmount() * rewardPoints()"></span>
+                <div style="display:inline-block">
+                    <span class="wk_rs_reward_text"><!-- ko i18n: 'Available Feather Points'--><!-- /ko --></span>
+                    <p><!-- ko i18n: 'Discount'--><!-- /ko --></p>
+                </div>
+            </div>
+        </div>
+        <form class="form form-discount" id="reward-form" data-bind="blockLoader: isLoading">
+            <input class="input-text" type="hidden" name="number_of_rewards" id="number_of_rewards" data-bind="value: rewardPoints" >
+            <div class="payment-option-inner">
+                <div class="field">
+                    <!-- ko ifnot: isApplied() -->
+                    <div class="control">
+                          <span class="wk_rs_reward_text">
+                          <!-- ko i18n: 'Enter Your Reward Points:'--><!-- /ko -->
+                          </span>
+                        <input class="input-text"
+                               type="text"
+                               id="reward_points"
+                               name="used_reward_points"
+                               style="width:auto; padding:0px 0px;"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                               data-bind="attr:{placeholder: $t('Enter Reward points')},event:{'keyup': check}"
+                               data-validate="{required:true,'validate-number-range':true,'validate-number':true,
+                               'validate-not-negative-number':true}"
+                        >
+                        <!-- ko if: isValue() -->
+                        <!-- ko i18n: ' equals to '--><!-- /ko -->
+                        <span class="wk_rs_reward_text" data-bind="text: totalAmount"></span>
+                        <!-- /ko -->
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <!-- ko ifnot: isApplied() -->
+            <button class="action action-apply" type="button" data-bind="'value': $t('Apply Reward Point\'s'), click: apply" >
+                <span><!-- ko i18n: 'Apply Reward Points'--><!-- /ko --></span>
+            </button>
+            <!-- /ko -->
+            <div class="actions-toolbar"></div>
+            <div class="payment-option-inner">
+                <div class="field">
+                    <!-- ko if: isApplied() -->
+                    <dl class="wk_applied_rewards">
+                        <dt><!-- ko i18n: 'Applied Rewards'--><!-- /ko --></dt>
+                        <dd class="wk_rs_applied_reward">
+                            <span class="form-list wk_rs_reward_applied" data-bind="foreach: rewardsession">
+                              <span class="wk_rs_applied_reward_text">
+                                  <span><!-- ko i18n: 'Using'--><!-- /ko --></span>
+                                  <span class="wk_rs_applied_amount" data-bind="text: amount"></span>
+                                  <span>(</span><span data-bind="text: used_reward_points"></span><span><!-- ko i18n: ' Rewards '--><!-- /ko --></span><span>)  <!-- ko i18n: 'of'--><!-- /ko --></span>
+                                  <span class="wk_rs_applied_amount" data-bind="text: avail_amount"></span>
+                                  <span>(</span><span data-bind="text: number_of_rewards"></span><span><!-- ko i18n: ' Rewards )'--><!-- /ko --></span>
+                              </span>
+                            </span>
+                            <!-- ko if: isApplied() -->
+                            <button class="action action-cancel" type="button" data-bind="'value': $t('Cancel'), click: cancel">
+                                <span><!-- ko i18n: 'Cancel'--><!-- /ko --></span>
+                            </button>
+                            <!-- /ko -->
+                        </dd>
+                    </dl>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--/ko-->
+</div>
+</div>

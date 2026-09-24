@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <body>
+     <referenceBlock class="Magento\Customer\Block\Account\Navigation" name="customer_account_navigation">
+
+
+         <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-interpriseorders">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/corder/index</argument>
+               <argument name="label" xsi:type="string">Orders</argument>
+               <argument name="sortOrder" xsi:type="number">110</argument>
+            </arguments>
+         </block>
+<!--         <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interprisequote">-->
+<!--                <arguments>-->
+<!--                    <argument name="path" xsi:type="string">icustomer/cquote/index</argument>-->
+<!--                    <argument name="label" xsi:type="string">Quote</argument>-->
+<!--                </arguments>-->
+<!--        </block>-->
+         <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interprisetransaction">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/ctransaction/index</argument>
+               <argument name="label" xsi:type="string">Transaction</argument>
+            </arguments>
+         </block>
+         <!-- <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interprisecrm">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/ccrm/index</argument>
+               <argument name="label" xsi:type="string">CRM/Cases</argument>
+            </arguments>
+         </block> -->
+         <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interprisereturns">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/creturns/index</argument>
+               <argument name="label" xsi:type="string">Returns</argument>
+            </arguments>
+         </block>
+         <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interprisestatement">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/cstatement/index</argument>
+               <argument name="label" xsi:type="string">Account Statement</argument>
+            </arguments>
+         </block>
+<!--         <block class="Interprise\Logger\Block\HTML\Link\Invoicepayment" name="customer-account-navigation-interpriseinvpay">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/invoicepayment/index</argument>
+               <argument name="label" xsi:type="string">Invoice Payment</argument>
+            </arguments>
+         </block>-->
+<!--         <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interpriseordpay">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/invoicepayment/orderpayment</argument>
+               <argument name="label" xsi:type="string">Order Payment</argument>
+            </arguments>
+         </block>
+         <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-interprisequpay">
+            <arguments>
+               <argument name="path" xsi:type="string">icustomer/invoicepayment/quotepayment</argument>
+               <argument name="label" xsi:type="string">Quote Payment</argument>
+            </arguments>
+         </block>-->
+
+         </referenceBlock>
+
+      <referenceBlock name="customer-account-navigation-orders-link" remove="true"/>
+      <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+       <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+       <referenceBlock name="customer-account-navigation-product-reviews-link" remove="true"/>
+       <referenceBlock name="customer-account-navigation-newsletter-subscriptions-link" remove="true"/>
+    </body>
+</page>

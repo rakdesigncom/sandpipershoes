@@ -1,0 +1,232 @@
+<?php
+$storeHelper = $this->helper('Fyb\Theme\Helper\StoreData');
+
+$baseUrl = $storeHelper->getStoreBaseUrl();
+$mediaUrl = $storeHelper->getStoreMediaUrl();
+
+$stockists = $this->getStockists();
+$f = 1;
+$stockistCount = count($stockists);
+if ($stockistCount > 1) {
+    $stockistCount--;
+}
+$customerPoints = $stockists['customerPoints'] ?? [
+        'lon' => 54.5,
+        'lat' => -3.5,
+    ];
+$radius = $stockists['customerPoints']['radius'];
+$storeType = $stockists['customerPoints']['storeType'];
+$markerImage = $block->getViewFileUrl($storeType == 'Store' ? 'Fyb_StockistLocator::images/sandpipers-map-icon.png' : 'Fyb_StockistLocator::images/foot-map.png');
+?>
+
+<div class="stockist__address">
+    <ul class="clearfix">
+        <?php if (count($stockists) <= 1): ?>
+            <?php echo __('There are no Stockists for your location'); ?>
+        <?php endif ?>
+
+        <?php foreach ($stockists as $key => $storeData): ?>
+            <?php
+            if ($key === "customerPoints"):
+                continue;
+            endif;
+
+            $store = $storeData['store'];
+            ?>
+            <li class="stockist__map_result_content_box">
+                <?php if ($store->getName()): ?>
+                    <div>
+                        <div style="cursor: pointer;" data-click="<?= $key ?>">
+                            <p class="stockist__address__title"><?php echo $store->getName(); ?></p>
+
+                            <ul class="stockist__address__address clearfix">
+                                <?php if ($store->getData('address_1')): ?>
+                                    <li>
+                                        <span><?php echo $store->getData('address_1'); ?></span>
+                                    </li>
+                                <?php endif; ?>
+
+                                <?php if ($store->getData('address_2')): ?>
+                                    <li>
+                                        <span><?php echo $store->getData('address_2'); ?></span>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($store->getCounty()): ?>
+                                    <li>
+                                        <span><?= $store->getCounty() ?></span>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($store->getCity()): ?>
+                                    <li>
+                                        <span><?= $store->getCity() ?></span>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($store->getPostcode()): ?>
+                                    <li>
+                                        <span><?= $store->getPostcode() ?></span>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if ($store->getCountry()): ?>
+                                    <li>
+                                        <span><?= $store->getCountry() ?></span>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="stockist__address__phone"><?php echo $store->getTelephone(); ?></p>
+                            <?php if ($store->getWebsite()): ?>
+                            <p class="stockist__address__website"><a target="_blank"
+                                                                     href="http://<?= $store->getWebsite() ?>"><span
+                                        class="website"><?= $store->getWebsite() ?></span></a><br/>
+                                <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="stockist__address__distance">
+                        <p ><?php echo number_format(round($storeData['distance'], 2), 2) . ' ' . __('miles'); ?></p>
+                        <a target="_blank"
+                           href="https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=<?= $store->getData('latitude') ?>,<?= $store->getData('longitude') ?>"
+                           class="button secondary"><?= __('Directions') ?></a>
+                    </div>
+
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        var curPosition = {
+            lat: <?php echo $customerPoints['lat'] ?>,
+            lng: <?php echo $customerPoints['lon'] ?>,
+        }
+        var customerAddress = '<?= ($customerPoints['address'] ?? '') ?>';
+        if (customerAddress) {
+            $('input#address').val(customerAddress);
+        }
+        var mapOptions = {
+            zoom: 8,
+            disableDefaultUI: true,
+            center: new google.maps.LatLng(curPosition.lat, curPosition.lng),
+        }
+        var image = "<?= $markerImage ?>";
+
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        var allInfoWindows = [];
+
+        function goToMarker(marker, infowindow) {
+            map.setZoom(10);
+            map.panTo(marker.position);
+            allInfoWindows.forEach(function (info) {
+                info.close();
+            })
+            infowindow.open(map, marker);
+        }
+
+        <?php
+        $n = 0;
+        foreach ($stockists as $key => $store):
+
+        if ($key === 'customerPoints'):
+            continue;
+        endif;
+
+        $location = $store['location'];
+        $storeAddress = '<h6 class="title">' . $store['store']->getName() . '</h6>';
+
+        $storeAddress .= '<span class="address">';
+        if ($store['store']->getAddress1()):
+            $storeAddress .= $store['store']->getAddress1() . '<br />';
+        endif;
+
+        if ($store['store']->getAddress2()):
+            $storeAddress .= $store['store']->getAddress2() . '<br />';
+        endif;
+
+        $storeAddress .= implode(', ', array_filter([
+                $store['store']->getCounty(),
+                $store['store']->getCity(),
+                $store['store']->getPostcode(),
+                $store['store']->getCountry()
+            ])) . '<br />';
+        $storeAddress .= '</span>';
+        $storeAddress .= '<span class="phone">' . $store['store']->getTelephone() . '<span><br />';
+
+        if ($store['store']->getWebsite()) {
+            $storeAddress .= '<a target="_blank" href="http://' . $store['store']->getWebsite() . '"><span class="website">' . $store['store']->getWebsite() . '</span></a><br />';
+        }
+
+        $storeAddress .= number_format(round($store['distance'], 2), 2) . ' miles<br />';
+        ?>
+
+        var myLatlng = new google.maps.LatLng(<?php echo $location['lat'] ?>, <?php echo $location['lon'] ?>);
+
+        var contentString<?php echo $n; ?> = '<?= '<div style="float:left; width:auto; height:auto;">' . $storeAddress . '</div>' ?>';
+
+        var infowindow<?php echo $n; ?> = new google.maps.InfoWindow({
+            content: contentString<?php echo $n; ?>
+        });
+        allInfoWindows.push(infowindow<?php echo $n; ?>);
+
+        var marker<?php echo $n; ?> = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            icon: image,
+            animation: google.maps.Animation.DROP,
+            title: "<?php echo $store["store"]->getName(); ?>"
+        });
+
+        $('[data-click=<?= $key ?>]').on('click', function () {
+            goToMarker(marker<?php echo $n; ?>, infowindow<?php echo $n; ?>);
+        });
+        google.maps.event.addListener(marker<?php echo $n; ?>, 'click', function () {
+            goToMarker(marker<?php echo $n; ?>, infowindow<?php echo $n; ?>);
+        });
+        <?php
+        $n++;
+        endforeach;
+        ?>
+
+        var circle,
+            bounds;
+        var distanceMap = {
+            '10': 16093,
+            '20': 32186,
+            '30': 48280,
+            '50': 80467,
+            '100': 160934,
+        }
+
+        function drawCircle() {
+            var center = new google.maps.LatLng(curPosition.lat, curPosition.lng);
+
+            if (circle) {
+                circle.setMap(null);
+            }
+            circle = new google.maps.Circle({
+                strokeColor: '#43474b',
+                strokeOpacity: 0.55,
+                strokeWeight: 1.0,
+                fillColor: '#b09eb1',
+                fillOpacity: 0.3,
+                clickable: false,
+                map: map,
+                center: center,
+                radius: distanceMap["<?= $radius ?>"]
+            });
+
+            bounds = circle.getBounds();
+            map.fitBounds(bounds);
+            map.setCenter(center);
+        }
+
+        drawCircle();
+    });
+</script>

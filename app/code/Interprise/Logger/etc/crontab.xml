@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="interpise_group">
+<!--		<job instance="Interprise\Logger\Cron\InterpriseCron" method="processor" name="interprise_logger_interprisecron">-->
+<!--			<schedule>0 * * * *</schedule>-->
+<!--		</job>-->
+		<job instance="Interprise\Logger\Cron\InterpriseCron" method="scheduler" name="interprise_logger_interprisescheduler">
+			<schedule>*/5 * * * *</schedule>
+		</job>
+	</group>
+</config>

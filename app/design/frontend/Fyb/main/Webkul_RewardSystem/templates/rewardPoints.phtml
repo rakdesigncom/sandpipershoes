@@ -1,0 +1,328 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+?>
+<?php
+$minimumAmount = 0;
+$maximumAmount = 0;
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+if ($helper->enableRewardSystem()) {
+    $customerId = $helper->getCustomerId();
+    $currency_code = $helper->getCurrentCurrencyCode();
+    $rewardPointCollection = $block->getRewardDetailCollection();
+    $rewardPoints = round($block->getRemainingRewardPoints($customerId));
+    list($expiryPoints, $expiresAt) = $block->getExpiryRewardPoints($customerId);
+    $totalPoints = round($block->getTotalRewardPoints($customerId));
+    $usedPoints = round($block->getUsedRewardPoints($customerId));
+    $expiredPoints = round($block->getExpiredRewardPoints($customerId));
+    ?>
+
+    <div class="wk_rs_main">
+        <?php if ($rewardPoints || count($rewardPointCollection)) {?>
+            <div class="wk_rs_container_1">
+                <div class="wk_rs_container_1_left">
+                    <div class='wk_rs_main_head'>
+                        <div class="wk_rs_sub_head2">
+                            <h2><?= /* @escapeNotVerified */ $escaper->escapeHtml(__("Current Balance"))?></h2>
+                            <h3>
+                                <span class="wk_rs_price">
+                                    <?= $escaper->escapeHtml($rewardPoints)?>
+                                </span>
+                                <?= $escaper->escapeHtml(__(" Reward Points"))?>
+                            </h3>
+                        </div>
+                    </div>
+                    <?php if ($expiryPoints): ?>
+                        <div class='wk_rs_expiry_container'>
+                            <span class="wk_rs_bold_text"><?= /* @noEscape */ $expiryPoints ?></span>
+                            <span class="wk_rs_expiry_text">
+                      <?= $escaper->escapeHtml(
+                          __("Reward points from your balance is expiring on")
+                      ) ?>
+                  </span>
+                            <span class="wk_rs_bold_text"><?= /* @noEscape */ $expiresAt ?></span>
+                        </div>
+                    <?php endif; ?>
+                    <div class='wk_rs_points_container'>
+                        <div class="wk_rs_points_earned wk_rs_points_section">
+                            <div class="wk_rs_points_section_inner">
+                                <div class="wk_rs_points_text">
+                                    <?= $escaper->escapeHtml(
+                                        __("Total Earned")
+                                    ) ?>
+                                </div>
+                                <div class="wk_rs_points_text">
+                                    <h2><?= /* @noEscape */ $totalPoints ?></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wk_rs_points_spent wk_rs_points_section">
+                            <div class="wk_rs_points_section_inner">
+                                <div class="wk_rs_points_text">
+                                    <?= $escaper->escapeHtml(
+                                        __("Total Spent")
+                                    ) ?>
+                                </div>
+                                <div class="wk_rs_points_text">
+                                    <h2><?= /* @noEscape */ $usedPoints ?></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wk_rs_points_expired wk_rs_points_section">
+                            <div class="wk_rs_points_section_inner">
+                                <div class="wk_rs_points_text">
+                                    <?= $escaper->escapeHtml(
+                                        __("Expired")
+                                    ) ?>
+                                </div>
+                                <div class="wk_rs_points_text">
+                                    <h2><?= /* @noEscape */ $expiredPoints ?></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                $isRewardInfoEnabled = $helper->isRewardInfoEnabled();
+                if ($isRewardInfoEnabled) {
+                    $rewardInfoContent = $helper->getRewardInfoContent();
+                    $rewardPageUrl = $block->getUrl('rewardsystem/index/program');
+                    ?>
+                    <div class="wk_rs_container_1_right">
+                        <div class="wk_rs_info_container">
+                            <div class="wk_rs_rewardinfo_heading"><?= /* @noEscape */  __('Reward Information')?></div>
+                            <?= /* @noEscape */  $block->getCmsFilterContent($rewardInfoContent)?>
+                            <div class="wk_rs_cms_link">
+                                <a href="<?= $escaper->escapeUrl($rewardPageUrl);?>">
+                                    <?= /* @noEscape */ __('Click here for more information') ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="wk_rs_container2">
+                <div class='wk_rs_table'>
+                    <form action="<?= /* @noEscape */  $block->getUrl('rewardsystem/index/index')?>"
+                          method="get" name="formCartlistFilter" id="myForm">
+                        <table cellspacing="0" class="wkcs-filter-table">
+                            <thead>
+                            <tr>
+                                <th><span><?= /* @noEscape */  __('Type')?></span></th>
+                                <th><span><?= /* @noEscape */  __('Points')?></span></th>
+                                <th><span><?= /* @noEscape */  __('Status')?></span></th>
+                                <th><span>&nbsp;</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <select name="ty">
+                                        <option value="" ><?= /* @noEscape */ __('Select Type')?></option>
+                                        <option value="credit"
+                                            <?php if ($block->getRequest()->getParam('ty') == 'credit') { ?>
+                                                selected
+                                            <?php } ?>
+                                        ><?= /* @noEscape */ __('Credit')?></option>
+                                        <option value="debit"
+                                            <?php if ($block->getRequest()->getParam('ty') == 'debit') { ?>
+                                                selected
+                                            <?php } ?>><?= /* @noEscape */ __('Debit')?></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="input-text" name="pt" placeholder="<?= /* @noEscape */
+                                    __('Search by Point')?>" value="<?= /* @noEscape */ $block->getRequest()->getParam('pt')?>">
+                                </td>
+                                <td>
+                                    <select name="st">
+                                        <option value="" ><?= /* @noEscape */ __('Select Status')?></option>
+                                        <option value="Approved"
+                                            <?php if ($block->getRequest()->getParam('st') == 'Approved') { ?>
+                                                selected
+                                            <?php } ?>
+                                        ><?= /* @noEscape */ __('Approved')?></option>
+                                        <option value="Applied"
+                                            <?php if ($block->getRequest()->getParam('st') == 'Applied') { ?>
+                                                selected
+                                            <?php } ?>
+                                        ><?= /* @noEscape */ __('Applied')?></option>
+                                        <option value="Expired"
+                                            <?php if ($block->getRequest()->getParam('st') == 'Expired') { ?>
+                                                selected
+                                            <?php } ?>
+                                        ><?= /* @noEscape */ __('Expired')?></option>
+                                        <option value="Pending"
+                                            <?php if ($block->getRequest()->getParam('st') == 'Pending') { ?>
+                                                selected
+                                            <?php } ?>
+                                        ><?= /* @noEscape */ __('Pending')?></option>
+                                        <option value="Cancelled"
+                                            <?php if ($block->getRequest()->getParam('st') == 'Cancelled') { ?>
+                                                selected
+                                            <?php } ?>
+                                        ><?= /* @noEscape */ __('Cancelled')?></option>
+                                    </select>
+                                </td>
+                                <td><button class="button" title="<?= /* @noEscape */ __('Save')?>" type="submit"><span><span>
+                        <span><?= /* @noEscape */ __('Submit')?></span></span></span></button></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <h3><?= /* @escapeNotVerified */ $escaper->escapeHtml(__('Last Transactions'))?></h3>
+                    <?php
+                    if (count($rewardPointCollection)) { ?>
+
+                        <div class='table-wrapper'>
+
+                            <table class="data table rewardorder">
+                                <form action="<?= /* @noEscape */  $block->getUrl('rewardsystem/index/index')?>" method="get"
+                                      id="filterForm">
+                                    <input type="hidden" id="srt" name="srt" value="<?= /* @noEscape */
+                                    $block->getRequest()->getParam('srt') ?>" >
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col description">
+                                            <?= $escaper->escapeHtml(__('Description'))?>
+                                        </th>
+                                        <th scope="col" class="col">
+                                            <?= $escaper->escapeHtml(__('Type'))?>
+                                        </th>
+                                        <th scope="col" class="col">
+                                            <?= $escaper->escapeHtml(__('Points'))?>
+                                            <button type="button" id="srtBtn">
+                                                <?php if ($block->getRequest()->getParam('srt') == 'DESC') { ?>
+                                                    ↑
+                                                <?php  } else { ?>
+                                                    ↓
+                                                <?php }  ?>
+                                            </button>
+                                        </th>
+                                        <th scope="col" class="col status">
+                                            <?= $escaper->escapeHtml(__('Status'))?>
+                                        </th>
+                                        <th scope="col" class="col statusdescription">
+                                            <?= $escaper->escapeHtml(__('Expiration Date'))?>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </form>
+                                <tbody>
+                                <?php	foreach ($rewardPointCollection as $record) { ?>
+                                    <tr>
+                                        <?php	if ($record->getOrderId()) {
+                                            $order = $block->getOrder()->load($record->getOrderId());
+                                            $incrementid = $order->getIncrementId();
+                                            ?>
+                                            <td data-th="<?= $escaper->escapeHtml(__('Description'))?>" class="col description">
+                                                <?= $escaper->escapeHtml(__('Order id: '))?>
+                                                <a
+                                                    href="<?= $escaper->escapeHtml($helper->getOrderUrl($record->getOrderId()));?>">
+                                                    #<?= $escaper->escapeHtml($incrementid);?>
+                                                </a>
+                                                <?php if (strpos($record->getTransactionNote(), 'in way') !== false) { ?>
+                                                    <?= $escaper->escapeHtml(__('Credited amount in way'))?>
+                                                <?php } ?>
+                                                <br>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td data-th="<?= $escaper->escapeHtml(__('Description'))?>" class="col description">
+                                                <?= $escaper->escapeHtml(__($record->getTransactionNote())); ?>
+                                            </td>
+                                        <?php } ?>
+                                        <?php if ($record->getAction()=='credit') { ?>
+                                            <td data-th="<?= $escaper->escapeHtml(__('Type'))?>" class="col debit">
+                                                <?= $escaper->escapeHtml(__("Credit"))?>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td data-th="<?= $escaper->escapeHtml(__('Type'))?>" class="col ">
+                                                <?= $escaper->escapeHtml(__("Debit"))?>
+                                            </td>
+                                        <?php } ?>
+                                        <td data-th="<?= $escaper->escapeHtml(__('Points: '))?>" class="col">
+                                            <?= $escaper->escapeHtml(round($record->getRewardPoint()));?>
+                                        </td>
+                                        <td data-th="<?= $escaper->escapeHtml(__("Status"))?>" class="col status">
+                                            <?php if ($record->getStatus()): ?>
+                                                <?php if ($record->getAction() == 'debit'): ?>
+                                                    <?= $escaper->escapeHtml(__('Applied')); ?>
+                                                <?php elseif ($record->getAction() == 'expire'):?>
+                                                    <?= $escaper->escapeHtml(__("Expired")); ?>
+                                                <?php elseif ($record->getStatus() == 2):?>
+                                                    <?= $escaper->escapeHtml(__("Cancelled")); ?>
+                                                <?php else:?>
+                                                    <?= $escaper->escapeHtml(__("Approved")); ?>
+                                                <?php endif; else: ?>
+                                                <?= $escaper->escapeHtml(__('Pending'));?>
+                                            <?php endif; ?>
+                                        </td>
+                                        <?php if ($record->getAction()=='debit') { ?>
+                                            <td data-th="<?= $escaper->escapeHtml(__("Expiration Date"))?>"
+                                                class="col statusdescription">
+                                                <?= $escaper->escapeHtml(__("-"));?>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td data-th="<?= $escaper->escapeHtml(__("Expiration Date"))?>"
+                                                class="col statusdescription">
+                                                <?= $escaper->escapeHtml($helper->formatDate($record->getExpiresAt()));?>
+                                            </td>
+                                        <?php }?>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php if ($block->getPagerHtml()): ?>
+                            <div class="order-transaction-toolbar toolbar bottom"><?=  $block->getPagerHtml(); ?></div>
+                        <?php endif ?>
+                    <?php } else { ?>
+                        <h5><?= /* @escapeNotVerified */$escaper->escapeHtml(__('No records found!'));?></h5>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class='wk_rs_noreward_head'>
+                <div class="wk_rs_sub_noreward">
+                    <img id="wk_rs_no_reward_img" width="70px" height="55px"
+                         src='<?= $escaper->escapeHtml($block->getViewFileUrl('Webkul_RewardSystem::images/reward.png'));?>'>
+                </div>
+                <div class="wk_rs_noreward_head2">
+                    <h2><?= $escaper->escapeHtml(__("No Reward Points"))?></h2>
+                    <span><?= $escaper->escapeHtml(__("Shop with Us and Earn Reward Points!"))?></span>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+<?php } else { ?>
+    <h3><?=  $escaper->escapeHtml(__('Please contact to Admin.'))?></h3>
+<?php	} ?>
+
+<script>
+    require([ 'jquery'], function($){
+        $("#srtBtn").click(function(e){
+            e.preventDefault();
+            var value = $('#srt').val();
+
+            if(value == 'DESC') {
+                $("#srtBtn").html('↓');
+                $('#srt').val('ASC');
+            } else {
+                $("#srtBtn").html('↑');
+                $('#srt').val('DESC');
+            }
+            $("#filterForm").submit();
+
+        });
+
+    });
+</script>

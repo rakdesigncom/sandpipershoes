@@ -1,0 +1,313 @@
+<?php
+ $collections = $block->getCollection();
+
+$resultupdate = $block->getActivityScheduleProcess();
+$blockinstallstatus = $block->getInstallwizardstatus();
+if ($blockinstallstatus->count()>0) {
+    foreach ($blockinstallstatus as $k => $v) {
+        $v = $v->getData();
+        $id = $v['id'];
+        $master_id=0;
+        switch ($id) {
+            case 4:
+                $master_id = 1;
+                $sinlge_result = $block->getActivityScheduleProcess($master_id);
+
+                if (isset($sinlge_result[$master_id]) && count($sinlge_result[$master_id])>0 && !isset($sinlge_result[$master_id]['pending'])) {
+                    $block->updateSyncDone($id);
+                }
+                break;
+            case 5:
+                $master_id = 16;
+                $sinlge_result = $block->getActivityScheduleProcess($master_id);
+               // print_r($sinlge_result);
+                if (isset($sinlge_result[$master_id]) && count($sinlge_result[$master_id])>0 && !isset($sinlge_result[$master_id]['pending'])) {
+                    $block->updateSyncDone($id);
+                }
+                break;
+            case 6:
+                $master_id = 12;
+                $sinlge_result = $block->getActivityScheduleProcess($master_id);
+               // print_r($sinlge_result);
+                if (isset($sinlge_result[$master_id]) && count($sinlge_result[$master_id])>0 && !isset($sinlge_result[$master_id]['pending'])) {
+                    $block->updateSyncDone($id);
+                }
+                break;
+
+            case 7:
+                $master_id = 2;
+                break;
+            case 8:
+                $sinlge_result = $block->getActivityScheduleProcess(3);
+
+                if (isset($sinlge_result[3]) && count($sinlge_result[3])>0 && !isset($sinlge_result[3]['pending'])) {
+                    $block->updateSyncDone($id);
+                }
+                break;
+
+            case 9:
+                $sinlge_result = $block->getActivityScheduleProcess(8);
+
+                if (isset($sinlge_result[3]) && count($sinlge_result[40])>0 && !isset($sinlge_result[40]['pending'])) {
+                    $block->updateSyncDone($id);
+                }
+                break;
+
+            default:
+                $master_id =0;
+                break;
+        }
+
+    }
+}
+ $done_all=false;
+if ($block->syncDone()) { ?>
+    <center>
+<table cellspacing="0" style="width: 70%!important">
+    <tr>
+        <td>Item</td>
+        <td>Total Records</td>
+        <td>Status</td>
+        <td>Action</td>
+    </tr>
+        <?php foreach ($collections as $key => $collection) { ?>
+        <tr>
+            <?php
+            $done=$collection['action'];
+
+            switch ($collection['function_name']) {
+                case 'customers':
+                    $master_id=2;
+                    $printdata='';
+                    $countpen = $block->countpendingitems($master_id);
+                    if ($countpen && $countpen>0) {
+                        $chack_is_process = true;
+                    }
+                     $resyysucess=$block->processChangeLog($master_id);
+                    $sucess=(isset($resyysucess['Success'])?$resyysucess['Success']:0);
+                    $faild=(isset($resyysucess['fail'])?$resyysucess['fail']:0);
+                    if ($sucess>0 || $faild>0) {
+                        $faild_s='';
+                        if ($done=='Done') {
+                                $faild_s=" Check Task log for ".$faild." failed item(s).";
+                        }
+                        $data=$sucess."/".$collection['total_records'].' Completed. '.$faild_s;
+                        $printdata =  $data;
+                    } else {
+                            $printdata =  $collection['total_records'];
+                    }
+                    break;
+                case 'stock_items':
+                    $master_id=1;
+                    $printdata='';
+                    $countpen = $block->countpendingitems($master_id);
+                    if ($countpen && $countpen>0) {
+                        $chack_is_process = true;
+                    }
+                    $resyysucess=$block->processChangeLog($master_id);
+                    $sucess=(isset($resyysucess['Success'])?$resyysucess['Success']:0);
+                    $faild=(isset($resyysucess['fail'])?$resyysucess['fail']:0);
+                    if ($sucess>0 || $faild>0) {
+                        $faild_s='';
+                        if ($done=='Done') {
+                                $faild_s=" Check Task log for ".$faild." failed item(s).";
+                        }
+                        $data=$sucess."/".$collection['total_records'].' Completed. '.$faild_s;
+                        $printdata =  $data;
+                    } else {
+                            $printdata =  $collection['total_records'];
+                    }
+                    break;
+                case 'kit_items':
+                    $master_id=16;
+                    $printdata='';
+                    $countpen = $block->countpendingitems($master_id);
+                    if ($countpen && $countpen>0) {
+                        $chack_is_process = true;
+                    }
+                    $resyysucess=$block->processChangeLog($master_id);
+                    $sucess=(isset($resyysucess['Success'])?$resyysucess['Success']:0);
+                    $faild=(isset($resyysucess['fail'])?$resyysucess['fail']:0);
+                    if ($sucess>0 || $faild>0) {
+                        $faild_s='';
+                        if ($done=='Done') {
+                                $faild_s=" Check Task log for ".$faild." failed item(s).";
+                        }
+                        $data=$sucess."/".$collection['total_records'].' Completed. '.$faild_s;
+                        $printdata =  $data;
+                    } else {
+                            $printdata =  $collection['total_records'];
+                    }
+                    break;
+                case 'matrix_item':
+                    $master_id=12;
+                    $printdata='';
+                    $countpen = $block->countpendingitems($master_id);
+                    if ($countpen && $countpen>0) {
+                        $chack_is_process = true;
+                    }
+                     $resyysucess=$block->processChangeLog($master_id);
+                    $sucess=(isset($resyysucess['Success'])?$resyysucess['Success']:0);
+                    $faild=(isset($resyysucess['fail'])?$resyysucess['fail']:0);
+                    if ($sucess>0 || $faild>0) {
+                        $faild_s='';
+                        if ($done=='Done') {
+                                $faild_s=" Check Task log for ".$faild." failed item(s).";
+                        }
+                        $data=$sucess."/".$collection['total_records'].' Completed. '.$faild_s;
+                        $printdata =  $data;
+                    } else {
+                            $printdata =  $collection['total_records'];
+                    }
+                    break;
+                case 'so_order':
+                    $master_id=3;
+                    $printdata='';
+                    $countpen = $block->countpendingitems($master_id);
+                    if ($countpen && $countpen>0) {
+                        $chack_is_process = true;
+                    }
+                     $resyysucess=$block->processChangeLog($master_id);
+                    $sucess=(isset($resyysucess['Success'])?$resyysucess['Success']:0);
+                    $faild=(isset($resyysucess['fail'])?$resyysucess['fail']:0);
+                    if ($sucess>0 || $faild>0) {
+                        $faild_s='';
+                        if ($done=='Done') {
+                                $faild_s=" Check Task log for ".$faild." failed item(s).";
+                        }
+                        $data=$sucess."/".$collection['total_records'].' Completed. '.$faild_s;
+                        $printdata =  $data;
+                    } else {
+                            $printdata =  $collection['total_records'];
+                    }
+                    break;
+                case 'invoices_orders':
+                    $master_id=8;
+                    $printdata='';
+                    $countpen = $block->countpendingitems($master_id);
+                    if ($countpen && $countpen>0) {
+                        $chack_is_process = true;
+                    }
+                     $resyysucess=$block->processChangeLog($master_id);
+                    $sucess=(isset($resyysucess['Success'])?$resyysucess['Success']:0);
+                    $faild=(isset($resyysucess['fail'])?$resyysucess['fail']:0);
+                    if ($sucess>0 || $faild>0) {
+                        $faild_s='';
+                        if ($done=='Done') {
+                                $faild_s=" Check Task log for ".$faild." failed item(s).";
+                        }
+                        $data=$sucess."/".$collection['total_records'].' Completed. '.$faild_s;
+                        $printdata =  $data;
+                    } else {
+                            $printdata =  $collection['total_records'];
+                    }
+                    break;
+                case 'category':
+                    $printdata ="Data not available";
+                    break;
+                default:
+                    $printdata =  $collection['total_records'];
+            }
+            ?>
+        <td><?= /* @noEscape */ $collection['item_name']; ?></td>
+        <td id="records_<?= /* @noEscape */ $collection['id'] ?>"><?= /* @noEscape */$printdata; ?></td>
+        <td id="records_<?= /* @noEscape */ $collection['id'] ?>"><?= /* @noEscape */$collection['status']; ?></td>
+        <td id="records_<?= /* @noEscape */  $collection['id'] ?>">
+
+                   <?php $ids = $collection['id'];
+                    if ($ids==1) {
+                        $ids = 2;
+                    }
+                                $result_sync_pre = $block->checkPreviousChangelog($ids);
+                                $currenct_sync_status = $block->checkPreviousChangelog($collection['id']+1);
+                                //echo $collection['id']."==".$result_sync_pre.'=='.$currenct_sync_status;
+                    if ($collection['id']!=1 && $result_sync_pre==1 && $currenct_sync_status==0) { ?>
+                                    <a style="text-decoration:none;" id="action_<?= /* @noEscape */ $collection['id'] ?>"
+                                       onclick="process_start('<?= /* @noEscape */  $collection['function_name']; ?>')" href="javascript:void(0)"><?= /* @noEscape */ $collection['action']; ?></a>
+                                <?php }
+                    if ($collection['id']!=1 && $result_sync_pre==1 && $currenct_sync_status==1) { ?>
+                                    <span id="action_<?= /* @noEscape */  $collection['id'] ?>"> <?= /* @noEscape */  $collection['action']; ?></span>
+                                <?php }
+
+                    if ($collection['id']==1 && $result_sync_pre==0) { ?>
+                                    <a style="text-decoration:none;" id="action_<?= /* @noEscape */ $collection['id'] ?>"
+                                       onclick="process_start('<?= /* @noEscape */ $collection['function_name']; ?>')" href="javascript:void(0)"><?= /* @noEscape */ $collection['action']; ?></a>
+                                <?php }
+                    if ($collection['id']==1 && $result_sync_pre==1) { ?>
+                                    <span id="action_<?= /* @noEscape */ $collection['id'] ?>"> <?= /* @noEscape */ $collection['action']; ?></span>
+                                <?php }
+                    if ($collection['id']==4) { ?>
+                                    <a style="text-decoration:none;" id="action_<?= /* @noEscape */ $collection['id'] ?>"
+                                       onclick="process_start('<?= /* @noEscape */ $collection['function_name']; ?>')" href="javascript:void(0)"><?= /* @noEscape */ $collection['action']; ?></a>
+                                <?php } ?>
+
+                </td>
+        </tr>
+        <?php } ?>
+</table>
+    </center>
+
+
+    <?php } else { ?>
+<center>
+    <table cellspacing="0" style="width: 70%!important">
+        <tr>
+            <td style="text-align: center;"><h2 style="color: forestgreen;">Import Complete. API is live.</h2></td>
+        </tr>
+
+    </table>
+    </center>
+    <?php } ?>
+
+
+<?php
+if ($done_all) { ?>
+    <br /><br />
+    <table cellspacing="0" style="width: 70%!important">
+        <tr>
+            <td style="text-align: center"><h2>Import Complete</h2></td>
+        </tr>
+        <tr>
+            <td style="text-align: center"><h2><a href="<?php //echo Mage::helper("adminhtml")->getUrl
+                    //("logger/adminhtml_installwizard/sync"); ?>">Begin Sync</a></h2></td>
+        </tr>
+    </table>
+
+<?php } ?>
+</center>
+<script>
+        //require(['jquery', 'jquery/ui'], function($){
+      function process_start(type){
+        var ajaxRequest;
+        ajaxRequest = jQuery.ajax({
+            url: "<?= /* @noEscape */ $block->getUrl('interprise_logger/diagnostics/ajaxcall'); ?>",
+            type: 'GET',
+            data: {type : type}, //exemple
+            dataType: 'json',
+            beforeSend: function () {
+                jQuery('#loader').show();
+                jQuery('body').loader('show');
+            }
+        });
+            //Show successfully for submit message
+        ajaxRequest.done(function (response, textStatus, jqXHR) {
+            window.location.reload();
+            jQuery("#ajaxResponse").html(response);
+            jQuery('#loader').hide();
+             jQuery('body').loader('hide');
+        });
+
+            //On failure of request this function will be called
+        ajaxRequest.fail(function () {
+            //show error
+             jQuery('body').loader('hide');
+             alert('Oops, An error occured, please try again later!');
+            jQuery("#ajaxResponse").html('Oops, An error occured, please try again later!');
+            jQuery('#loader').hide();
+
+        });
+        }
+    //});
+
+
+    </script>

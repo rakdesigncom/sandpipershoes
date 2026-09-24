@@ -1,0 +1,33 @@
+<?php
+/** @var \Fyb\OutOfStockNotification\Block\OutOfStock $block */
+
+$helper = $this->helper(\Fyb\OutOfStockNotification\Helper\Data::class);
+?>
+
+<?php if ($helper->isStockAlertAllowed()): ?>
+<?php
+    $product = $block->getProduct();
+    $outOfStockProducts = $block->getOutOfStockProducts();
+?>
+
+<?php if ($outOfStockProducts): ?>
+    <p><b>Out of stock:</b></p>
+    <ul class="out-of-stock-list">
+        <?php foreach ($outOfStockProducts as $outOfStockProduct): ?>
+            <li>
+                <?php foreach ($outOfStockProduct as $attribute => $value): ?>
+                    <?php if ($attribute != 'product_id'): ?>
+                        <span class="attribute-<?= $attribute ?>">
+                            <?= $value ?>
+                        </span>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <span>
+                    -
+                    <a rel="nofollow" href="<?= $helper->getStockAlertUrl($outOfStockProduct['product_id']) ?>">Email me when back in stock</a>
+                </span>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+<?php endif; ?>

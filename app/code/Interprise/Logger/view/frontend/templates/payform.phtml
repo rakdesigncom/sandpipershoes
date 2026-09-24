@@ -1,0 +1,223 @@
+<?php
+$payment_info=$block->getInvoicepaymentform();
+ 
+?>
+<div class="warnding-message">Please do not refresh or reload this page</div>
+<form method="post" id="pay_now_form" action="<?= /* @noEscape */$block->getUrl('icustomer/invoicepayment/paymentactions/index') ?>"
+      onsubmit="return doAjax();">
+    <table style="margin: 0px auto;width: 50%;" class="data-table">
+        <input type="hidden" name="payid" value="<?= /* @noEscape */$payment_info['entity_id'] ?>" />
+        <input type="hidden" name="payform" value="submitform" />
+         
+        <tr>
+            <td>
+                <p>First Name</p>
+                <input class="input-text required-entry" type="text" name="BillingFirstnames" placeholder="First Name" value="<?php //echo $customer->getData('firstname') ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Last Name</p>
+                <input class="input-text required-entry" type="text" name="BillingSurname" placeholder="Last Name" value="<?php //echo $customer->getData('lastname') ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Email Id</p>
+                <input class="input-text required-entry validate-email" type="text" name="CustomerEMail" placeholder="Email Id" value="<?php // echo $customer_info->getData('email') ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Phone Number</p>
+                <input class="input-text required-entry" type="text" name="ContactNumber" placeholder="Phone Number" value="<?php //echo $customer->getData('telephone') ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Address 1</p>
+                <input class="input-text required-entry" type="text" name="BillingAddress1" placeholder="Address 1" value="<?php //echo $customer->getData('street') ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Address 2</p>
+                <input type="text" name="BillingAddress2" placeholder="Address 2" value="" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>City</p>
+                <input class="input-text required-entry" type="text" name="BillingCity" placeholder="City" value="<?php //echo $customer->getData('city') ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Country</p>
+                <select name="BillingCountry" class="required-entry">
+                    <option value="">Select country</option>
+                    <?php //echo get_country($customer->getData('country_id')); ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Post Code</p>
+                <input class="input-text required-entry" type="text" name="BillingPostCode" placeholder="Post Code" value="<?php //echo $customer->getData('postcode') ?>" /></td>
+        </tr>
+        
+        <tr>
+            <td>
+                            <div   class="paypal_pay left_sc">
+                    <input onclick="change_payment_mode('paypal')" type="radio" name="payment_option" value="paypal" id="paypal" />  <label for="paypal">Pay via Paypal</label> 
+                </div>
+                <div   class="creditcard_sage_pay left_sc">
+                    
+                    <input checked="checked" onclick="change_payment_mode('sage_pay')" type="radio" name="payment_option" value="sagepay" id="sagepay" /> <label for="sagepay">Credit card payment</label>
+                </div>
+                
+            </td>
+        </tr>
+    </table>
+    <table id="sagepay_form" style="margin: 0px auto;width: 50%;display: none;" class="data-table">
+        
+        <tr>
+            <td><p>Name On Card</p>
+                <input  type="text" name="cc_owner" value="Jonozepa Yeco" class="required-entry" autocomplete="off" id="sage_1" />
+            </td>
+        </tr>
+        <tr>
+            <td><p>Credit Card Number</p>
+                <input type="text" name="cc_number" value="4929000000006" class="required-entry" autocomplete="off" id="sage_2" />
+            </td>
+        </tr>
+        <tr>
+            <td><p>Credit Card Type</p>
+                <select name="cc_type" onchange="changecsvclass(this);" class="required-entry" autocomplete="off" id="sage_3">
+                <option value="">--Please Select--</option>
+                <option selected="selected" value="VISA">Visa</option>
+                <option value="MC">MasterCard</option>
+                <option value="DELTA">Visa Debit</option>
+                <option value="SOLO">Solo</option>
+                <option value="SWITCH">Maestro UK</option>
+                <option value="UKE">Visa Electron</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Expiration Date</p>
+                <select name="cc_exp_month" class="month required-entry" autocomplete="off" id="sage_4">
+                <option value="" selected="selected">Month</option>
+                <option value="01">01 - January</option>
+                <option value="02">02 - February</option>
+                <option value="03">03 - March</option>
+                <option selected="selected" value="04">04 - April</option>
+                <option value="05">05 - May</option>
+                <option value="06">06 - June</option>
+                <option value="07">07 - July</option>
+                <option value="08">08 - August</option>
+                <option value="09">09 - September</option>
+                <option value="10">10 - October</option>
+                <option value="11">11 - November</option>
+                <option value="12">12 - December</option>
+            </select>
+            <select name="cc_exp_year" class="year required-entry" autocomplete="off" id="sage_5">
+                <option value="" selected="selected">Year</option>
+                <option value="17">2017</option>
+                <option selected="selected" value="18">2018</option>
+                <option value="19">2019</option>
+                <option value="20">2020</option>
+                <option value="21">2021</option>
+                <option value="22">2022</option>
+                <option value="23">2023</option>
+                <option value="24">2024</option>
+                <option value="25">2025</option>
+                <option value="26">2026</option>
+                <option value="27">2027</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Card Verification Number *</p>
+                <input autocomplete="off" title="Card Verification Number" class="input-text cvv required-entry" name="cc_cid" value="123" type="text" id="sage_6">
+            </td>
+        </tr>
+        
+        
+    </table>
+    <table style="margin: 0px auto;width: 50%;" class="data-table">
+        <tr>
+            <td><b>Pay Amount : <?= /* @noEscape */ $block->formatPrice($payment_info['amount']); ?></b></td>
+        </tr>
+        <tr>
+            <td><div style="float: left; margin-right: 10px;"><input class="action subscribe primary" name="submit" value="Pay Now" type="submit"></div> <span id="processes" style="float: left; margin-top: 7px;display: none;"><div style="float: left; margin-top: 2px; margin-right: 5px;"><img src="http://funko.247orderonline.com/skin/frontend/rwd/default/images/ajax-loader2.gif"></div><div style="float:left;"> Processing...</div></span></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+        var formId = "pay_now_form";
+        //var myForm = new VarienForm(formId, false);
+        //var postUrl = "<?php //echo $this->getUrl('invoicepayment/paynow/gopayment') ?>";
+        var postUrl = "<?= /* @noEscape */ $block->getUrl('icustomer/invoicepayment/paymentactions/index') ?>";
+        function doAjax() {
+            
+            if(jQuery('#paypal').is(":checked")){
+                    jQuery("#pay_now_form").submit();
+                    
+                }else {
+                           
+                jQuery("#processes").show();
+                jQuery.ajax({
+                    type: "post",
+                    url: postUrl,
+                    dataType: "json",
+                    data: jQuery("#pay_now_form").serialize(true),
+                    success: function (data) {
+                        window.location.href=data.responce.NextURL;
+                    }
+                });
+              
+             }
+            
+        }
+        
+//        new Event.observe(formId, "submit", function(e){
+//            var check_pay_pal=jQuery("#paypal").val();
+//            if(jQuery('#paypal').is(":checked")){
+//                
+//            }else {
+//                e.stop();
+//            }
+//            
+//            doAjax();
+//        });
+        
+        
+        function change_payment_mode(mode){
+            if(mode=='sage_pay'){
+                for (var i=1; i <=6; i++) {
+                  jQuery("#sage_"+i).addClass('required-entry');
+                }
+                jQuery("#sagepay_form").show();
+            }else{
+                for (var i=1; i <=6; i++) {
+                  jQuery("#sage_"+i).removeClass('required-entry');
+                }
+                jQuery("#sagepay_form").hide();
+            }
+        }
+        jQuery(window).load(function(){
+            jQuery.confirm({
+                        title:'Confirm !',
+                        boxWidth: '30%',
+                        useBootstrap: false,
+                        content: 'Continue with details from file.',
+                        buttons: {
+                        confirm: function () {
+                           doAjax();
+                        },
+                        cancel: function () {
+                           return true
+                        }
+                    }
+                });
+        });
+        
+    //]]>
+</script>

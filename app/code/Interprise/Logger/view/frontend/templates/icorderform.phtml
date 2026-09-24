@@ -1,0 +1,105 @@
+<?php
+$_gridrecords = [];
+$item_code = $block->getRequest()->getParam('item_code');
+if (isset($item_code) && !empty($item_code)) {
+    $abstractProductBlock = $block->createBlockNew();
+    $_gridrecords = $block->getProductCollection($item_code); // get collection which we set in block class
+}
+$query_string = '';
+$p = $block->getRequest()->getParam('p');
+$limit = $block->getRequest()->getParam('limit');
+if ($p) {
+    $query_string = '&p='.$p;
+}
+if ($limit) {
+    $query_string .= '&limit='.$limit;
+}
+$filter = $block->getRequest()->getParam('filter');
+?>
+<form action="<?= /* @noEscape */ $block->getUrl('icustomer/orderform/index/'); ?>" id="quickorderFormSrch" method="post"
+      class="scaffold-form">
+
+    <div class="fieldset">
+
+        <ul class="form-list">
+
+            <li class="fields">
+
+                <div class="field">
+
+                    <label for="item_code" class="required"><em>*</em><?= /* @noEscape */  __('Item Name/SKU') ?></label>
+
+                    <div id="input-box" class="input-box">
+
+                        <?php $itemCode = $block->getRequest()->getPost('item_code');?>
+
+                        <input name="item_code" id="item_code" title="<?= /* @noEscape */ __('Item Name') ?>" value="<?= /* @noEscape */ $itemCode;?>" class="input-text required-entry" type="text" />
+
+                        <button type="submit" title="<?= /* @noEscape */ __('Search') ?>" class="button"><span><span><?= /* @noEscape */ __('Search') ?></span></span></button>
+                        <!--<a href="<?php //echo $this->getUrl('icustomer/orderform/index/'); ?>" class="anch-btn">Reset</a>-->
+                    </div>
+
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</form>
+
+<?php if ($_gridrecords && count($_gridrecords)) : ?>
+<form action="<?= /* @noEscape */ $block->getUrl('icustomer/orderform/index/'); ?>" id="quickorderForm" method="post"
+      class="scaffold-form">
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @noEscape */ __('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= /* @noEscape */ __('SKU') ?></th>
+                    <th scope="col" class="col title"><?= /* @noEscape */ __('Name') ?></th>
+                    <th scope="col" class="col type"><?= /* @noEscape */ __('Price') ?></th>
+                    <th scope="col" class="col date"><?= /* @noEscape */ __('Quantity') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php  // read collection as magento1.x and display in list
+                foreach ($_gridrecords as $_gridrecord) :
+                          
+                   //$order_id = $_gridrecord['id'];
+                    ?>
+                          
+                    <tr>
+                        <td class="col id"><?= /* @noEscape */ $_gridrecord->getSku(); ?></td>
+                        <td class="col shipping"><?= /* @noEscape */ $_gridrecord->getName(); ?></td>
+                        <td class="col date"><?= /* @noEscape */ $abstractProductBlock->getProductPrice($_gridrecord); ?></td>
+                        <td class="col date">
+                            <input type="text" name="reorderqty<?= /* @noEscape */ $_gridrecord->getId() ?>" style="width:50px;" size="5">
+
+                    <input type="hidden" name="productid[]" value="<?= /* @noEscape */ $_gridrecord->getId(); ?>" style="width:50px;" size="5">
+                            
+                        </td>
+                        
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <br />
+
+    <button type="submit" name="submit_cart" value="<?= /* @noEscape */ __('Yes') ?>" title="<?= /* @noEscape */ __('Add items and go to the shopping cart') ?>" class="button"><span><span><?= /* @noEscape */ __('Add items and go to the shopping cart') ?></span></span></button>
+    <br /><br />
+
+    <button type="submit" name="submit_search" value="<?= /* @noEscape */ __('Yes') ?>" title="<?= /* @noEscape */ __('Add items and search for more') ?>" class="button"><span><span><?= /* @noEscape */ __('Add items and search for more') ?></span></span></button>
+    </div>
+</form>
+<?php else : ?>
+    <div class="message info empty"><span><?= /* @noEscape */ __('grid records not available.'); ?></span></div>
+<?php endif ?>
+
+<script>
+    function setLocation(url){
+        window.location.href = encodeURI(url);
+    }
+
+</script>

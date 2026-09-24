@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_login">
+        <observer name="customer_login_observer" instance="Interprise\Logger\Observer\CustomerLogin" />
+    </event>
+     <event name="checkout_cart_product_add_after">
+        <observer name="afteraddtocart" instance="Interprise\Logger\Observer\Price\Afteraddtocart" />
+    </event>
+    <event name="checkout_cart_update_items_after">
+        <observer name="afterupdatecart" instance="Interprise\Logger\Observer\Price\Updatecart"/>
+    </event>
+    <event name="checkout_cart_product_update_after">
+        <observer name="afteritemafter" instance="Interprise\Logger\Observer\Price\Updateitem"/>
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+        <observer instance="Interprise\Logger\Observer\Sales\OrderPlaceAfter" name="interprise_logger_sales_order_place_after_observer"/>
+    </event>
+</config>

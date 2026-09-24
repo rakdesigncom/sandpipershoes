@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">interprise_logger_changelog_form.changelog_form_data_source</item>
+			<item name="deps" xsi:type="string">interprise_logger_changelog_form.changelog_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">interprise_logger_changelog_form</item>
+		</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+		<item name="buttons" xsi:type="array">
+			<item name="back" xsi:type="string">Interprise\Logger\Block\Adminhtml\Changelog\Edit\BackButton</item>
+			<item name="delete" xsi:type="string">Interprise\Logger\Block\Adminhtml\Changelog\Edit\DeleteButton</item>
+			<item name="save" xsi:type="string">Interprise\Logger\Block\Adminhtml\Changelog\Edit\SaveButton</item>
+			<item name="save_and_continue" xsi:type="string">Interprise\Logger\Block\Adminhtml\Changelog\Edit\SaveAndContinueButton</item>
+		</item>
+	</argument>
+	<dataSource name="changelog_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Interprise\Logger\Model\Changelog\DataProvider</argument>
+			<argument name="name" xsi:type="string">changelog_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">changelog_id</argument>
+			<argument name="requestFieldName" xsi:type="string">changelog_id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="submit_url" path="*/*/save" xsi:type="url"/>
+				</item>
+			</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+	</dataSource>
+	<fieldset name="General">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string"/>
+			</item>
+		</argument>
+		<field name="CreatedAt">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">CreatedAt</item>
+					<item name="formElement" xsi:type="string">date</item>
+					<item name="source" xsi:type="string">Changelog</item>
+					<item name="sortOrder" xsi:type="number">300</item>
+					<item name="dataScope" xsi:type="string">CreatedAt</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="ItemType">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ItemType</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Changelog</item>
+					<item name="sortOrder" xsi:type="number">310</item>
+					<item name="dataScope" xsi:type="string">ItemType</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="ItemId">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ItemId</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Changelog</item>
+					<item name="sortOrder" xsi:type="number">320</item>
+					<item name="dataScope" xsi:type="string">ItemId</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Action">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Action</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Changelog</item>
+					<item name="sortOrder" xsi:type="number">330</item>
+					<item name="dataScope" xsi:type="string">Action</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="PushedStatus">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">PushedStatus</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">Changelog</item>
+					<item name="sortOrder" xsi:type="number">340</item>
+					<item name="dataScope" xsi:type="string">PushedStatus</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="JsonValue">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">JsonValue</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">Changelog</item>
+					<item name="sortOrder" xsi:type="number">350</item>
+					<item name="dataScope" xsi:type="string">JsonValue</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

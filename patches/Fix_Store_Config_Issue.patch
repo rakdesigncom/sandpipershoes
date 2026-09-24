@@ -1,0 +1,48 @@
+diff --git a/vendor/paypal/module-braintree-core/view/adminhtml/web/js/system.js b/vendor/paypal/module-braintree-core/view/adminhtml/web/js/system.js
+--- a/vendor/paypal/module-braintree-core/view/adminhtml/web/js/system.js
++++ b/vendor/paypal/module-braintree-core/view/adminhtml/web/js/system.js
+@@ -141,7 +141,7 @@
+         messagingLogoPosition = $('.' + location + '-messaging-logo-position').val(),
+         messagingTextColor = $('.' + location + '-messaging-text-color').val();
+
+-        locations.each(function (loc) {
++        $.each(locations, function (loc) {
+             buttonTypes.each(function (type) {
+                 /* eslint-disable */
+                 $('[data-ui-id="select-groups-braintree-section-groups-braintree-groups-braintree-paypal-groups-styling-groups-button-' + loc + '-groups-button-location-' + loc + '-type-' + type + '-fields-button-location-' + loc + '-type-' + type + '-show-value"]').val(buttonShowStatus).click();
+@@ -165,7 +165,7 @@
+         let locations = ['checkout', 'productpage', 'cart'], buttonTypes = ['paypal', 'paylater', 'credit'],
+             buttonShowStatus = 1, buttonLabel = 'paypal', buttonColor = 'gold', buttonShape = 'rect';
+
+-        locations.each(function (loc) {
++        $.each(locations, function (loc) {
+             buttonTypes.each(function (type) {
+                 /* eslint-disable */
+                 $('[data-ui-id="select-groups-braintree-section-groups-braintree-groups-braintree-paypal-groups-styling-groups-button-' + loc + '-groups-button-location-' + loc + '-type-' + type + '-fields-button-location-' + loc + '-type-' + type + '-show-value"]').val(buttonShowStatus).click();
+@@ -188,7 +188,7 @@
+     window.applyButton = function () {
+         let locations = ['checkout', 'productpage', 'cart'], buttonTypes = ['paypal', 'paylater', 'credit'];
+
+-        locations.each(function (loc) {
++        $.each(locations, function (loc) {
+             buttonTypes.each(function (type) {
+                 /* eslint-disable */
+                 $('[data-ui-id="select-groups-braintree-section-groups-braintree-groups-braintree-paypal-groups-styling-groups-button-' + loc + '-groups-button-location-' + loc + '-type-' + type + '-fields-button-location-' + loc + '-type-' + type + '-show-value"]').click();
+@@ -219,7 +219,7 @@
+         merchantCountryIndex = mainLocation.attr('id').split('_')[1];
+         // eslint-disable-next-line
+         mainType = $('[data-ui-id="select-groups-braintree-section-groups-braintree-groups-braintree-paypal-groups-styling-groups-button-' + mainLocation.val() + '-fields-paypal-location-' + mainLocation.val() + '-button-type-value"]');
+-        locations.each(function (loc) {
++        $.each(locations, function (loc) {
+         // eslint-disable-next-line
+             $('#row_payment_' + merchantCountryIndex + '_braintree_section_braintree_braintree_paypal_styling_button_' + loc).hide();
+             buttonTypes.each(function (type) {
+@@ -236,7 +236,7 @@
+     let locations = ['checkout', 'productpage', 'cart'];
+
+     window.hidePaypalSections();
+-    locations.each(function (loc) {
++    $.each(locations, function (loc) {
+         // eslint-disable-next-line
+         $('[data-ui-id="select-groups-braintree-section-groups-braintree-groups-braintree-paypal-groups-styling-groups-button-' + loc + '-fields-paypal-location-' + loc + '-button-type-value"]').change(function () {
+             window.hidePaypalSections();

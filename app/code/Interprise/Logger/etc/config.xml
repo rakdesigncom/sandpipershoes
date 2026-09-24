@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <setup>
+            <general>
+                <enable>No</enable>
+                <api_url/>
+                <api_key/>
+                <currency>GBP</currency>
+                <update_name>0</update_name>
+                <update_image>0</update_image>
+                <update_category>0</update_category>
+                <update_manufacturer>0</update_manufacturer>
+                <defaultcategory>2</defaultcategory>
+                <historicaldatafrom>2018-03-31</historicaldatafrom>
+                <regular_price>Retail</regular_price>
+                <special_price>Special</special_price>
+                <msrp>MSRP</msrp>
+                <defaultshippingmethod>No Shipping Required</defaultshippingmethod>
+                <abbr>WEB</abbr>
+                <interprise_custom_attributes>
+                    _3dsupport_c,aspectratio_c,audiblenoise_c,brightness_c,builtinaudio_c,business_c,contrast_c,displaytype_c,education_c,flatscreenaspectratio_c,flatscreenbrightness_c,flatscreencontrast_c,flatscreenfeatures_c,flatscreenincluded_c,flatscreeninputs_c,flatscreenoutputs_c,gtin_c,hdmi_c,homecinema_c,imagesize_c,includedprojector_c,includedsoftware_c,inputs_c,installationavailable_c,nextdaydelivery_c,itemsincluded_c,keystonecorrection_c,lampcategory_c,lamplife_c,largevenue_c,lens_c,lensshift_c,nativeresolution_c,outputs_c,physicalscreensize_c,portable_c,powerconsumption_c,projectordimensions_c,projectormanufacturer_c,projectormodel_c,projectorwarranty_c,projectorweight_c,resolution_c,rj45_c,screensurface_c,includedsoftware_c,screenweight_c,shortthrow_c,staffpick_c,throwdistance_c,throwratio_c,touchtype_c,flatscreendisplaytype_c,ultraportable_c,ultrashortthrow_c,usb_c,activescreenarea_c,screenwarranty_c,flatscreenweight_c,wirelessnetworking_c,activescreenarea_c
+                </interprise_custom_attributes>
+            </general>
+            <email_settings>
+                    <reattempt_success>reattempt_success</reattempt_success>
+                    <reattempt_failure>reattempt_failure</reattempt_failure>
+                    <sync_failed>sync_failed</sync_failed>
+                    <sync_succeed>sync_succeed</sync_succeed>
+                    <invalid_emaiaddress>invalid_emaiaddress</invalid_emaiaddress>
+            </email_settings>
+        </setup>
+    </default>
+</config>

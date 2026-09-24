@@ -1,0 +1,94 @@
+<?php
+
+$filter = $this->getData('transaction_type');
+$_gridrecords = $block->getCollectiontransaction($filter);
+$title = [
+    'open' => 'Outstanding Transactions',
+    'complete' => 'Completed Transactions',
+];
+$query_string = '';
+$p = $block->getRequest()->getParam('p');
+$limit = $block->getRequest()->getParam('limit');
+if ($p) {
+    $query_string = '&p='.$p;
+}
+if ($limit) {
+    $query_string .= '&limit='.$limit;
+}
+?>
+<div>
+    <h3 style="font-size: 35px;"><?= /* @noEscape */__($title[$filter]) ?></h3>
+</div>
+<!----------------- Show Filter ------------------------------>
+<div class="toolbar">
+    <?= /* @noEscape */ $block->getPagerHtml(); ?>
+</div>
+<!----------------- End Filter ------------------------------>
+
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?=  /* @noEscape */__('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col title"><?=  /* @noEscape */__('Document Code') ?></th>
+                    <th scope="col" class="col type"><?=  /* @noEscape */__('Type') ?></th>
+                    <th scope="col" class="col date"><?=  /* @noEscape */__('Document Date') ?></th>
+                    <th scope="col" class="col duedate"><?= /* @noEscape */ __('Due Date') ?></th>
+                    <th scope="col" class="col " style="text-align:right"><?=  /* @noEscape */__('Total') ?></th>
+                    <th scope="col" class="col " style="text-align:right"><?=  /* @noEscape */__('Outstanding') ?></th>
+                    <th scope="col" class="col " style="text-align:right">Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+    <?php
+    $alldata=$_gridrecords['alldata'];
+    if(empty($alldata)){
+      ?>
+      <div class="danger" style="background:#fdf0d5;color:#6f4400"><span>Records Not Found.</span></div>
+      <?php
+    }else{
+        $countAllData = count($alldata);
+      for($i=0;$i<$countAllData;$i++){
+
+        ///
+        $tmp = Array();
+        foreach($alldata as &$ma)
+        $tmp[] = &$ma['attributes']['invoiceDate'];
+        array_multisort($tmp, SORT_DESC,$alldata,SORT_DESC);
+
+        $currencycode='£';
+        $invo_id =  urlencode(base64_encode($alldata[$i]['attributes']['invoiceCode']));
+        ?>
+        <tr>
+          <th scope="row"><?php echo $alldata[$i]['attributes']['invoiceCode']?></th>
+          <td><?php echo $alldata[$i]['attributes']['type']?></td>
+          <td><?php echo date('d-m-Y', strtotime($alldata[$i]['attributes']['date']));?></td>
+          <td><?php echo date('d-m-Y', strtotime($alldata[$i]['attributes']['dueDate']));?></td>
+          <td style="text-align:right"><?php echo $currencycode.number_format((float)$alldata[$i]['attributes']['total'], 2, '.', ',');?></td>
+          <td style="text-align:right"><?php echo $currencycode.number_format((float)$alldata[$i]['attributes']['outstanding'], 2, '.', ',');?></td>
+          <td style="text-align:right"><a href="<?= /* @noEscape */ $block->getUrl("icustomer/ctransaction/transactiondetail/id/$invo_id")?>">Detail</a></td>
+        </tr>
+        <?php
+      }
+
+    }
+     ?>
+  </tbody>
+        </table>
+    </div>
+
+<style>
+    .total{
+        text-align: right;
+    }
+    .balance{
+        text-align: right;
+    }
+</style>
+
+<script>
+    function setLocation(url){
+        window.location.href = encodeURI(url);
+    }
+
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <update handle="customer_account"/>
+    <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Transaction</argument>
+            </action>
+     </referenceBlock>
+    <referenceContainer name="content">
+        <block class="Interprise\Logger\Block\Icustomer\Transaction\Index" name="icustomer_ctransaction_outstanding" template="Interprise_Logger::ictransaction.phtml" cacheable="false" >
+            <arguments>
+                <argument name="transaction_type" xsi:type="string">open</argument>
+            </arguments>
+        </block>
+        <block class="Interprise\Logger\Block\Icustomer\Transaction\Index" name="icustomer_ctransaction_complete" template="Interprise_Logger::ictransaction.phtml" cacheable="false" >
+            <arguments>
+                <argument name="transaction_type" xsi:type="string">complete</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+
+</page>

@@ -1,0 +1,72 @@
+& when (@media-common = true) {
+
+    .swatch-option:not(.disabled):hover{
+        outline: 1px solid #8D6B8E;
+    }
+    .swatch-option.selected:not(.disabled):hover,
+    .swatch-option.text.selected{
+        background-color: #8d6b8e;
+        color: #fff;
+    }
+    .swatch-option.selected:not(.disabled):hover{
+        background-color: #8d6b8e;
+        color: #fff;
+    }
+    .swatch-attribute.sizes {
+        .swatch-option {
+            background: none;
+            padding: 8px 16px;
+            border: 1px solid #E5E5E5;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 20px;
+            color: #1A171B;
+            font-family: 'Jost';
+            font-weight: 400;
+        }
+
+        .swatch-option.swatch-qty-input:not(.disabled):hover,
+        .swatch-option.swatch-qty-input:hover,
+        .swatch-option.swatch-qty-input:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .swatch-option.swatch-qty-input {
+            border: none;
+            padding: 0;
+            margin: 5px 0;
+            float: none;
+            height: auto;
+            text-align: left;
+            display: grid;
+            grid-template-columns: auto 70px 30px 30px 30px;
+            overflow: unset;
+            line-height: normal;
+            gap: 5px;
+
+            input[type="number"] {
+                height: 30px;
+                padding: 2px 0 0;
+                font-size: 15px;
+                font-weight: 300;
+                font-style: normal;
+                text-align: center;
+            }
+
+            button.secondary {
+                padding: 2px;
+                font-size: 23px;
+                height: 30px;
+                &:hover{
+                    box-shadow:none;
+                }
+            }
+        }
+    }
+
+    .swatch-option:not(.disabled):hover {
+        border-color: #8D6B8E;
+    }
+}

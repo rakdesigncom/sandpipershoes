@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">interprise_logger_cronlog_form.cronlog_form_data_source</item>
+			<item name="deps" xsi:type="string">interprise_logger_cronlog_form.cronlog_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">interprise_logger_cronlog_form</item>
+		</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+		<item name="buttons" xsi:type="array">
+			<item name="back" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronLog\Edit\BackButton</item>
+			<item name="delete" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronLog\Edit\DeleteButton</item>
+			<item name="save" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronLog\Edit\SaveButton</item>
+			<item name="save_and_continue" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronLog\Edit\SaveAndContinueButton</item>
+		</item>
+	</argument>
+	<dataSource name="cronlog_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Interprise\Logger\Model\CronLog\DataProvider</argument>
+			<argument name="name" xsi:type="string">cronlog_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">cronlog_id</argument>
+			<argument name="requestFieldName" xsi:type="string">cronlog_id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="submit_url" path="*/*/save" xsi:type="url"/>
+				</item>
+			</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+	</dataSource>
+	<fieldset name="General">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string"/>
+			</item>
+		</argument>
+		<field name="CronMasterId">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">CronMasterId</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronLog</item>
+					<item name="sortOrder" xsi:type="number">90</item>
+					<item name="dataScope" xsi:type="string">CronMasterId</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="RunTime">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">RunTime</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronLog</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+					<item name="dataScope" xsi:type="string">RunTime</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Response">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Response</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronLog</item>
+					<item name="sortOrder" xsi:type="number">120</item>
+					<item name="dataScope" xsi:type="string">Response</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Status">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Status</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronLog</item>
+					<item name="sortOrder" xsi:type="number">130</item>
+					<item name="dataScope" xsi:type="string">Status</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="Remarks">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Remarks</item>
+					<item name="formElement" xsi:type="string">textarea</item>
+					<item name="source" xsi:type="string">CronLog</item>
+					<item name="sortOrder" xsi:type="number">140</item>
+					<item name="dataScope" xsi:type="string">Remarks</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="ActivityCount">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ActivityCount</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronLog</item>
+					<item name="sortOrder" xsi:type="number">150</item>
+					<item name="dataScope" xsi:type="string">ActivityCount</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

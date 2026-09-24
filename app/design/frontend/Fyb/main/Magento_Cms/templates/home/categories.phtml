@@ -1,0 +1,22 @@
+<?php
+/** @var \Fyb\Theme\Block\Home\Categories $block */
+
+$categories = $block->getCategories();
+?>
+<div class="homepage_categories">
+    <h3>Categories</h3>
+    <div class="homepage_categories_images">
+        <?php foreach ($categories as $category): ?>
+            <?php $categoryImage = $block->getCategoryImage($category);?>
+            <a class="homepage_categories_image_inner" href="<?= $category->getUrl() ?>"
+                 style="background-image:url('<?= $categoryImage ?: $block->getViewFileUrl('Magento_Theme::images/category_default.jpeg')?>')">
+                    <span class="homepage_category_title"><?= $category->getName() ?></span>
+            </a>
+        <?php endforeach; ?>
+    </div>
+    <div class="homepage_categories_text">
+        <p>Sandpiper Shoes are specialists in wide fit shoes. Whether you're looking for extra wide or ultra wide
+            footwear,
+            we have a range of styles and fit for both men and women. </p>
+    </div>
+</div>

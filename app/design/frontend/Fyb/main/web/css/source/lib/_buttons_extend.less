@@ -1,0 +1,174 @@
+& when (@media-common = true) {
+    a,
+    .alink,
+    .message.success a,
+    .message.notice a,
+    .message.warning a,
+    .message.error a,
+    .message.info a {
+        .lib-link(
+            @_link-color: @color-purple,
+            @_link-text-decoration: underline,
+            @_link-color-visited: @color-purple,
+            @_link-text-decoration-visited: underline,
+            @_link-color-hover: @color-purple,
+            @_link-text-decoration-hover: underline,
+            @_link-color-active: @color-purple,
+            @_link-text-decoration-active: underline
+        );
+    }
+
+    button, a.button, a.pagebuilder-button-secondary, button.pagebuilder-button-secondary, div.pagebuilder-button-secondary,a.pagebuilder-button-primary, button.pagebuilder-button-primary, div.pagebuilder-button-primary, .action.primary, .action-primary {
+        text-transform: uppercase;
+        font-family: @button-primary__font-family;
+        color: @button__color;
+        font-weight: @button__font-weight;
+        font-style: normal;
+        text-decoration: none;
+        text-shadow: none;
+        background: @button__background;
+        border: @button__border;
+        padding: @button__padding;
+        font-size: @button__font-size;
+        line-height: @button__font-size;
+        text-align: center;
+        letter-spacing: @buttons_letter_spacing;
+        border-radius: 4px;
+
+
+        &:focus,
+        &:visited,
+        &:active {
+            background: @button__background;
+            border: @button__border;
+            color: @button__color;
+        }
+
+        &:hover {
+            background: @button__hover__background;
+            border: @button__hover_border;
+            color: @button__hover__color;
+            text-decoration: none;
+            box-shadow: 4px 4px 8px rgba(141, 107, 142, 0.4);
+        }
+    }
+
+
+
+    button.action.primary, button.action-primary, .action.primary, .action-primary {
+        font-size: @button__font-size;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        font-family: @button-primary__font-family;
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    ._keyfocus *:focus, input:not([disabled]):focus, textarea:not([disabled]):focus, select:not([disabled]):focus {
+        box-shadow: none;
+    }
+    #reviews button,
+    a.secondary,
+    .button.secondary,
+    a.button.secondary,
+    #reset-map-button,
+    button.secondary{
+        color: @color-purple;
+        background: none;
+        border: 2px solid rgba(141, 107, 142, 0.2);
+        border-radius: 4px;
+
+
+        &:focus,
+        &:active {
+            color: @color-purple;
+            background: none;
+            border: 2px solid rgba(141, 107, 142, 0.2);
+            border-radius: 4px;
+        }
+
+        &:hover {
+            color: @color-purple;
+            background: none;
+            border: 2px solid rgba(141, 107, 142, 0.2);
+            border-radius: 4px;
+
+        }
+    }
+
+    .homepage_sandals_slippers {
+        button, a.button, a.pagebuilder-button-secondary, button.pagebuilder-button-secondary, div.pagebuilder-button-secondary, a.pagebuilder-button-primary, button.pagebuilder-button-primary, div.pagebuilder-button-primary {
+
+            color: @color-white;
+            background: @button__background;
+            border: @button-white__border;
+
+
+            &:focus,
+            &:active {
+                background: @button__background;
+                border: @button-white__border;
+                color: @color-white;
+            }
+
+            &:hover {
+                background: @button__hover__background;
+                border: @button-white__border;
+                color: @button__hover__color;
+
+            }
+        }
+    }
+    .homepage_help_advice_line_2{
+        button, a.button, a.pagebuilder-button-secondary, button.pagebuilder-button-secondary, div.pagebuilder-button-secondary, a.pagebuilder-button-primary, button.pagebuilder-button-primary, div.pagebuilder-button-primary {
+
+            color: @color-purple;
+            background: none;
+            border: 2px solid rgba(141, 107, 142, 0.2);
+            border-radius: 4px;
+
+
+            &:focus,
+            &:active {
+                color: @color-purple;
+                background: none;
+                border: 2px solid rgba(141, 107, 142, 0.2);
+                border-radius: 4px;
+            }
+
+            &:hover {
+                color: @color-purple;
+                background: none;
+                border: 2px solid rgba(141, 107, 142, 0.2);
+                border-radius: 4px;
+
+            }
+        }
+    }
+    .homepage_help_with_condition {
+        button, a.button, a.pagebuilder-button-secondary, button.pagebuilder-button-secondary, div.pagebuilder-button-secondary, a.pagebuilder-button-primary, button.pagebuilder-button-primary, div.pagebuilder-button-primary {
+
+            color: @color-white;
+            background: transparent;
+            border: @button-white__border;
+
+
+            &:focus,
+            &:active {
+                background: transparent;
+                border: @button-white__border;
+                color: @color-white;
+            }
+
+            &:hover {
+                background: transparent;
+                border: @button-white__border;
+                color: @button__hover__color;
+
+            }
+        }
+    }
+    .minicart-wrapper .action.close:hover{
+        color:@color-purple;
+    }
+}

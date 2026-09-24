@@ -1,0 +1,130 @@
+<?php $transaction = $block->getInvoicepayments(); // get collection which we set in block class
+if ($transaction) { ?>
+<form method="post" action="<?=  /* @noEscape */$block->getUrl('icustomer/invoicepayment/payment/index') ?>">
+<input type="hidden" name="unique_code" value="<?php //echo $UniqueCode; ?>" />
+<table class="data table table-order-items history" id="my-transactions-table">
+    <thead>
+        <tr class="first last">
+            <th><input type="checkbox" id="chackboxall" onclick="chackallbox()" /></th>
+            <th class="number">Document Code</th>
+            <th class="type">Type</th>
+            <th class="date">Document Date</th>
+            <th class="date">Due Date</th>
+            
+            <th style="width: 100px; text-align: right;" class="total">Gross Value</th>
+            <th style="width: 100px; text-align: right;" class="total">Outstanding Value</th>
+            <th style="width: 150px; text-align: right;" class="number">Pay Now</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $totalgross=0;
+        $total_outstanding=0;
+    
+        $i=1;
+        foreach ($transaction as $key => $_transaction) {
+            $totalgross=$totalgross+$_transaction['balance_rate'];
+            $total_outstanding=$total_outstanding+$_transaction['total_rate'];
+            ?>
+                <input type="hidden" value="<?=  /* @noEscape */$_transaction['customer_id']; ?>" name="customer_id" />
+            <tr class="first odd">
+                            <td class="number"><input onclick="updatetotal()" checked="checked" id="check_box_ref<?=  /* @noEscape */$i; ?>" type="checkbox" name="selectd_value[<?=  /* @noEscape */$_transaction['invoice_code']; ?>]" value="<?=  /* @noEscape */$_transaction['total_rate']; ?>" class="payment_check" /></td>
+                    <td class="number"><?=  /* @noEscape */$_transaction['invoice_code']; ?></td>
+                    <td class="reference"><?=  /* @noEscape */$_transaction['document_type']; ?></td>
+                    <td class="date"><span class="nobr"><?=  /* @noEscape */date('d-m-y', strtotime($_transaction['document_date'])); ?></span></td>
+                    <td class="date"><span class="nobr"><?=  /* @noEscape */date('d-m-y', strtotime($_transaction['due_date'])); ?></span></td>
+                    <td align="center" style="width: 100px; text-align: right;" class="number"><?=  /* @noEscape */$block->formatPrice($_transaction['total_rate']); ?></td>
+                    <td align="center" style="width: 100px; text-align: right;" class="number"><?=  /* @noEscape */$block->formatPrice($_transaction['balance_rate']); ?></td>
+                    
+                    <td class="number" style="width: 150px; text-align: right;">
+                    <?php
+                    $desable='';
+                    if ($_transaction['balance_rate']>0) {
+                        $desable='';
+                    } else {
+                        $desable='disabled="true"';
+                    }
+                    ?>
+                        <input onkeyup="updatetotal()" <?=  /* @noEscape */$desable; ?> style="text-align: right;width: 100px;" title="check_box_ref<?=  /* @noEscape */$i; ?>" class="pay_amount" style="width:100px;" value="<?=  /* @noEscape */number_format($_transaction['balance_rate'], 2, '.', '') ?>" type="text" /></td>
+                </tr> 
+            <?php $i++;
+            
+        }
+        
+        ?>
+        </tbody>
+     <tbody>
+         
+       <tr class="subtotal first last">
+            <td colspan="4"></td>
+            <td class="number" style="background:lightgray;">Total</td>
+            
+            <td  style="width: 100px; text-align: right;" class="number">
+                <span class="price"> <b><?=  /* @noEscape */$block->formatPrice($total_outstanding); ?></b></span></td>
+            <td  style="width: 100px; text-align: right;" class="number"><b><?=  /* @noEscape */$block->formatPrice($totalgross); ?></b></td>
+            <td  style="width: 150px; text-align: right;" class="number"><span style="font-size: 26px;font-weight: bold;" id="show_price" class="price"><?=  /* @noEscape */$block->formatPrice($totalgross); ?></span></td>
+       </tr>
+    </tbody>
+    <tfoot>
+         
+<!--       <tr class="subtotal first last">
+            <td colspan="7"></td>
+            <td  align="center" class="number"><input style="font-size: 19px; padding: 18px 29px; font-weight: bold;" class="action subscribe primary" type="submit" name="submit" value="Pay now" /></td>
+            
+       </tr>-->
+    </tfoot>
+    
+</table>
+</form>
+        <?php } else { ?>
+            <div class="message info empty"><span><?=  /* @noEscape */ __('grid records not available.'); ?></span></div>
+        <?php }
+        ?>
+<script type="text/javascript">
+    function chackallbox(){
+        var chackall=jQuery("#chackboxall").is(':checked');
+         jQuery( ".payment_check" ).each(function( index ) {
+             if(chackall){
+                 jQuery( this ).prop('checked', true);
+             }else {
+                 jQuery( this ).prop('checked', false);
+             }
+        });
+        calculater();
+    }
+    function calculater(){
+            console.log('in calculator');
+        var total=0;
+          jQuery(".pay_amount").each(function() {
+              if(jQuery( this ).val()){
+                  
+                  if(jQuery("#"+jQuery(this).attr('title')).is(':checked')){
+                      var amount=jQuery( this ).val();
+                      jQuery("#"+jQuery(this).attr('title')).val(amount);
+                      total=total+parseFloat(jQuery( this ).val());
+                  }
+                  
+          }
+        });
+        jQuery("#show_price").html("£"+total.toFixed(2));
+    }
+    
+    function updatetotal(){
+        calculater();
+    }
+//     jQuery(".payment_check" ).change(function(e) {
+//         console.log("Checkbox Clicked");
+//          calculater();
+//    });
+    
+     jQuery( ".pay_amount" ).keyup(function(e) {
+          calculater();
+    });
+    jQuery(".pay_amount").keypress(function(e){
+     if((e.which>=48 && e.which<=57)|| e.which==8 || e.which==45 || e.keyCode==37  || e.keyCode==39 || e.which==46 || e.keyCode==9){
+         return true;
+     } else {
+         return false;
+     }
+     });
+</script>

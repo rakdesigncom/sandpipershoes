@@ -1,0 +1,153 @@
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var \Fyb\RequestCatalogue\Block\Form $block */
+?>
+<div class="form-partner-content">
+    <form class="form partner"
+          action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+          id="partner-form"
+          method="post"
+          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <h5><?= $block->escapeHtml(__('Request a Catalogue')) ?></h5>
+            <div class="static-page-description">Please complete your details below to be added to our catalogue mailing list to receive our seasonal brochures.</div>
+            <div class="field company">
+                <div class="control">
+                    <input name="name"
+                           id="name"
+                           title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                           class="input-text"
+                           type="text"
+                           maxlength="100"
+                           placeholder="<?= $block->escapeHtmlAttr(__('* Name')) ?>"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field email">
+                <div class="control">
+                    <input name="email"
+                           id="email"
+                           title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                           class="input-text"
+                           type="email"
+                           maxlength="100"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                           data-validate="{'validate-email':true}"
+                           data-mage-init='{"mage/trim-input":{}}'
+                    />
+                </div>
+            </div>
+            <div class="field telephone required">
+                <div class="control">
+                    <input name="telephone"
+                           id="telephone"
+                           title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                           class="input-text"
+                           maxlength="50"
+                           type="text"
+                           placeholder="<?= $block->escapeHtmlAttr(__('* Phone Number')) ?>"
+                           data-validate="{required:true}"
+                           data-mage-init='{"mage/trim-input":{}}'
+                    />
+                </div>
+            </div>
+
+            <div class="field street_address required">
+                <div class="control">
+                    <input name="street_address"
+                           id="street_address"
+                           title="<?= $block->escapeHtmlAttr(__('Address Line 1')) ?>"
+                           class="input-text"
+                           type="text"
+                           maxlength="255"
+                           placeholder="<?= $block->escapeHtmlAttr(__('* Address Line 1')) ?>"
+                           data-validate="{required:true}"
+                    />
+                </div>
+            </div>
+            <div class="field street_address_2">
+                <div class="control">
+                    <input name="street_address_2"
+                           id="street_address_2"
+                           maxlength="255"
+                           title="<?= $block->escapeHtmlAttr(__('Address Line 2')) ?>"
+                           class="input-text"
+                           type="text"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Address Line 2')) ?>"
+                    />
+                </div>
+            </div>
+
+            <div class="field county">
+                <div class="control">
+                    <input name="county"
+                           id="county"
+                           maxlength="50"
+                           title="<?= $block->escapeHtmlAttr(__('County/State')) ?>"
+                           class="input-text"
+                           placeholder="<?= $block->escapeHtmlAttr(__('County/State')) ?>"
+                           type="text"
+                    />
+                </div>
+            </div>
+
+            <div class="field post-code required">
+                <div class="post-code">
+                    <input name="post_code"
+                           id="post_code"
+                           maxlength="50"
+                           title="<?= $block->escapeHtmlAttr(__('Post Code')) ?>"
+                           class="input-text"
+                           type="text"
+                           placeholder="<?= $block->escapeHtmlAttr(__('* Post Code')) ?>"
+                           data-validate="{required:true}"
+                    />
+                </div>
+            </div>
+
+            <div class="field country required">
+                <div class="control">
+                    <?= $block->getCountryHtmlSelect() ?>
+                </div>
+            </div>
+
+            <span><?= $block->escapeHtml(__('* Required fields')) ?></span>
+        </fieldset>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <input type="hidden" name="hideit" id="hideit" value=""/>
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "partner-form"
+            }
+        }
+    }
+
+</script>
+<script>
+    require([
+        'jquery',
+        'domReady!',
+    ], function ($) {
+        $('#nature_business, #what_action, #hear_about').on('change', function () {
+            if ($(this).val() === '0') {
+                $('.other_' + $(this).attr('id')).show();
+            } else {
+                $('.other_' +  $(this).attr('id')).hide();
+            }
+        })
+    });
+</script>

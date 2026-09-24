@@ -1,0 +1,43 @@
+<script>
+    window.priceFormat = <?php echo json_encode($block->getPriceFormat()) ?>;
+
+    require([
+        'jquery',
+        'priceUtils',
+        'Magento_Customer/js/customer-data',
+    ], function ($, priceUtils, customerData) {
+        'use strict';
+
+
+        var tradeCustomer = customerData.get('trade-customer');
+
+        tradeCustomer.subscribe(function (customer) {
+            formatPrices();
+        })
+
+        function formatPrices() {
+            var discount = 0;
+            if (tradeCustomer().priceType) {
+                discount = tradeCustomer().discount;
+            }
+
+            console.log('discount', discount);
+            $.each($('.price-final_price .price-wrapper'), function () {
+                var elem = $(this);
+
+                if (discount > 0) {
+                    var price = elem.data('price-amount');
+                    var formattedPrice = priceUtils.formatPrice(
+                        Math.ceil((price - (price * discount)) * 100) / 100,
+                        window.priceFormat,
+                        false
+                    );
+                    elem.find('span').text(formattedPrice);
+                }
+
+                elem.show();
+            });
+        }
+    });
+</script>
+

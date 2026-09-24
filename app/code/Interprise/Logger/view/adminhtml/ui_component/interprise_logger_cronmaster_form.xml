@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">interprise_logger_cronmaster_form.cronmaster_form_data_source</item>
+			<item name="deps" xsi:type="string">interprise_logger_cronmaster_form.cronmaster_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">interprise_logger_cronmaster_form</item>
+		</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+		<item name="buttons" xsi:type="array">
+			<item name="back" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronMaster\Edit\BackButton</item>
+			<item name="delete" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronMaster\Edit\DeleteButton</item>
+			<item name="save" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronMaster\Edit\SaveButton</item>
+			<item name="save_and_continue" xsi:type="string">Interprise\Logger\Block\Adminhtml\CronMaster\Edit\SaveAndContinueButton</item>
+		</item>
+	</argument>
+	<dataSource name="cronmaster_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Interprise\Logger\Model\CronMaster\DataProvider</argument>
+			<argument name="name" xsi:type="string">cronmaster_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">cronmaster_id</argument>
+			<argument name="requestFieldName" xsi:type="string">cronmaster_id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="submit_url" path="*/*/save" xsi:type="url"/>
+				</item>
+			</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+	</dataSource>
+	<fieldset name="General">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string"/>
+			</item>
+		</argument>
+		<field name="cron_name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_name</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">10</item>
+					<item name="dataScope" xsi:type="string">cron_name</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_action">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_action</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="dataScope" xsi:type="string">cron_action</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_function">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_function</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+					<item name="dataScope" xsi:type="string">cron_function</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_changelog_endpoint">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_changelog_endpoint</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="dataScope" xsi:type="string">cron_changelog_endpoint</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_frequency">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_frequency</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+					<item name="dataScope" xsi:type="string">cron_frequency</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_status">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_status</item>
+					<item name="formElement" xsi:type="string">checkbox</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+					<item name="dataScope" xsi:type="string">cron_status</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_active">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_active</item>
+					<item name="formElement" xsi:type="string">checkbox</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">70</item>
+					<item name="dataScope" xsi:type="string">cron_active</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="cron_from_date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">cron_from_date</item>
+					<item name="formElement" xsi:type="string">date</item>
+					<item name="source" xsi:type="string">CronMaster</item>
+					<item name="sortOrder" xsi:type="number">80</item>
+					<item name="dataScope" xsi:type="string">cron_from_date</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

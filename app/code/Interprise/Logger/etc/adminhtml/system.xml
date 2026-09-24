@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="interprise" sortOrder="999" translate="label">
+			<label>Interprise</label>
+		</tab>
+		<section id="setup" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Setup</label>
+			<tab>interprise</tab>
+			<resource>Interprise_Logger::config_interprise_logger</resource>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Enable</label>
+					<comment>Enable Interprise syncing</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="api_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+					<label>API Url</label>
+					<comment>API URL provided by the Interprise</comment>
+				</field>
+				<field id="api_key" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+					<label>API Key</label>
+					<comment>API key provided by Interprise</comment>
+				</field>
+				<field id="currency" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text" canRestore="0">
+					<label>Currency</label>
+					<comment>Select base currency in Interprise. Only GBP supported.</comment>
+				</field>
+				<field id="update_name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="select">
+					<label>Update Name</label>
+					<comment>Select "Yes" if Interprise should overwrite</comment>
+                                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="update_category" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="select">
+					<label>Update Category</label>
+					<comment>Select "Yes" if Interprise should overwrite category</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="update_image" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="select">
+					<label>Update Image</label>
+					<comment>Select "Yes" if Interprise should overwrite</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+                                <field id="update_manufacturer" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="select">
+                                        <label>Update Manufacturer</label>
+					<comment>Select "Yes" if Interprise should overwrite</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="regular_price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="44" translate="label" type="select">
+					<label>Regular Price</label>
+					<comment>What price from Interprise should be used as the base price in Magento</comment>
+					<source_model>Interprise\Logger\Model\Config\Pricefields</source_model>
+				</field>
+				<field id="wholesaleCategory" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="45" translate="label" type="text">
+					<label>Special Category IDs To Display WholesalePrice</label>
+					<comment>Comma separated Category Ids to display Wholesale price at frontend by overriding other conditions.</comment>
+				</field>
+				<field id="defaultcategory" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="text">
+					<label>Default Category ID</label>
+					<comment>What Magento category id should be considered as the root category to import Interprise categories in.</comment>
+				</field>
+				<field id="abbr" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="95" translate="label" type="text">
+					<label>Store Abberviation</label>
+					<comment>3 letter prefix to order number while posting in Interprise Eg. STO#1000001</comment>
+				</field>
+				<field id="defaultshippingmethod" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="95" translate="label" type="text">
+					<label>Default Shipping Method</label>
+					<comment>Select default Interprise shipping method.</comment>
+				</field>
+                                
+                                <field id="historicaldatafrom" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="42" translate="label" type="text">
+					<label>Import from date </label>
+					<comment>YYYY-MM-DD format. Date from which historical orders and invoices are imported.</comment>
+				</field>
+				
+                                
+                                <field id="interprise_custom_attributes" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="textarea">
+					<label>Interprise Custom Attributtes</label>
+					<comment>List of all custom attributes</comment>
+				</field>
+				
+<!--				<field id="check_diagnostics" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label" type="hidden" >
+					
+				</field>
+				<field id="diagonostics_link" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110" translate="label" type="link">
+					<label>Diagonostics</label>
+					<comment>if need each time image update from Interprise</comment>
+                                         <depends>
+                                            <field id="check_diagnostics">1</field>
+                                        </depends>
+                                        <comment>if need each time image update from Interprise</comment>
+                                       
+				</field>-->
+			</group>
+		</section>
+	</system>
+</config>

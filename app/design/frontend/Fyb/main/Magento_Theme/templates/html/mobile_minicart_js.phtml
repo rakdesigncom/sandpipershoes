@@ -1,0 +1,24 @@
+<script>
+    require(['jquery', 'domReady!'], function($){
+        var desktopBlock = $('.header-top_menu_content .header-top_menu_otherlinks');
+        var mobileBlock = $('.page-header .header.content .block.block-search');
+        function mobileMiniCart() {
+            if (window.innerWidth <= 768) {
+                if (!mobileBlock.find('.minicart-wrapper').length) {
+                    $('.minicart-wrapper').appendTo(mobileBlock);
+                }
+            } else {
+                if (!desktopBlock.find('.minicart-wrapper').length) {
+                    $('.minicart-wrapper').appendTo(desktopBlock);
+                }
+            }
+            $('.minicart-wrapper').show();
+        }
+
+        window.addEventListener('resize', function(event) {
+            mobileMiniCart();
+        });
+
+        mobileMiniCart();
+    })
+</script>

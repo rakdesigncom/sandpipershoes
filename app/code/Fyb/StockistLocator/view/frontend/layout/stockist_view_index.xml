@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block name="stockist.breadcrumbs" class="Fyb\StockistLocator\Block\View\Breadcrumb"/>
+
+        <referenceContainer name="content">
+            <block class="Fyb\StockistLocator\Block\View\Stockist" name="stockist.intro" template="Fyb_StockistLocator::view/intro.phtml" />
+            <block class="Fyb\StockistLocator\Block\View\Stockist" name="stockist.gallery" template="Fyb_StockistLocator::view/gallery.phtml" />
+            <block class="Fyb\StockistLocator\Block\View\Stockist" name="stockist.desctiption" template="Fyb_StockistLocator::view/desctiption.phtml" />
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title" remove="true" />
+    </body>
+</page>

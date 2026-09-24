@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Interprise\Logger\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Interprise\Logger\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">myLoggerName</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Interprise\Logger\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+	<preference for="Interprise\Logger\Api\CronMasterRepositoryInterface" type="Interprise\Logger\Model\CronMasterRepository"/>
+	<preference for="Interprise\Logger\Api\Data\CronMasterInterface" type="Interprise\Logger\Model\CronMaster"/>
+	<preference for="Interprise\Logger\Api\Data\CronMasterSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Interprise\Logger\Model\ResourceModel\CronMaster\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">interprise_logger_cronmaster</argument>
+			<argument name="resourceModel" xsi:type="string">Interprise\Logger\Model\ResourceModel\CronMaster\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="interprise_logger_cronmaster_grid_data_source" xsi:type="string">Interprise\Logger\Model\ResourceModel\CronMaster\Grid\Collection</item>
+				<item name="interprise_logger_cronlog_grid_data_source" xsi:type="string">Interprise\Logger\Model\ResourceModel\CronLog\Grid\Collection</item>
+				<item name="interprise_logger_failedorders_grid_data_source" xsi:type="string">Interprise\Logger\Model\ResourceModel\FailedOrders\Grid\Collection</item>
+				<item name="interprise_logger_cronactivityschedule_grid_data_source" xsi:type="string">Interprise\Logger\Model\ResourceModel\CronActivitySchedule\Grid\Collection</item>
+				<item name="interprise_logger_changelog_grid_data_source" xsi:type="string">Interprise\Logger\Model\ResourceModel\Changelog\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Interprise\Logger\Model\ResourceModel\FailedOrders\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">interprise_logger_failedorders</argument>
+			<argument name="resourceModel" xsi:type="string">Interprise\Logger\Model\ResourceModel\FailedOrders\Collection</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Interprise\Logger\Model\ResourceModel\CronLog\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">interprise_logger_cronlog</argument>
+			<argument name="resourceModel" xsi:type="string">Interprise\Logger\Model\ResourceModel\CronLog\Collection</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Interprise\Logger\Model\ResourceModel\CronActivitySchedule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">interprise_logger_cronactivityschedule</argument>
+			<argument name="resourceModel" xsi:type="string">Interprise\Logger\Model\ResourceModel\CronActivitySchedule\Collection</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Interprise\Logger\Model\ResourceModel\Changelog\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">interprise_logger_changelog</argument>
+			<argument name="resourceModel" xsi:type="string">Interprise\Logger\Model\ResourceModel\Changelog\Collection</argument>
+		</arguments>
+	</virtualType>
+
+<!--        <preference for="Magento\Catalog\Pricing\Price\SpecialPrice" type="Interprise\Logger\Model\Catalog\Pricing\Price\SpecialPrice" /> -->
+<!--        <preference for="Magento\Catalog\Block\Product\ListProduct" type="Interprise\Logger\Block\Catalog\Product\ListProduct" />
+    <preference for="Magento\Customer\Controller\Address\FormPost" type="Interprise\Logger\Controller\Rewrite\Address\FormPost" />
+    <preference for="Magento\Customer\Controller\Address\Delete" type="Interprise\Logger\Controller\Rewrite\Address\Delete" />-->
+
+    <!-- Start Newly added Models -->
+
+    <preference for="Interprise\Logger\Api\PaymentmethodRepositoryInterface" type="Interprise\Logger\Model\PaymentmethodRepository"/>
+    <preference for="Interprise\Logger\Api\Data\PaymentmethodInterface" type="Interprise\Logger\Model\Data\Paymentmethod"/>
+    <preference for="Interprise\Logger\Api\Data\PaymentmethodSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\ShippingstoreinterpriseRepositoryInterface" type="Interprise\Logger\Model\ShippingstoreinterpriseRepository"/>
+    <preference for="Interprise\Logger\Api\Data\ShippingstoreinterpriseInterface" type="Interprise\Logger\Model\Data\Shippingstoreinterprise"/>
+    <preference for="Interprise\Logger\Api\Data\ShippingstoreinterpriseSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\CountryclassmappingRepositoryInterface" type="Interprise\Logger\Model\CountryclassmappingRepository"/>
+    <preference for="Interprise\Logger\Api\Data\CountryclassmappingInterface" type="Interprise\Logger\Model\Data\Countryclassmapping"/>
+    <preference for="Interprise\Logger\Api\Data\CountryclassmappingSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\CustompaymentitemRepositoryInterface" type="Interprise\Logger\Model\CustompaymentitemRepository"/>
+    <preference for="Interprise\Logger\Api\Data\CustompaymentitemInterface" type="Interprise\Logger\Model\Data\Custompaymentitem"/>
+    <preference for="Interprise\Logger\Api\Data\CustompaymentitemSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\CustompaymentRepositoryInterface" type="Interprise\Logger\Model\CustompaymentRepository"/>
+    <preference for="Interprise\Logger\Api\Data\CustompaymentInterface" type="Interprise\Logger\Model\Data\Custompayment"/>
+    <preference for="Interprise\Logger\Api\Data\CustompaymentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\StatementaccountRepositoryInterface" type="Interprise\Logger\Model\StatementaccountRepository"/>
+    <preference for="Interprise\Logger\Api\Data\StatementaccountInterface" type="Interprise\Logger\Model\Data\Statementaccount"/>
+    <preference for="Interprise\Logger\Api\Data\StatementaccountSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\CasesRepositoryInterface" type="Interprise\Logger\Model\CaseRepository"/>
+    <preference for="Interprise\Logger\Api\Data\CasesInterface" type="Interprise\Logger\Model\Data\Case"/>
+    <preference for="Interprise\Logger\Api\Data\CasesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\TransactionmasterRepositoryInterface" type="Interprise\Logger\Model\TransactionmasterRepository"/>
+    <preference for="Interprise\Logger\Api\Data\TransactionmasterInterface" type="Interprise\Logger\Model\Data\Transactionmaster"/>
+    <preference for="Interprise\Logger\Api\Data\TransactionmasterSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+<!--		<preference for="Interprise\Logger\Api\PricingcustomerRepositoryInterface" type="Interprise\Logger\Model\PricingcustomerRepository"/>
+    <preference for="Interprise\Logger\Api\Data\PricingcustomerInterface" type="Interprise\Logger\Model\Data\Pricingcustomer"/>
+    <preference for="Interprise\Logger\Api\Data\PricingcustomerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>-->
+<!--		<preference for="Interprise\Logger\Api\PricelistsRepositoryInterface" type="Interprise\Logger\Model\PricelistsRepository"/>
+    <preference for="Interprise\Logger\Api\Data\PricelistsInterface" type="Interprise\Logger\Model\Data\Pricelists"/>
+    <preference for="Interprise\Logger\Api\Data\PricelistsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>-->
+    <preference for="Interprise\Logger\Api\InstallwizardRepositoryInterface" type="Interprise\Logger\Model\InstallwizardRepository"/>
+    <preference for="Interprise\Logger\Api\Data\InstallwizardInterface" type="Interprise\Logger\Model\Data\Installwizard"/>
+    <preference for="Interprise\Logger\Api\Data\InstallwizardSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Interprise\Logger\Api\TransactiondetailRepositoryInterface" type="Interprise\Logger\Model\TransactiondetailRepository"/>
+    <preference for="Interprise\Logger\Api\Data\TransactiondetailInterface" type="Interprise\Logger\Model\Data\Transactiondetail"/>
+    <preference for="Interprise\Logger\Api\Data\TransactiondetailSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <!-- End Newly added Models -->
+    <preference for="Magento\Framework\Model\ActionValidator\RemoveAction" type="Magento\Framework\Model\ActionValidator\RemoveAction\Allowed" />
+
+	<type name="Magento\Catalog\Model\Product">
+        <plugin name="product_identities_extender" disabled="true" />
+    </type>
+</config>

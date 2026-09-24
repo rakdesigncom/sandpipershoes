@@ -1,0 +1,28 @@
+<?php
+/** @var \MageSuite\GuestWishlist\Model\ViewModel\CopyWishlistLink $viewModel */
+/** @var \MageSuite\GuestWishlist\Block\Customer\Wishlist\Guest\CopyWishlistLink $block */
+$viewModel = $block->getViewModel();
+$guestWishlist = $viewModel->getGuestWishlist();
+$copyLink = $viewModel->getCopyLink();
+$copyLabel = __('Copy to clipboard');
+?>
+<div class="cs-dashboard__wishlist-guest">
+    <span class="cs-dashboard__wishlist-guest-label"><?=/* @noEscape */ __('To recreate this wishlist in other browsers please use following link')?>:</span>
+
+    <a href="#" title="<?= /* @noEscape */ $copyLabel ?>" role="button" aria-label="<?=/* @noEscape */ $copyLabel ?>" class="cs-dashboard__wishlist-guest-copy">
+        <span class="cs-visually-hidden"><?= /* @noEscape */ $copyLabel ?></span>
+        <input type="text" class="cs-visually-hidden copytoclipboard"  aria-label="<?=/* @noEscape */  $copyLabel ?>" value="<?=/* @noEscape */ $copyLink?>">
+    </a>
+</div>
+
+<script>
+    require(["jquery"], function ($) {
+        $(document).on('click', '.cs-dashboard__wishlist-guest-copy', function(e) {
+            e.preventDefault();
+            var copyInput = $('.copytoclipboard')[0];
+            copyInput.select();
+            document.execCommand('copy');
+            copyInput.blur();
+        });
+    });
+</script>

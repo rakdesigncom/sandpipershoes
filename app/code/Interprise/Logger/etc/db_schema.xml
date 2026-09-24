@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order">
+        <column xsi:type="varchar" name="is_shippingmethod" nullable="true" length="255" comment="Shipping Method"/>
+    </table>
+
+    <table name="interprise_order_log">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="false" identity="false" comment="Order ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="true" identity="false" comment="Customer ID"/>
+        <column xsi:type="text" name="details" nullable="true" comment="Details"/>
+        <column xsi:type="mediumtext" name="details_data" nullable="true" comment="Details Data"/>
+        <column xsi:type="mediumtext" name="result" nullable="true" comment="Result"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="INTERPRISE_ORDER_LOG_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+    </table>
+</schema>

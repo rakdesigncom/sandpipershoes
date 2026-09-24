@@ -1,0 +1,43 @@
+<?php
+/** @var \Fyb\StockistLocator\Block\View\Stockist $block */
+$stockist = $block->getStockist();
+?>
+<div class="stockist-bystore-description-gallery">
+    <div class="stockist-bystore-description-text">
+        <h2><strong><?= $stockist->getData('seo_title') ?></strong></h2>
+        <?= $stockist->getData('description') ?>
+        <?= $stockist->getData('seo_text') ?>
+    </div>
+    <div>
+        <?php if ($stockist->getTelephone()): ?>
+            <div class="stockist-info-container">
+                <span class="info-title"><?= __('Call:') ?></span>
+                <a class="info-data" href="tel:<?= $stockist->getTelephone() ?>"><?= $stockist->getTelephone() ?></a>
+            </div>
+        <?php endif;?>
+        <?php if ($stockist->getWebsite()): ?>
+            <div class="stockist-info-container">
+                <span class="info-title"><?= __('Online:') ?></span>
+                <a class="info-data" href="https://<?= $stockist->getWebsite() ?>"><?= $stockist->getWebsite() ?></a>
+            </div>
+        <?php endif;?>
+        <?php if ($stockist->getEmail()): ?>
+            <div class="stockist-info-container">
+                <span class="info-title"><?= __('Email:') ?></span>
+                <a class="info-data" href="mailto:<?= $stockist->getEmail() ?>"><?= $stockist->getEmail() ?></a>
+            </div>
+        <?php endif;?>
+
+        <div class="stockist-info-container">
+            <span class="info-title"><?= __('Address:') ?></span>
+            <span class="info-data"><?= $stockist->getAddress() ?></span>
+        </div>
+
+        <?php if ($stockist->getOpeningTimes()): ?>
+            <div class="stockist-info-container">
+                <span class="info-title"><?= __('Opening Times:') ?></span>
+                <span class="info-data"><?= $stockist->getOpeningTimes() ?></span>
+            </div>
+        <?php endif;?>
+    </div>
+</div>

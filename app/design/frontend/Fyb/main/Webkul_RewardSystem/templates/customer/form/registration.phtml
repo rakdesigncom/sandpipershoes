@@ -1,0 +1,30 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author     Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+$registrationStatus = $helper->getAllowRegistration();
+$enableRewardSystem = $helper->enableRewardSystem();
+$registrationPoints = $helper->getRewardOnRegistration();
+if ($registrationStatus == 1 && $enableRewardSystem == 1 && $registrationPoints) { ?>
+    <div>
+        <h3 class="wk_rs_review_style wk_rs_advertise_product_style">
+            <span class="wk_rs_product_greet"></span>
+            <?= $escaper->escapeHtml(
+                __(
+                    'Did you know that you earn %1 Feather Points on creating your account?',
+                    $registrationPoints
+                )
+            )?>
+        </h3>
+    </div>
+<?php } ?>

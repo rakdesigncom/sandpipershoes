@@ -1,0 +1,57 @@
+<br/>stockArray
+(
+    [0] => CREATEPRODUCTFUNC
+)
+Array
+(
+    [0] => this->updateItemProduct($attribute_data, $product_found);
+)
+Array
+(
+    [notFoundCategory] => Array
+        (
+            [counter] => 9479
+            [itemCode] => ITEM-009742
+            [categoryCode] => PPE
+            [isPrimary] => 1
+            [categoryDescription] => PPE
+            [userCreated] => warwick
+            [dateCreated] => 2021-04-06T08:02:33.94
+            [userModified] => warwick
+            [dateModified] => 2021-04-06T08:02:33.94
+            [sortOrder] => 2
+            [mlid] => 0
+            [customFields] => Array
+                (
+                )
+
+        )
+
+)
+Array
+(
+    [UPDATE CAT] => Array
+        (
+            [0] => 2
+        )
+
+)
+Array
+(
+    [PRICES] => Array
+        (
+            [0] => 4.13
+            [1] => 5.95
+        )
+
+)
+<br/>status A<br/>1788<pre>Array
+(
+    [ActivityTime] => 2025-02-03 15:46:12
+    [Request] => ["https:\/\/oakley.apexhelp.co.uk:83\/Interprise.Web.Services.APIDemo\/inventory\/all?itemcode=ITEM-009742"]
+    [Response] => {"type":"inventoryitemall","id":"ITEM-009742","attributes":{"itemCode":"ITEM-009742","itemName":"VR500S","item":{"counter":9505,"itemCode":"ITEM-009742","itemName":"VR500S","itemType":"Stock","status":"A","minPurchaseQty":1,"leadTime":0,"isCommissionable":true,"isSupplementaryUnitsReq":false,"isUseNetMassOrWeight":false,"standardCost":0,"standardCostRate":0,"costingMethod":"Average Cost","currentCost":1.79,"currentCostRate":1.79,"currentCostDate":"2021-03-29T00:00:00","averageCost":1.79,"averageCostDate":"2021-04-06T08:01:15.497","averageCostRate":1.79,"landedCostPercent":0,"purchaseTaxOption":"Supplier","salesTaxOption":"Item","salesTaxCode":"UK 0 Zero Rated Sales","salesTaxCountryCode":"United Kingdom","salesTaxTaxType":"AR","classCode":"DEFAULT-STOCK","glClassCode":"DEFAULT-STOCK","minLevel":1,"maxLevel":99999999,"commCustom":"Sales Rep","trackingOption":"None","isPrinted":false,"printCount":0,"xmlPackage":"product.simpleproduct.xml.config","published":0,"isOnSale":0,"isFeatured":0,"isExclusive":0,"showBuyButton":0,"isCallToOrder":0,"hidePriceUntilCart":0,"requiresRegistration":0,"minOrderQuantity":0,"checkOutOption":0,"checkOutOptionAddMessage":0,"displayColumns":4,"pageSize":0,"countryOfOrigin":"Italy","userCreated":"warwick","dateCreated":"2021-04-06T08:02:33.93","userModified":"Carol","dateModified":"2021-05-06T07:11:28.883","batchTraceabilityTypeID":1,"batchTraceabilityTypeCode":"Not Applicable","isPublished":false,"customFields":[]},"description":[{"counter":9506,"itemCode":"ITEM-009742","languageCode":"English - United Kingdom","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","extendedDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","userCreated":"warwick","dateCreated":"2021-04-06T08:02:33.937","userModified":"warwick","dateModified":"2021-04-06T08:02:33.937","customFields":[]}],"category":[{"counter":9479,"itemCode":"ITEM-009742","categoryCode":"PPE","isPrimary":true,"categoryDescription":"PPE","userCreated":"warwick","dateCreated":"2021-04-06T08:02:33.94","userModified":"warwick","dateModified":"2021-04-06T08:02:33.94","sortOrder":2,"mlid":0,"customFields":[]}],"unitOfMeasure":[{"counter":9516,"itemCode":"ITEM-009742","unitMeasureCode":"EACH","unitMeasureQty":1,"weightInKilograms":5.47,"weightInPounds":12.059286,"isBase":true,"userCreated":"warwick","dateCreated":"2021-04-06T08:02:33.937","userModified":"Carol","dateModified":"2021-04-12T12:31:28.393","soDefault":false,"soShow":true,"customFields":[]},{"counter":9539,"itemCode":"ITEM-009742","unitMeasureCode":"BOX4","unitMeasureQty":4,"weightInKilograms":21.88,"weightInPounds":48.237143,"isBase":false,"upcCode":"5055681046439","userCreated":"Carol","dateCreated":"2021-04-12T11:38:40.4","userModified":"Carol","dateModified":"2021-04-12T12:31:28.393","soDefault":true,"soShow":true,"customFields":[]}],"specialPrice":[{"counter":209,"itemCode":"ITEM-009742","dateFrom":"2021-04-12T00:00:00","dateTo":"2022-04-12T00:00:00","unitMeasureCode":"BOX4","currencyCode":"GBP","specialPrice":23.8,"userCreated":"Carol","dateCreated":"2021-04-12T12:33:17.267","userModified":"Carol","dateModified":"2021-04-12T12:33:17.267","customFields":[]}],"stockQuantity":[{"itemName":"VR500S","itemType":"Stock","counter":37046,"itemCode":"ITEM-009742","warehouseCode":"KER","unitsInStock":0,"unitsCommitted":0,"unitsOnBackOrder":0,"unitsOnOrder":0,"unitsAvailable":0,"unitsAllocated":0,"unitsInTransit":0,"potentialStock":0,"reorderPoint":0,"isShow":true,"maxItemCount":0,"minLevel":1,"maxLevel":99999999,"lastStockTake":"2021-04-06T08:02:31.053","pickLocation":"Location1","putawayLocation":"Location1","userCreated":"warwick","dateCreated":"2021-04-06T08:02:31.047","userModified":"warwick","dateModified":"2021-04-06T08:02:31.053","normalUnitsInStock":0,"committed":0,"onBackOrder":0,"onOrder":0,"freeStock":0,"allocated":0,"inTransit":0,"potentialStocks":0,"otherLocation":0,"warehouseDescription":"KER-NAB - Concession Stock","averageDailySales":0,"unitMeasureCode":"EACH","unitMeasureQty":1,"stockLevel":0,"languageCode":"English - United Kingdom","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","unitsOnSO":0,"unitsUnallocated":0,"isGetItemPrice":false,"locationStockCount":[],"customFields":[]},{"itemName":"VR500S","itemType":"Stock","counter":37047,"itemCode":"ITEM-009742","warehouseCode":"MAIN","unitsInStock":91,"unitsCommitted":0,"unitsOnBackOrder":0,"unitsOnOrder":0,"unitsAvailable":91,"unitsAllocated":0,"unitsInTransit":0,"potentialStock":91,"reorderPoint":0,"isShow":true,"maxItemCount":0,"minLevel":1,"maxLevel":99999999,"lastStockTake":"2021-04-06T08:02:31.053","pickLocation":"1A1","putawayLocation":"1A1","userCreated":"warwick","dateCreated":"2021-04-06T08:02:31.047","userModified":"admin","dateModified":"2021-05-25T15:35:04.08","normalUnitsInStock":91,"committed":0,"onBackOrder":0,"onOrder":0,"freeStock":91,"allocated":0,"inTransit":0,"potentialStocks":91,"otherLocation":0,"warehouseDescription":"MAIN-Oakley Healthcare","averageDailySales":0,"unitMeasureCode":"EACH","unitMeasureQty":1,"stockLevel":100,"languageCode":"English - United Kingdom","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","unitsOnSO":0,"unitsUnallocated":0,"isGetItemPrice":false,"locationStockCount":[{"locationCode":"Location1","locationDescription":"Location 1","unitsInStock":91,"unitsAllocated":0}],"customFields":[]},{"itemName":"VR500S","itemType":"Stock","counter":37048,"itemCode":"ITEM-009742","warehouseCode":"SHOP","unitsInStock":0,"unitsCommitted":0,"unitsOnBackOrder":0,"unitsOnOrder":0,"unitsAvailable":0,"unitsAllocated":0,"unitsInTransit":0,"potentialStock":0,"reorderPoint":0,"isShow":true,"maxItemCount":0,"minLevel":1,"maxLevel":99999999,"lastStockTake":"2021-04-06T08:02:31.053","pickLocation":"Location1","putawayLocation":"Location1","userCreated":"warwick","dateCreated":"2021-04-06T08:02:31.047","userModified":"warwick","dateModified":"2021-04-06T08:02:31.053","normalUnitsInStock":0,"committed":0,"onBackOrder":0,"onOrder":0,"freeStock":0,"allocated":0,"inTransit":0,"potentialStocks":0,"otherLocation":0,"warehouseDescription":"SHOP-Oakley Healthcare - Shop","averageDailySales":0,"unitMeasureCode":"EACH","unitMeasureQty":1,"stockLevel":0,"languageCode":"English - United Kingdom","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","unitsOnSO":0,"unitsUnallocated":0,"isGetItemPrice":false,"locationStockCount":[],"customFields":[]}],"retailPrice":[{"itemCode":"ITEM-009742","itemName":"VR500S","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","pricingMethod":"None","pricingCost":0,"retailPercentAmount":0,"retailPrice":4.13,"retailPriceRate":4.63,"suggestedRetailPrice":0,"suggestedRetailPriceRate":0,"currencyCode":"EURO"},{"itemCode":"ITEM-009742","itemName":"VR500S","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","pricingMethod":"None","pricingCost":0,"retailPercentAmount":0,"retailPrice":4.13,"retailPriceRate":4.13,"suggestedRetailPrice":0,"suggestedRetailPriceRate":0,"currencyCode":"GBP"}],"wholesalePrice":[{"itemCode":"ITEM-009742","itemName":"VR500S","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","pricingMethod":"None","pricingCost":0,"wholesalePercentAmount":0,"wholesalePrice":0,"wholesalePriceRate":6.66,"currencyCode":"EURO"},{"itemCode":"ITEM-009742","itemName":"VR500S","itemDescription":"ANTIBACTERIAL & ANTIVIRAL WIPES 500 PER BUCKET","pricingMethod":"None","pricingCost":0,"wholesalePercentAmount":0,"wholesalePrice":5.95,"wholesalePriceRate":5.95,"currencyCode":"GBP"}]}}
+    [Status] => Success
+    [Remarks] => Item id 1788 updated
+    [Entity] => 1788
+)
+</pre>

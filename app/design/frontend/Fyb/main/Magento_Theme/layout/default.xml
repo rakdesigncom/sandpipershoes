@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Fyb_Theme::css/lib/owl.carousel.min.css"/>
+        <css src="Fyb_Theme::css/lib/owl.theme.default.min.css"/>
+        <css src="Fyb_Theme::css/lib/swiper-bundle.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="mobile.minicart.js" template="Magento_Theme::html/mobile_minicart_js.phtml" />
+        </referenceContainer>
+
+        <referenceContainer name="footer">
+            <block class="Fyb\Theme\Block\Footer" name="footer.store.links" after="-" template="Magento_Theme::html/footer_links.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Wishlist\Block\Link" name="customer.wishlist" template="Magento_Customer::account/wishlist_guest.phtml" after="-"/>
+        </referenceBlock>
+
+        <block class="Fyb\Theme\Block\Footer" name="header.helpline" template="Magento_Theme::html/helpline.phtml"/>
+
+        <referenceBlock name="wish-list-link" remove="true"/>
+        <referenceBlock name="multiple-wish-list-link" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true" />
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="header" remove="true" />
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+
+        <referenceBlock name="register-link" remove="true" />
+
+        <!-- Disable Compare Products -->
+        <referenceBlock name="catalog.compare.link" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="catalogsearch.product.addto.compare" remove="true"/>
+        <referenceBlock name="category.product.addto.compare" remove="true"/>
+        <referenceBlock name="crosssell.product.addto.compare" remove="true" />
+        <referenceBlock name="related.product.addto.compare" remove="true" />
+        <referenceBlock name="upsell.product.addto.compare" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+
+        <move element="header.panel" destination="navigation.sections"/>
+        <move element="minicart" destination="navigation.sections" />
+        <move element="currency" destination="header-wrapper" before="top.search"/>
+        <move element="header.helpline" destination="header-wrapper" before="currency"/>
+    </body>
+</page>

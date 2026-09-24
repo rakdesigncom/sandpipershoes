@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+<!--	<event name="sales_order_place_after">-->
+<!--	<event name="checkout_onepage_controller_success_action">-->
+<!--		<observer instance="Interprise\Logger\Observer\Sales\OrderPlaceAfter" name="interprise_logger_observer_sales_orderplaceafter_sales_order_place_after"/>-->
+<!--	</event>-->
+<!--	<event name="customer_register_success">
+		<observer instance="Interprise\Logger\Observer\Customer\RegisterSuccess" name="interprise_logger_observer_customer_registersuccess_customer_register_success"/>
+	</event>-->
+<!--	<event name="customer_address_save_after">
+		<observer instance="Interprise\Logger\Observer\Customer\Addressupdate" name="interprise_logger_observer_customer_address_save"/>
+	</event>-->
+<!--	<event name="customer_save_after_data_object">
+		<observer instance="Interprise\Logger\Observer\Customer\Updatecustomer" name="interprise_logger_observer_customer_update"/>
+	</event>-->
+</config>

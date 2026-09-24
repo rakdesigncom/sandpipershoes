@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author     Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="minicart">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="minicart_content" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="subtotal.container" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="extra" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Webkul_RewardSystem/checkout/minicart/reward</item>
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                            </item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="subtotal.totals" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/checkout/minicart/subtotal/totals</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Webkul_RewardSystem/checkout/minicart/reward/data</item>
+                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

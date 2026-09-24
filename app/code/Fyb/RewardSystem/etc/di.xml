@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Webkul\RewardSystem\Helper\Data">
+        <plugin name="Fyb_RewardSystem::DynamicProductReward"
+                type="Fyb\RewardSystem\Plugin\DynamicProductReward"/>
+        <plugin name="Fyb_RewardSystem::RewardStoreSetRewardStoreSet"
+                type="Fyb\RewardSystem\Plugin\RewardStoreSet"/>
+    </type>
+    <type name="Webkul\RewardSystem\Observer\MultiShipObserver">
+        <plugin name="Fyb_RewardSystem::TemporaryFixMultiship"
+                type="Fyb\RewardSystem\Plugin\TemporaryFixMultiship"
+                sortOrder="1"/>
+    </type>
+</config>

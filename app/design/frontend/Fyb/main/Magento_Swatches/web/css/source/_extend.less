@@ -1,0 +1,31 @@
+.option-sale-container {
+    position: relative;
+    display: inline-block;
+
+    span.on-sale-label {
+        position: absolute;
+        top: -15px;
+        left: 15px;
+        background: @color-purple;
+        color: white;
+        padding: 0 5px;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 5px;
+        z-index: 9;
+    }
+
+    span.on-sale-label-hide {
+        position: absolute;
+        top: -15px;
+        left: 0;
+        background: @color-purple;
+        display: none;
+        color: white;
+        padding: 0 5px;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 5px;
+        z-index: 9;
+    }
+}

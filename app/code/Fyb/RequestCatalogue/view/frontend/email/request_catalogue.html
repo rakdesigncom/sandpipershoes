@@ -1,0 +1,47 @@
+<!--@subject {{trans "Request for Catalogue"}} @-->
+<!--@vars {
+"var data.email":"Sender Email",
+"var data.name":"Sender Name",
+"var data.telephone":"Sender Telephone"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<h2 style="font-size:18px;text-align:center;border-bottom:1px solid #ccc;color:black;margin:10px 0;padding:0 0 5px 0"><b>Request For Catalogue</b></h2>
+
+<table width="600" class="message-details">
+    <tr>
+        <td style="width: 50%;">{{trans "Name"}}</td>
+        <td style="width: 50%;">{{trans "%name," name=$data.name}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "Email"}}</td>
+        <td style="width: 50%;">{{trans "%email," email=$data.email}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "Phone Number"}}</td>
+        <td style="width: 50%;">{{trans "%phone," phone=$data.telephone}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "Address Line 1"}}</td>
+        <td style="width: 50%;">{{trans "%address," address=$data.street_address}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "Address Line 2"}}</td>
+        <td style="width: 50%;">{{trans "%address2," address2=$data.street_address_2}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "County/State"}}</td>
+        <td style="width: 50%;">{{trans "%state," state=$data.county}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "Post Code"}}</td>
+        <td style="width: 50%;">{{trans "%pcode," pcode=$data.post_code}}</td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">{{trans "Country"}}</td>
+        <td style="width: 50%;">{{trans "%country," country=$data.country_id}}</td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

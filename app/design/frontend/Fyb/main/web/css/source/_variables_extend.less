@@ -1,0 +1,212 @@
+@max_page_width:1920px;
+@max_content_width:1440px;
+
+@layout__max-width:@max_content_width;
+
+@layout-margin_space:25px;
+
+@screen__xxl:1920px;
+
+//fonts
+@font-family-jost_light:'Jost Light';
+@font-family-jost_italic:'Jost Italic';
+@font-family-jost_medium:'Jost Medium';
+@font-family-jost_regular:'Jost';
+
+@font-family__base: @font-family-jost_light;
+@font-weight__regular: 300;
+
+
+//font size
+
+@font-size__base:18px;
+@font-size__normal_body:18px;
+@font-size__15:15px;
+@font-size__14:14px;
+@font-size__16:16px;
+@font-size__20:20px;
+@font-size__24:24px;
+@font-size__40:40px;
+
+@line-height__normal_body: 24px;
+
+@line-height__31:31px;
+@line-height__22:22px;
+@line-height__58:58px;
+
+//colors
+@color-black-0: #000000;
+@color-black: #1A171B;
+@color-black-2: #2C302E;
+@color-black_titles: #2E2C2F;
+@color-purple: #8D6B8E;
+@color-green: #729471;
+@color-grey: #E5E5E5;
+@color-grey-2: #919392; /* rgba(44, 48, 46, 0.5);*/
+@color-grey-4: #777777;
+@color-background-light-green: #e8eee8; //rgba(114, 148, 113, 0.16)
+@color-green-very-light: #F6F6F6;
+@color-grey-transparent: #858385;
+@color-grey-opacity: @color-grey-2;
+@text_color-transparent: #646565; //2C302EB2
+@color-purple-50-transparent: #c1b0c2;
+
+@color-pink:#e8e1e8;
+@color-yellow: #FFB400;
+
+@theme__color__primary: @color-black;
+@theme__color__primary-alt: @color-grey;
+@theme__color__secondary: @color-grey;
+@active__color: @color-grey;
+
+@primary__color: @color-black;
+@primary__color__dark: @color-black;
+@primary__color__darker: darken(@primary__color, 13.5%); // #111
+@primary__color__lighter: lighten(@primary__color, 29%); // #7d7d7d
+@primary__color__light: lighten(@primary__color, 45%); // #a6a6a6
+
+@secondary__color: @color-grey;
+@secondary__color__light: lighten(@secondary__color, 5%);
+
+@page__background-color: @color-white;
+@panel__background-color: darken(@page__background-color, 6%);
+
+@active__color: @color-black;
+@error__color: @color-red10;
+
+@primary__color: @color-black;
+@text__color: @color-black;
+
+
+
+
+
+//
+//  Links
+//  ---------------------------------------------
+
+@link__color: @theme__color__primary;
+@link__text-decoration: none;
+
+@link__visited__color: @link__color;
+@link__visited__text-decoration: none;
+
+@link__hover__color: @theme__color__primary-alt;
+@link__hover__text-decoration: none;
+
+@link__active__color: @active__color;
+@link__active__text-decoration: none;
+
+//
+//  Focus
+//  ---------------------------------------------
+
+@focus__color: @color-black;
+@focus__box-shadow: 0 0 3px 1px @focus__color;
+
+
+//headers
+@heading__font-family__base: @font-family-jost_medium;
+@heading__font-weight__base:500;
+@heading__color__base:@color-black_titles;
+
+@h1__font-size:70px;
+@h2__font-size:64px;
+@h3__font-size:48px;
+@h4__font-size:24px;
+@h5__font-size:18px;
+
+@h1__line-height:73px;
+@h2__line-height:67px;
+@h3__line-height:51px;
+@h4__line-height:27px;
+@h5__line-height:21px;
+
+@h1__desktop-font-size:45px;
+@h2__desktop-font-size:32px;
+@h3__desktop-font-size:26px;
+@h4__desktop-font-size:22px;
+@h5__desktop-font-size:18px;
+@h6__desktop-font-size:16px;
+
+@h1__desktop-line-height:48px;
+@h2__desktop-line-height:35px;
+@h3__desktop-line-height:29px;
+@h4__desktop-line-height:25px;
+@h5__desktop-line-height:21px;
+@h6__desktop-line-height:19px;
+
+@h1__mobile-font-size:32px;
+@h2__mobile-font-size:29px;
+@h3__mobile-font-size:26px;
+@h4__mobile-font-size:22px;
+@h5__mobile-font-size:18px;
+@h6__mobile-font-size:16px;
+
+@h1__mobile-line-height:35px;
+@h2__mobile-line-height:32px;
+@h3__mobile-line-height:29px;
+@h4__mobile-line-height:25px;
+@h5__mobile-line-height:21px;
+@h6__mobile-line-height:19px;
+
+
+@h1__font-size-desktop:@h1__font-size;
+
+//buttons
+@button-primary__font-family:@font-family-jost_medium;
+@button__color:@color-white;
+@button__background:@color-purple;
+@button__border: 0;
+@button__padding:15px 24px;
+@button__font-size:@font-size__15;
+@button__line-height:24px;
+@buttons_letter_spacing:0.08em;
+@button__font-weight:500;
+@button__hover__background:linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #8D6B8E;;
+@button__hover_border: 0;
+@button__hover__color:@color-white;
+@button-white__border: 1px solid #FFFFFF;
+
+// forms
+@form-element-input__font-size:@font-size__base;
+@form-element-input__height:49px;
+@form-element-input__font-weight:500;
+@form-element-input__border-color:@color-grey;
+@form-element-input__color: @color-black;
+@form-element-input__background: none;
+@form-element-input__line-height:@form-element-input__height;
+@form-element-input__font-family:@font-family-jost_light;
+@form-element-input__padding:2px 9px 0 9px;
+
+@select__line-height:@form-element-input__height;
+@select__font-size:@font-size__base;
+@select__padding: 4px 2px 2px;
+@select__height:@form-element-input__height;
+@select__background:@color-white;
+@select__color:@color-black;
+@select__padding: @form-element-input__padding;
+
+
+
+
+@products-big-widget-image-width:330px;
+
+@products-big-widget-image-space:10px;
+@products-big-widget-image-info-space:10px;
+@products-big-widget-image-info-width:@products-big-widget-image-width + @products-big-widget-image-info-space;
+
+@products-big-widget-item:@products-big-widget-image-width + @products-big-widget-image-space;
+
+@products-small-widget-image-width:200px;
+
+@products-small-widget-image-space:20px;
+@products-small-widget-image-info-space:40px;
+@products-small-widget-image-info-width:@products-small-widget-image-width + @products-small-widget-image-info-space;
+
+@products-small-widget-item:@products-small-widget-image-width + @products-small-widget-image-space;
+
+
+@gridspan:  ~"1 / span 3";
+
+@block-width-190: ~"(100% - 190px)";

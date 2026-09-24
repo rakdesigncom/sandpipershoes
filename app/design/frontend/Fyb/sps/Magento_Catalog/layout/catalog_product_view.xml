@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Newsletter\Block\Subscribe" name="block.newsletter" after="page.bottom.container" template="Magento_Theme::newsletter.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template" name="product.info.stockist" template="Magento_Catalog::product/view/stockist.phtml" after="product.info" />
+        </referenceBlock>
+    </body>
+</page>
+

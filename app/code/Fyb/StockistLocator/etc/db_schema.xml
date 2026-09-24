@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="fyb_stockist_locator" resource="default" engine="innodb" comment="Stockist Points">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="100" comment="Name"/>
+        <column xsi:type="varchar" name="store" nullable="false" length="255" comment="Store"/>
+        <column xsi:type="varchar" name="address_1" nullable="false" length="255" comment="Address 1"/>
+        <column xsi:type="varchar" name="address_2" nullable="true" length="255" comment="Address 2"/>
+        <column xsi:type="varchar" name="country" nullable="false" length="255" comment="Country"/>
+        <column xsi:type="varchar" name="county" nullable="true" length="255" comment="County"/>
+        <column xsi:type="varchar" name="city" nullable="true" length="255" comment="City"/>
+        <column xsi:type="varchar" name="website" nullable="true" length="255" comment="Website"/>
+        <column xsi:type="varchar" name="postcode" nullable="false" length="20" comment="Postcode"/>
+        <column xsi:type="varchar" name="telephone" nullable="false" length="30" comment="Telephone"/>
+        <column xsi:type="varchar" name="longitude" nullable="false" length="30" comment="Longitude"/>
+        <column xsi:type="varchar" name="latitude" nullable="false" length="30" comment="Latitude"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="FYB_STOCKIST_LOCATOR_STORE" indexType="btree">
+            <column name="store"/>
+        </index>
+    </table>
+
+    <table name="fyb_stockist_page" resource="default" engine="innodb" comment="Stockist Pages">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="boolean" name="active" nullable="false" default="1" comment="Is Page Active"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="Identifier"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="town" nullable="true" length="100" comment="Town"/>
+        <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="Url Key"/>
+        <column xsi:type="varchar" name="intro_title" nullable="true" length="255" comment="Intro Title"/>
+        <column xsi:type="text" name="intro_text" nullable="true" comment="Intro Text"/>
+        <column xsi:type="text" name="google_map_embed" nullable="true" comment="Google Map"/>
+        <column xsi:type="varchar" name="telephone" nullable="true" length="255" comment="Telephone"/>
+        <column xsi:type="varchar" name="website" nullable="true" length="255" comment="Website"/>
+        <column xsi:type="varchar" name="email" nullable="true" length="30" comment="Email"/>
+        <column xsi:type="text" name="address" nullable="true" comment="Address"/>
+        <column xsi:type="text" name="opening_times" nullable="true" comment="Opening Times"/>
+        <column xsi:type="varchar" name="seo_title" nullable="true" length="255" comment="Seo Title"/>
+        <column xsi:type="mediumtext" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="mediumtext" name="seo_text" nullable="true" comment="Seo Text"/>
+        <column xsi:type="mediumtext" name="stockist_images" nullable="true" comment="Images"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="FYB_STOCKIST_PAGE_URL_KEY" indexType="btree">
+            <column name="url_key"/>
+        </index>
+        <index referenceId="FYB_STOCKIST_PAGE_NAME" indexType="btree">
+            <column name="name"/>
+        </index>
+    </table>
+</schema>

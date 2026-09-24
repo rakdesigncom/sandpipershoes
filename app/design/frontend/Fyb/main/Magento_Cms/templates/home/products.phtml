@@ -1,0 +1,78 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$list = $objectManager->get(\Magento\CatalogWidget\Block\Product\ProductsList::class);
+
+?>
+<div class="homepage_product_tabs">
+    <div class="homepage_product_tabs_title">
+        <h3>Top products</h3>
+        <p>Not sure what extra wide footwear to choose? Browse our best sellers to see our most popular styles or take a look at featured footwear and special offers</p>
+    </div>
+
+    <div class="product data items product-tabs"
+         data-mage-init='{"mage/tabs": {"openedState": "active",  "active": 0}}'>
+
+        <div class="homepage_products_tablist">
+            <div class="item title" data-role="collapsible">
+                <a class="switch" data-toggle="trigger" href="#tab-best-sellers">Best sellers</a>
+            </div>
+            <div class="item title" data-role="collapsible">
+                <a class="switch" data-toggle="trigger" href="#tab-new-products">New products</a>
+            </div>
+            <div class="item title" data-role="collapsible">
+                <a class="switch" data-toggle="trigger" href="#tab-featured-products">Featured products</a>
+            </div>
+            <div class="item title" data-role="collapsible">
+                <a class="switch" data-toggle="trigger" href="#tab-special-offers">Special Offers</a>
+            </div>
+        </div>
+
+        <div id="tab-best-sellers" class="item content products_tab_content" data-role="content">
+            <?php
+            $widgetCollection = $objectManager->create('Magento\Widget\Model\Widget\InstanceFactory')->create()
+                ->load('homepage_best_sellers', 'title');
+
+            $data = json_decode($widgetCollection->getData('widget_parameters'), true);
+            $list->addData($data)->addData(['conditions' => json_encode($data['conditions'])]);
+            $list->setTemplate('Magento_Cms::widget/grid_slider.phtml')
+            ?>
+            <?= $list->toHtml() ?>
+        </div>
+
+        <div id="tab-new-products" class="item content products_tab_content" data-role="content">
+            <?php
+            $widgetCollection = $objectManager->create('Magento\Widget\Model\Widget\InstanceFactory')->create()
+                ->load('homepage_new_products', 'title');
+
+            $data = json_decode($widgetCollection->getData('widget_parameters'), true);
+            $list->addData($data)->addData(['conditions' => json_encode($data['conditions'])]);
+            $list->setTemplate('Magento_Cms::widget/grid_slider.phtml')
+            ?>
+            <?= $list->toHtml() ?>
+        </div>
+
+        <div id="tab-featured-products" class="item content products_tab_content" data-role="content">
+            <?php
+            $widgetCollection = $objectManager->create('Magento\Widget\Model\Widget\InstanceFactory')->create()
+                ->load('homepage_featured_products', 'title');
+
+            $data = json_decode($widgetCollection->getData('widget_parameters'), true);
+            $list->addData($data)->addData(['conditions' => json_encode($data['conditions'])]);
+            $list->setTemplate('Magento_Cms::widget/grid_slider.phtml')
+            ?>
+            <?= $list->toHtml() ?>
+        </div>
+
+        <div id="tab-special-offers" class="item content products_tab_content" data-role="content">
+            <?php
+            $widgetCollection = $objectManager->create('Magento\Widget\Model\Widget\InstanceFactory')->create()
+                ->load('homepage_special_offers', 'title');
+
+            $data = json_decode($widgetCollection->getData('widget_parameters'), true);
+            $list->addData($data)->addData(['conditions' => json_encode($data['conditions'])]);
+            $list->setTemplate('Magento_Cms::widget/grid_slider.phtml')
+            ?>
+            <?= $list->toHtml() ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Stockist Locator</title>
+    </head>
+
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Find a Stockist</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Find a Stockist</item>
+                    <item name="label" xsi:type="string">Find a Stockist</item>
+                </argument>
+            </action>
+        </referenceBlock>
+
+        <referenceContainer name="columns.top">
+            <block class="Magento\Framework\View\Element\Template" name="stockist.desc" template="Fyb_StockistLocator::desc.phtml" after="page.main.title"/>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Fyb\StockistLocator\Block\Index\Index" name="stockist.locator" template="Fyb_StockistLocator::stockistlocator_index_index.phtml" cacheable="false" >
+                <arguments>
+                    <argument name="store_type" xsi:type="string">Store</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

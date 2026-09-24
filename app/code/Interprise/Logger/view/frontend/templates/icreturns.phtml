@@ -1,0 +1,79 @@
+<?php
+$title = [
+    'open' => 'Outstanding Returns',
+    'complete' => 'Completed Returns',
+];
+$filter = $this->getData('order_type');
+$_gridrecords = $block->getCollectionreturns($filter);
+$query_string = '';
+$p = $block->getRequest()->getParam('p');
+$limit = $block->getRequest()->getParam('limit');
+if ($p) {
+    $query_string = '&p='.$p;
+}
+if ($limit) {
+    $query_string .= '&limit='.$limit;
+}
+?>
+<div>
+    <h3 style="font-size: 35px;"><?= /* @noEscape */__($title[$filter]) ?></h3>
+</div>
+<!----------------- Show Filter ------------------------------>
+<div class="toolbar">
+    <?= /* @noEscape */$block->getPagerHtml(); ?>
+</div>
+<!----------------- End Filter ------------------------------>
+
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @noEscape */__('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col title"><?= /* @noEscape */__('SO Number') ?></th>
+                    <th scope="col" class="col title"><?= /* @noEscape */__('Customer PO') ?></th>
+                    <th scope="col" class="col date"><?= /* @noEscape */__('Document Date') ?></th>
+                    <th scope="col" class="col shipto"><?= /* @noEscape */__('Ship To') ?></th>
+                    <th scope="col" class="col " style="text-align:right"><?= /* @noEscape */__('Total') ?></th>
+                    <th scope="col" class="col " style="text-align:right"><?= /* @noEscape */__('Status') ?></th>
+                    <th scope="col" class="col " style="text-align:right">Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php if ($_gridrecords && count($_gridrecords)) : ?>
+                <?php  // read collection as magento1.x and display in list
+                foreach ($_gridrecords as $_gridrecord) :
+                    $order_id = $_gridrecord['document_code'];
+                    ?>
+
+                    <tr>
+                        <td class="col shipping"><?= /* @noEscape */$_gridrecord['document_code'] ?></td>
+                        <td class="col po"><?= /* @noEscape */$_gridrecord['pocode'] ?></td>
+                        <td class="col date"><?= /* @noEscape */date('d/m/Y', strtotime($_gridrecord['updated_at'])) ?></td>
+                        <td class="col shipto"><?= /* @noEscape */$_gridrecord['shiptoname'] ?></td>
+                        <td class="col total"><?= /* @noEscape */$block->formatPrice($_gridrecord['total']); ?></td>
+                        <td class="col orderstatus"><?= /* @noEscape */$_gridrecord['status'] ?></td>
+                        <td class="col date"><a href="<?= /* @noEscape */$block->getUrl("icustomer/corder/detail/id/$order_id"); ?>">Detail</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="8">
+                        <div class="message info empty"><span><?= /* @noEscape */__('Records Not Found.'); ?></span></div>
+                    </td>
+                </tr>
+            <?php endif ?>
+            </tbody>
+        </table>
+    </div>
+
+<style>
+    .total{
+        text-align: right;
+    }
+</style>
+<script>
+    function setLocation(url){
+        window.location.href = encodeURI(url);
+    }
+
+</script>

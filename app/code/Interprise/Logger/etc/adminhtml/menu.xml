@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Interprise::top_level" module="Interprise_Logger" resource="Magento_Backend::content" sortOrder="12" title="Interprise"/>
+		<add action="interprise_logger/failedorders/index" id="Interprise_Logger::interprise_logger_failedorders" module="Interprise_Logger" parent="Interprise::top_level" resource="Magento_Backend::content" sortOrder="9" title="Failed Order"/>
+		<add action="interprise_logger/cronmaster/index" id="Interprise_Logger::interprise_logger_cronmaster" module="Interprise_Logger" parent="Interprise::top_level" resource="Magento_Backend::content" sortOrder="10" title="Cron Master"/>
+		<add action="interprise_logger/cronlog/index" id="Interprise_Logger::interprise_logger_cronlog" module="Interprise_Logger" parent="Interprise::top_level" resource="Magento_Backend::content" sortOrder="20" title="Cron Log"/>
+		<add action="interprise_logger/cronactivityschedule/index" id="Interprise_Logger::interprise_logger_cronactivityschedule" module="Interprise_Logger" parent="Interprise::top_level" resource="Magento_Backend::content" sortOrder="30" title="CronActivity Schedule"/>
+		<add action="interprise_logger/changelog/index" id="Interprise_Logger::interprise_logger_changelog" module="Interprise_Logger" parent="Interprise::top_level" resource="Magento_Backend::content" sortOrder="40" title="Changelog"/>
+		<add action="interprise_logger/diagnostics/index" id="Interprise_Logger::interprise_logger_diagnostics" module="Interprise_Logger" parent="Interprise::top_level" resource="Magento_Backend::content" sortOrder="40" title="Diagnostics"/>
+	</menu>
+</config>

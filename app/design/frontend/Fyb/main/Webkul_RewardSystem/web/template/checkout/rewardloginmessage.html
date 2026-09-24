@@ -1,0 +1,13 @@
+<!-- ko if: checkStatus() -->
+<div id="rewardsmessage">
+    <h3 class="wk_rs_product_style wk_rs_advertise_product_style">
+        <span class="wk_rs_cart_green">
+            <!-- ko i18n: 'Earn'--><!-- /ko -->
+            <span class="price" data-bind="text: getValue()"></span>
+            <!-- ko i18n: 'Feather Points on creating your account. '--><!-- /ko -->
+            <a data-bind="attr: { href: getRedirectUrl() }"> <!-- ko i18n: 'Click here'--><!-- /ko --> </a>
+            <!-- ko i18n: ' to create your account.'--><!-- /ko -->
+        </span>
+    </h3>
+</div>
+<!-- /ko -->

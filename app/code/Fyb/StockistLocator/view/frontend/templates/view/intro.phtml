@@ -1,0 +1,10 @@
+<?php
+/** @var \Fyb\StockistLocator\Block\View\Stockist $block */
+$stockist = $block->getStockist();
+?>
+<div class="intro-tittle">
+    <h1><?= $stockist->getData('intro_title') ?></h1>
+</div>
+<div class="intro-text">
+    <?= $stockist->getIntroText() ?>
+</div>
