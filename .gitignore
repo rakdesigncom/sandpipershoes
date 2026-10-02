@@ -91,3 +91,4 @@ n98-magerun2.phar.sha256
 /pub/media/mageplaza/*
 *:Zone.Identifier
 *.tar.gz
+auth.json
